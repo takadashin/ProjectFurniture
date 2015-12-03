@@ -47,11 +47,11 @@ public class TaxListBean {
     }
     
     public void editTax() {
-        return taxBeans;
+       
     }
     
      public void deleteTax() {
-        return taxBeans;
+       
     }
 
 }
