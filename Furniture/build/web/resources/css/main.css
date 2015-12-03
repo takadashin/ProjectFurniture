@@ -1,0 +1,58 @@
+* {font-family:proxima, helvetica, clean, sans-serif;font-size:12px;}
+a {text-decoration:none;color: rgb(77, 77, 79);}
+body {;margin:0;padding:0}
+#body_wrap {width:998px;margin:auto;background:white;}
+.clear{clear:both;}
+#cpos_1 {margin-top:20px;}
+#cpos_11 {float:left;}
+#cpos_12 {float:left;}
+#cpos_13 {float:right;margin-top:20px;}
+.login_header_session {
+	float:right;
+	border-left:1px solid #dedede;
+	border-right:1px solid #dedede;
+	padding:10px;
+}
+.login_header_session span{display:block;}
+.upper_text a{color: rgb(77, 77, 79);font-size: 16px;}
+.lower_text a{color: rgb(77, 77, 79);font-size: 12px;}
+.logo {height:84px;}
+.searchbox_wrapper {border:1px solid #dedede;padding:3px;margin-top:25px;margin-left:50px;}
+.searchbox_text {    border: 0;
+    font-size: 15px;
+    width: 275px;
+
+    vertical-align: 8px;
+    padding-left: 11px;}
+.searchbox_text:focus {outline:0;}
+.searchbox_button {background:url("#{resource['images/search.png']}") no-repeat white;border:0;height:30px;width:30px;}
+#checkout_img {height:30px;}
+.header_line a{border-right:1px solid #dedede;padding:0 5px;}
+.menu_wrapper {margin-top:15px;}
+.menu_wrapper ul{margin:0;padding:0;list-item:none;display:table;width:100%;}
+.menu_wrapper li{display:table-cell;text-align:center;border:1px solid transparent;}
+.menu_wrapper a{font-weight:800;font-size:14px;    letter-spacing: .75px;}
+.menu_wrapper a:hover {    color: #00a5a9;}
+.menu_wrapper li:hover{border-left:1px solid #dedede;border-right:1px solid #dedede;}
+.menu_wrapper li div {border-top:3px solid transparent;}
+.menu_wrapper li:hover div {border-top:3px solid #00a5a9;}
+.header_title a{    letter-spacing: 1.5px;
+    text-align: center;
+    font-size: 128.571%;
+    color: #455560;
+    text-transform: uppercase;z-index:2;}
+.header_title {text-align:center;position:relative;}
+.article_item_box {display:table;margin:auto;}
+.article_item_box p {color: rgb(77, 77, 79);margin:0;padding:0;line-height: 19.2px;}
+.article_item {float:left;width:255px;}
+.article_item img{max-width:100%;max-height:225px;width:auto;}
+.title_text {    font-weight: 700;font-size: 16px;}
+.location_text {font-size:14px;}
+.price_text {font-size:16px;font-weight:bold;}
+.readmore_link {}
+.article_item {border:1px solid transparent;border-radius:5px;margin:5px;padding:5px;-o-transition: all 0.3s ease;
+	-webkit-transition: all 0.3s ease;
+transition:all 0.3s ease;}
+.article_item:hover {border:1px solid #dedede;}
+#cpos_3 {background:#455560;}
+#cpos_3 * {color:white;}

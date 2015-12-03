@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <body>
+        <ui:composition>
+            <c:set var="ctx" value="#{request.contextPath}" />
+            <header>
+                <div id="cpos_1">
+                    <div id="body_wrap">
+                        <div id="cpos_11">
+                            <div class="logo_container">
+                                <img class="logo" src="#{ctx}/resources/images/logo.png" />
+                            </div>
+                        </div>
+                        <div id="cpos_12">
+                            <div class="searchbox_wrapper">
+                                <input type="text" class="searchbox_text" placeholder="Find anything you want here" />
+                                <input type="submit" class="searchbox_button" value=" "/>
+                            </div>
+                        </div>
+                        <div id="cpos_13">
+                            <div style="float:right;padding:5px;">
+                                <a href="#"><img id="checkout_img" src="#{ctx}/resources/images/cart.png" /><br/>Checkout</a>
+                            </div>
+                            <div class="login_header_session">
+                                <span class="upper_text"><a href="#">Account</a></span>
+                                <span class="lower_text"><a href="#">(Sign In)</a></span>
+                            </div>
+                        </div>
+                        
+                        <div class="clear"></div>
+                        
+                        <div id="cpos_14">
+                            <div style="float:right;">
+                                <div class="header_line">
+                                    <a>Brand</a>
+                                    <a>Trade Services</a>
+                                    <a><img style="height:15px;padding-right:5px;" src="#{ctx}/resources/images/phone.png"/>Tel:(647)-778-9551</a>
+                                </div>
+                            </div>
+                        </div>
+                        <hr/>
+                    </div>
+                </div>
+            </header>
+        </ui:composition>
+    </body>
+</html>
+

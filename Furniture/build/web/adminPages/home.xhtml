@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <h:body>
+    	
+    	<ui:composition template="/WEB-INF/template/adminLayout.xhtml">
+            
+            <ui:define name="title">Admin Home Page</ui:define>            
+            <ui:define name="content">
+                <c:set var="ctx" value="#{request.contextPath}" />
+                <div id="main_panel" >
+                    <div class="header_title">User</div>
+                    <div>
+                        <table class="Datagrid" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <th>Id</th>
+                                <th>User Name</th>
+                                <th>Password</th>
+                                <th>Full Name</th>
+                                <th>Address</th>
+                                <th>Type</th>
+                                <th>Active</th>
+                                <th colspan="2"></th>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>abc</td>
+                                <td>abc</td>
+                                <td>a b c</td>
+                                <td>12 st.geogre</td>
+                                <td>admin</td>
+                                <td>yes</td>
+                                <td><a href="Delete.php"><img src="#{ctx}/resources/images/delete.png" />Delete</a></td>
+                                <td><a href="Edit.php"><img src="#{ctx}/resources/images/edit.png" />Edit</a></td>
+                            </tr>
+                            <tr class="even">
+                                <td>1</td>
+                                <td>abc</td>
+                                <td>abc</td>
+                                <td>a b c</td>
+                                <td>12 st.geogre</td>
+                                <td>admin</td>
+                                <td>yes</td>
+                                <td><a href="Delete.php"><img src="#{ctx}/resources/images/delete.png" />Delete</a></td>
+                                <td><a href="Edit.php"><img src="#{ctx}/resources/images/edit.png" />Edit</a></td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>abc</td>
+                                <td>abc</td>
+                                <td>a b c</td>
+                                <td>12 st.geogre</td>
+                                <td>admin</td>
+                                <td>yes</td>
+                                <td><a href="Delete.php"><img src="#{ctx}/resources/images/delete.png" />Delete</a></td>
+                                <td><a href="Edit.php"><img src="#{ctx}/resources/images/edit.png" />Edit</a></td>
+                            </tr>
+                            <tr class="even">
+                                <td>1</td>
+                                <td>abc</td>
+                                <td>abc</td>
+                                <td>a b c</td>
+                                <td>12 st.geogre</td>
+                                <td>admin</td>
+                                <td>yes</td>
+                                <td><a href="Delete.php"><img src="#{ctx}/resources/images/delete.png" />Delete</a></td>
+                                <td><a href="Edit.php"><img src="#{ctx}/resources/images/edit.png" />Edit</a></td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>abc</td>
+                                <td>abc</td>
+                                <td>a b c</td>
+                                <td>12 st.geogre</td>
+                                <td>admin</td>
+                                <td>yes</td>
+                                <td><a href="Delete.php"><img src="#{ctx}/resources/images/delete.png" />Delete</a></td>
+                                <td><a href="Edit.php"><img src="#{ctx}/resources/images/edit.png" />Edit</a></td>
+                            </tr>
+                            <tr class="even">
+                                <td>1</td>
+                                <td>abc</td>
+                                <td>abc</td>
+                                <td>a b c</td>
+                                <td>12 st.geogre</td>
+                                <td>admin</td>
+                                <td>yes</td>
+                                <td><a href="Delete.php"><img src="#{ctx}/resources/images/delete.png" />Delete</a></td>
+                                <td><a href="Edit.php"><img src="#{ctx}/resources/images/edit.png" />Edit</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                
+            </ui:define>
+    	</ui:composition>
+    	
+    </h:body>
+</html>
