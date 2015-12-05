@@ -110,7 +110,7 @@ CREATE TABLE orders (
   shipping_address varchar(100) NOT NULL, 
   shipping_datetime date NOT NULL,
   shipped_datetime date default NULL,  
-  order_status varchar(1) NOT NULL,
+  order_status varchar(10) NOT NULL,
   user_id NUMBER(4),
   shipping_method_id NUMBER(4)  default NULL,
   CONSTRAINT FK_orders_userid FOREIGN KEY (user_id) REFERENCES users (id),

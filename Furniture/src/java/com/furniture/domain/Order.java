@@ -17,7 +17,7 @@ public class Order extends BaseDomain{
     private String shippingAddress;
     private Date shippingDatetime;
     private Date shippedDatetime;    
-    private Boolean orderStatus;
+    private String orderStatus;
     private int userId;
     private int shippingMethodId;
 
@@ -61,11 +61,11 @@ public class Order extends BaseDomain{
         this.shippedDatetime = shippedDatetime;
     }
     
-    public Boolean getOrderStatus() {
+    public String getOrderStatus() {
         return orderStatus;
     }
 
-    public void setOrderStatus(Boolean orderStatus) {
+    public void setOrderStatus(String orderStatus) {
         this.orderStatus = orderStatus;
     }
     

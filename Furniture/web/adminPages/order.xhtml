@@ -8,92 +8,201 @@
         <ui:composition template="/WEB-INF/template/adminLayout.xhtml">
             <ui:define name="title">Order</ui:define>
 
-            <ui:define name="content">
-                
+            <ui:define name="content">                
                 <h:form id="frmOrderList">
-                <h:dataTable
-                    value="#{orderListBean.orderBeans}"
-                    var="currentOrderBean" border="1"
-                    headerClass="Heading" styleClass="tableViewSummary">
-                    <f:facet name="header">
-                        <f:verbatim>
-                            <caption><h:outputText value="Order List"></h:outputText></caption>
-                        </f:verbatim>
-                    </f:facet>
-                    <h:column headerClass="titleRow_250px">
+                    <h:dataTable
+                        value="#{orderBean.orders}"
+                        var="order"
+                        headerClass="Heading" styleClass="tableViewSummary"
+                        rowClasses="rowOne,rowTwo"
+                        columnClasses="nameColumn, nameColumn, nameColumn, nameColumn, nameColumn, nameColumn, nameColumn, nameColumn, actionColumn, actionColumn">
                         <f:facet name="header">
-                            <h:outputLabel value="Order Num"></h:outputLabel>
+                            <f:verbatim>
+                                <caption>Order</caption>
+                            </f:verbatim>
                         </f:facet>
-                        <h:outputLabel
-                            value="#{currentOrderBean.orderNum}"></h:outputLabel>
-                    </h:column>
-                    <h:column headerClass="titleRow_250px">
-                        <f:facet name="header">
-                            <h:outputLabel value="Shipping Address"></h:outputLabel>
-                        </f:facet>
-                        <h:outputLabel
-                            value="#{currentOrderBean.shippingAddress}"></h:outputLabel>
-                    </h:column>
-                    <h:column headerClass="titleRow_250px">
-                        <f:facet name="header">
-                            <h:outputLabel value="Shipping Datetime"></h:outputLabel>
-                        </f:facet>
-                        <h:outputLabel
-                            value="#{currentOrderBean.shippingDatetime}"></h:outputLabel>
-                    </h:column>
-                    <h:column headerClass="titleRow_250px">
-                        <f:facet name="header">
-                            <h:outputLabel value="Shipped Datetime"></h:outputLabel>
-                        </f:facet>
-                        <h:outputLabel
-                            value="#{currentOrderBean.shippedDatetime}"></h:outputLabel>
-                    </h:column>
-                    <h:column headerClass="titleRow_250px">
-                        <f:facet name="header">
-                            <h:outputLabel value="Order Datetime"></h:outputLabel>
-                        </f:facet>
-                        <h:outputLabel
-                            value="#{currentOrderBean.orderDatetime}"></h:outputLabel>
-                    </h:column>
-                    <h:column headerClass="titleRow_250px">
-                        <f:facet name="header">
-                            <h:outputLabel value="Order Status"></h:outputLabel>
-                        </f:facet>
-                        <h:outputLabel
-                            value="#{currentOrderBean.orderStatus}"></h:outputLabel>
-                    </h:column>
-                    <h:column headerClass="titleRow_250px">
-                        <f:facet name="header">
-                            <h:outputLabel value="User ID"></h:outputLabel>
-                        </f:facet>
-                        <h:outputLabel
-                            value="#{currentOrderBean.userId}"></h:outputLabel>
-                    </h:column>
-                    <h:column headerClass="titleRow_250px">
-                        <f:facet name="header">
-                            <h:outputLabel value="Shipping Method ID"></h:outputLabel>
-                        </f:facet>
-                        <h:outputLabel
-                            value="#{currentOrderBean.shippingMethodId}"></h:outputLabel>
-                    </h:column>
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Order Num"></h:outputLabel>
+                            </f:facet>
+                            <h:outputLabel
+                                value="#{order.orderNum}"></h:outputLabel>
+                        </h:column>
+                         <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Order Datetime"></h:outputLabel>
+                            </f:facet>
+                            <h:outputLabel
+                                value="#{order.orderDatetime}"></h:outputLabel>
+                        </h:column>
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Shipping Address"></h:outputLabel>
+                            </f:facet>
+                            <h:outputLabel
+                                value="#{order.shippingAddress}"></h:outputLabel>
+                        </h:column>
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Shipping Datetime"></h:outputLabel>
+                            </f:facet>
+                            <h:outputLabel
+                                value="#{order.shippingDatetime}"></h:outputLabel>
+                        </h:column>
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Shipped Datetime"></h:outputLabel>
+                            </f:facet>
+                            <h:outputLabel
+                                value="#{order.shippedDatetime}"></h:outputLabel>
+                        </h:column>                       
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Order Status"></h:outputLabel>
+                            </f:facet>
+                            <h:outputLabel
+                                value="#{order.orderStatus}"></h:outputLabel>
+                        </h:column>
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="User ID"></h:outputLabel>
+                            </f:facet>
+                            <h:outputLabel
+                                value="#{order.userId}"></h:outputLabel>
+                        </h:column>
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Shipping Method ID"></h:outputLabel>
+                            </f:facet>
+                            <h:outputLabel
+                                value="#{order.shippingMethodId}"></h:outputLabel>
+                        </h:column>
 
-                   <h:column headerClass="titleRow_30px">
-                        <f:facet name="header">
-                            <h:outputLabel value="Edit"></h:outputLabel>
-                        </f:facet>
-                        <h:commandLink value="Edit"
-                                       action="#{orderListBean.editOrderBean}">
-                        </h:commandLink>
-                    </h:column>
-                    <h:column headerClass="titleRow_50px">
-                        <f:facet name="header">
-                            <h:outputLabel value="Delete"></h:outputLabel>
-                        </f:facet>
-                        <h:commandLink value="Delete"
-                                       action="#{orderListBean.deleteAction}">
-                        </h:commandLink>
-                    </h:column>   
-                </h:dataTable>
+                       <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Edit"></h:outputLabel>
+                            </f:facet>
+                            <h:commandLink value="Edit"
+                                           action="#{orderBean.editOrder(order)}">
+                            </h:commandLink>
+                        </h:column>
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Delete"></h:outputLabel>
+                            </f:facet>
+                            <h:commandLink value="Delete"                                           
+                                           action="#{orderBean.deleteOrder(order)}"
+                                           onclick="if (!confirm('Are you sure you want to delete this order?')) return false"
+ >
+                            </h:commandLink>
+                        </h:column>   
+                    </h:dataTable>
+                </h:form>
+                <br/>
+                <h:form id="frmEditOrder">
+                    <h:panelGroup>
+                        <h:inputHidden value="#{orderBean.order.id}"></h:inputHidden>
+
+                        <table class="tableEdit" width="auto">
+                            <tr>
+                                <th class="tableEditHeader" colspan="2" align="center">
+                                    Order
+                                </th>
+                            </tr>
+                            <tr>																	
+                                <td align="right" width="100px"> 
+                                    <h:outputLabel value="Order Num"></h:outputLabel>
+                                </td>
+                                <td align="left">
+                                    <h:inputText id="txtOrderNum" value="#{orderBean.order.orderNum}" required="true" 
+                                                 requiredMessage="*">																			
+                                    </h:inputText>
+                                    <h:message for="txtOrderNum" style="color:red"/>
+                                </td>
+                            </tr>   
+                            <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel value="Order Datetime"></h:outputLabel>
+                                </td>
+                                <td align="left">
+                                    <h:inputText id="txtOrderDatetime" value="#{orderBean.order.orderDatetime}" required="true" requiredMessage="*">
+                                        <f:convertDateTime pattern="yyyy-mm-dd" />
+                                    </h:inputText>
+                                    <h:message for="txtOrderDatetime" styleClass="errorMsg"/>
+                                </td>
+                            </tr>   
+                            <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel value="Shipping Address"></h:outputLabel>
+                                </td>
+                                <td align="left">
+                                    <h:inputText id="txtShippingAddress" value="#{orderBean.order.shippingAddress}" required="true" requiredMessage="*">                                        
+                                    </h:inputText>
+                                    <h:message for="txtShippingAddress" styleClass="errorMsg"/>
+                                </td>
+                            </tr>  
+                            <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel value="Shipping Datetime"></h:outputLabel>
+                                </td>
+                                <td align="left">
+                                    <h:inputText id="txtShippingDatetime" value="#{orderBean.order.shippedDatetime}" required="true" requiredMessage="*">
+                                        <f:convertDateTime pattern="yyyy-mm-dd" />
+                                    </h:inputText>
+                                    <h:message for="txtShippingDatetime" styleClass="errorMsg"/>
+                                </td>
+                            </tr>
+                            <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel value="Shipped Datetime"></h:outputLabel>
+                                </td>
+                                <td align="left">
+                                    <h:inputText id="txtShippedDatetime" value="#{orderBean.order.shippedDatetime}">
+                                        <f:convertDateTime pattern="yyyy-mm-dd"/>
+                                    </h:inputText>
+                                    <h:message for="txtShippedDatetime" styleClass="errorMsg"/>
+                                </td>
+                            </tr>
+                            <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel value="Order Status"></h:outputLabel>
+                                </td>
+                                <td align="left">
+                                    <h:inputText id="txtOrderStatus" value="#{orderBean.order.orderStatus}" required="true" requiredMessage="*">                                        
+                                    </h:inputText>
+                                    <h:message for="txtOrderStatus" styleClass="errorMsg"/>
+                                </td>
+                            </tr>
+                            <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel value="User ID"></h:outputLabel>
+                                </td>
+                                <td align="left">
+                                    <h:inputText id="txtUserId" value="#{orderBean.order.userId}" required="true" requiredMessage="*">                                        
+                                    </h:inputText>
+                                    <h:message for="txtUserId" styleClass="errorMsg"/>
+                                </td>
+                            </tr>
+                            <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel value="Shipping Method ID"></h:outputLabel>
+                                </td>
+                                <td align="left">
+                                    <h:inputText id="txtShippingMethodId" value="#{orderBean.order.shippingMethodId}" required="true" requiredMessage="*">                                        
+                                    </h:inputText>
+                                    <h:message for="txtShippingMethodId" styleClass="errorMsg"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td align="left" >
+                                    <h:commandButton id="btnAdd" value="Add" action="#{orderBean.addAction()}"></h:commandButton>
+                                    <h:commandButton id="btnUpdate" value="Update" action="#{orderBean.updateAction()}" rendered="false"></h:commandButton> 
+                                    <h:commandButton id="btnCancel" value="Cancel" action="#{orderBean.cancelAction()}" rendered="false"></h:commandButton>
+                                </td>
+                            </tr>
+                        </table>                              
+                    </h:panelGroup>
                 </h:form>
             </ui:define>
 
