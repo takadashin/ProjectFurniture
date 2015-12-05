@@ -31,13 +31,13 @@ insert into shipping_methods (shipping_method_name, shipping_method_price)
 
 --Order Table
 insert into orders (order_num,order_datetime,shipping_address, shipping_datetime, shipped_datetime, order_status, user_id, shipping_method_id) 
-    values ('Order_001','2015-12-04','102 Dufferin St', '2015-12-11', '', '0', '2', '3');
+    values ('Order_001','2015-12-04','102 Dufferin St', '2015-12-11', '', '0', '2', '1');
 insert into orders (order_num,order_datetime,shipping_address, shipping_datetime, shipped_datetime, order_status, user_id, shipping_method_id) 
-    values ('Order_002','2015-12-04','54 St.Clair', '2015-12-11', '', '0', '2', '3');
+    values ('Order_002','2015-12-04','54 St.Clair', '2015-12-11', '', '0', '2', '1');
 insert into orders (order_num,order_datetime,shipping_address, shipping_datetime, shipped_datetime, order_status, user_id, shipping_method_id) 
-    values ('Order_003','2015-12-04','84 Ascot Avenue', '2015-12-11', '', '0', '2', '3');
+    values ('Order_003','2015-12-04','84 Ascot Avenue', '2015-12-11', '', '0', '2', '1');
 insert into orders (order_num,order_datetime,shipping_address, shipping_datetime, shipped_datetime, order_status, user_id, shipping_method_id) 
-    values ('Order_004','2015-12-04','32 Roger Road', '2015-12-19', '', '0', '2', '4');
+    values ('Order_004','2015-12-04','32 Roger Road', '2015-12-19', '', '0', '2', '2');
 --------------------------
 
 drop table order_details;

@@ -20,7 +20,7 @@ import java.util.logging.Logger;
  */
 public class OrderDao extends BaseDao<Order>{
     public OrderDao(){
-        tableName = Constants.TAXES_TB;
+        tableName = Constants.ORDERS_TB;
     }
     @SuppressWarnings("unchecked")
     public void convertToDomain(ResultSet data, Vector<Order> orders)
@@ -33,19 +33,19 @@ public class OrderDao extends BaseDao<Order>{
                     
                     order.setId(data.getInt(Constants.ID));
                     order.setOrderNum(data.getString(Constants.ORDERS_NUM));
-                    order.setOrderDatetime(data.getDate(Constants.ORDERS_ORDER_DATETIME));
-                    order.setShippingAddress(data.getString(Constants.ORDERS_SHIPPING_ADDRESS));
-                    order.setShippingDatetime(data.getDate(Constants.ORDERS_SHIPPING_DATETIME));
-                    order.setShippedDatetime(data.getDate(Constants.ORDERS_SHIPPED_DATETIME));                    
-                    order.setOrderStatus(data.getBoolean(Constants.ORDERS_ORDER_STATUS));
-                    order.setUserId(data.getInt(Constants.ORDERS_USER_ID));
-                    order.setShippingMethodId(data.getInt(Constants.ORDERS_SHIPPING_METHOD_ID));
+                    order.setOrderDatetime(data.getDate(Constants.ORDER_DATETIME));
+                    order.setShippingAddress(data.getString(Constants.SHIPPING_ADDRESS));
+                    order.setShippingDatetime(data.getDate(Constants.SHIPPING_DATETIME));
+                    order.setShippedDatetime(data.getDate(Constants.SHIPPED_DATETIME));                    
+                    order.setOrderStatus(data.getBoolean(Constants.ORDER_STATUS));
+                    order.setUserId(data.getInt(Constants.USER_ID));
+                    order.setShippingMethodId(data.getInt(Constants.SHIPPING_METHOD_ID));
                     
                     orders.add(order);
                 }
             }
         } catch (SQLException ex) {
-            Logger.getLogger(TaxDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OrderDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -65,7 +65,7 @@ public class OrderDao extends BaseDao<Order>{
                 }
             }
         } catch (SQLException ex) {
-            Logger.getLogger(TaxDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OrderDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return orders;
     }
@@ -75,13 +75,13 @@ public class OrderDao extends BaseDao<Order>{
     {
         Object id = order.getId();
         data.add(new Criterion(Constants.ORDERS_NUM, order.getOrderNum()));
-        data.add(new Criterion(Constants.ORDERS_ORDER_DATETIME, order.getOrderDatetime().toString()));
-        data.add(new Criterion(Constants.ORDERS_SHIPPING_ADDRESS, order.getShippingAddress()));
-        data.add(new Criterion(Constants.ORDERS_SHIPPING_DATETIME, order.getShippingDatetime().toString()));
-        data.add(new Criterion(Constants.ORDERS_SHIPPED_DATETIME, order.getShippedDatetime().toString()));        
-        data.add(new Criterion(Constants.ORDERS_ORDER_STATUS, order.getOrderStatus().toString()));
-        data.add(new Criterion(Constants.ORDERS_USER_ID, Integer.toString(order.getUserId())));
-        data.add(new Criterion(Constants.ORDERS_SHIPPING_METHOD_ID, Integer.toString(order.getShippingMethodId())));
+        data.add(new Criterion(Constants.ORDER_DATETIME, order.getOrderDatetime().toString()));
+        data.add(new Criterion(Constants.SHIPPING_ADDRESS, order.getShippingAddress()));
+        data.add(new Criterion(Constants.SHIPPING_DATETIME, order.getShippingDatetime().toString()));
+        data.add(new Criterion(Constants.SHIPPED_DATETIME, order.getShippedDatetime().toString()));        
+        data.add(new Criterion(Constants.ORDER_STATUS, order.getOrderStatus().toString()));
+        data.add(new Criterion(Constants.USER_ID, Integer.toString(order.getUserId())));
+        data.add(new Criterion(Constants.SHIPPING_METHOD_ID, Integer.toString(order.getShippingMethodId())));
         return id;
     }
 }

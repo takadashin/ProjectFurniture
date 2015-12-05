@@ -25,7 +25,7 @@ body {;margin:0;padding:0}
     vertical-align: 8px;
     padding-left: 11px;}
 .searchbox_text:focus {outline:0;}
-.searchbox_button {background:url("#{resource['images/search.png']}") no-repeat white;border:0;height:30px;width:30px;}
+.searchbox_button {background:url("/Furniture/faces/javax.faces.resource/images/search.png") no-repeat white;border:0;height:30px;width:30px;}
 #checkout_img {height:30px;}
 .header_line a{border-right:1px solid #dedede;padding:0 5px;}
 .menu_wrapper {margin-top:15px;}
@@ -42,8 +42,8 @@ body {;margin:0;padding:0}
     color: #455560;
     text-transform: uppercase;z-index:2;}
 .header_title {text-align:center;position:relative;}
-.article_item_box {display:table;margin:auto;}
-.article_item_box p {color: rgb(77, 77, 79);margin:0;padding:0;line-height: 19.2px;}
+.article_item_box {display:table;margin:auto;font-size: 100px;}
+.article_item_box p {color: rgb(77, 77, 79);margin:0;padding:0;line-height: 19.2px;font-size:;}
 .article_item {float:left;width:255px;}
 .article_item img{max-width:100%;max-height:225px;width:auto;}
 .title_text {    font-weight: 700;font-size: 16px;}
