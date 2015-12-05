@@ -6,10 +6,39 @@ Target Host: localhost
 Target Database: furnitureshopping
 Date: 14/11/2015 09:22:06 PM
 */
-insert into taxes(taxes_code,taxes_name,taxes_rate) values('aaa','aaa',10);
 
-insert into taxes values(,'bbb','bbb',20);
-insert into taxes values('ccc','ccc',5);
+--Tax table
+insert into taxes (taxes_code,taxes_name,taxes_rate) values('aaa','aaa',10);
+insert into taxes (taxes_code,taxes_name,taxes_rate) values('bbb','bbb',20);
+insert into taxes (taxes_code,taxes_name,taxes_rate) values('ccc','ccc',5);
+-------------
+
+
+--User Table
+insert into users (user_username,user_password,user_fullname, user_address, user_city_name, user_state_name, user_state_code, user_email, user_phone, user_type, active) 
+    values ('admin_001','admin_001','admin 001', 'at company', '', '','ON','admin001@yahoo.com','','admin','1');
+insert into users (user_username,user_password,user_fullname, user_address, user_city_name, user_state_name, user_state_code, user_email, user_phone, user_type, active) 
+    values ('user_001','user_001','user 001', '102 Dufferin St.', 'Toronto', 'Ontario','ON','user001@gmail.com','','user','1');
+----------------------
+
+--Shipping Method Table
+insert into shipping_methods (shipping_method_name, shipping_method_price)
+    values ('Regular','0');
+insert into shipping_methods (shipping_method_name, shipping_method_price)
+    values ('EXP','10');
+-----------
+
+
+--Order Table
+insert into orders (order_num,order_datetime,shipping_address, shipping_datetime, shipped_datetime, order_status, user_id, shipping_method_id) 
+    values ('Order_001','2015-12-04','102 Dufferin St', '2015-12-11', '', '0', '2', '3');
+insert into orders (order_num,order_datetime,shipping_address, shipping_datetime, shipped_datetime, order_status, user_id, shipping_method_id) 
+    values ('Order_002','2015-12-04','54 St.Clair', '2015-12-11', '', '0', '2', '3');
+insert into orders (order_num,order_datetime,shipping_address, shipping_datetime, shipped_datetime, order_status, user_id, shipping_method_id) 
+    values ('Order_003','2015-12-04','84 Ascot Avenue', '2015-12-11', '', '0', '2', '3');
+insert into orders (order_num,order_datetime,shipping_address, shipping_datetime, shipped_datetime, order_status, user_id, shipping_method_id) 
+    values ('Order_004','2015-12-04','32 Roger Road', '2015-12-19', '', '0', '2', '4');
+--------------------------
 
 drop table order_details;
 drop table taxes;
@@ -44,17 +73,17 @@ CREATE TABLE shipping_methods (
 -- Table structure for users
 -- ----------------------------
 CREATE TABLE users (
-  id varchar(20) generated as IDENTITY PRIMARY KEY,
+  id NUMBER(4) generated as IDENTITY PRIMARY KEY,
   user_username varchar(50) NOT NULL,
   user_password varchar(20) NOT NULL,
   user_fullname varchar(50),
   user_address varchar(30) NOT NULL,
-  user_city_name varchar(25) NOT NULL,
-  user_state_name varchar(40) NOT NULL,
+  user_city_name varchar(25),
+  user_state_name varchar(40),
   user_state_code varchar(2) NOT NULL,
   user_email varchar(50) NOT NULL,
   user_phone varchar(20) default NULL,
-  user_type varchar(1) NOT NULL,
+  user_type varchar(5) NOT NULL,
   active char(1) NOT NULL
 );
 
@@ -77,11 +106,12 @@ CREATE TABLE categories (
 CREATE TABLE orders (
   id NUMBER(4) generated as IDENTITY PRIMARY KEY,
   order_num varchar(20) NOT NULL,
-  shipping_address varchar(100) NOT NULL, 
-  shipped_datetime date default NULL,  
   order_datetime date NOT NULL,
+  shipping_address varchar(100) NOT NULL, 
+  shipping_datetime date NOT NULL,
+  shipped_datetime date default NULL,  
   order_status varchar(1) NOT NULL,
-  user_id varchar(20),
+  user_id NUMBER(4),
   shipping_method_id NUMBER(4)  default NULL,
   CONSTRAINT FK_orders_userid FOREIGN KEY (user_id) REFERENCES users (id),
   CONSTRAINT FK_orders_shippingmethodid FOREIGN KEY (shipping_method_id) REFERENCES shipping_methods (id)
