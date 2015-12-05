@@ -18,6 +18,12 @@ public class Constants {
     public static final String SHIPPING_PRICE = "shipping_method_price"; 
     public static final String SHIPPING_DESCRIPTION = "shipping_method_description"; 
     
+    public static final String CATEGORY_TB ="CATEGORIES";
+    public static final String CATEGORY_NAME ="CAT_NAME";  
+    public static final String CATEGORY_DESCRIPTION = "CAT_DESCRIPTION"; 
+    public static final String CATEGORY_PARENTID = "CAT_PARENT_ID"; 
+
+    
     //ORDER
     public static final String ORDERS_TB ="ORDERS"; 
     public static final String ORDERS_NUM = "order_num"; 
