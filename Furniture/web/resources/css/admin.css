@@ -13,7 +13,7 @@ div {margin:0;padding:0;vertical-align: baseline;font-family: Arial, Helvetica, 
 div#body{height:100%}
 #control_panel {height:100%;float:left;width:15%;background: steelblue;color:white;position: fixed;}
 td,tr,span,p,ul,li{margin:0;padding:0}
-#main_panel {margin-left:15%;background:url(images/body-tail.gif) #b2b2b2;height:100%;padding:10px;}
+#main_panel {background:url(images/body-tail.gif) #b2b2b2;height:100%;padding:10px;}
 #user_stat span{font-weight: bold;}
 #user_stat td{margin:0 5px;}
 #user_stat {border: 1px solid white;border-radius: 5px; margin: 10px; padding: 6px;}
