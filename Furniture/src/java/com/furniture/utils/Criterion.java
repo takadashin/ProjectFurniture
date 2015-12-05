@@ -6,7 +6,7 @@ package com.furniture.utils;
  */
 public class Criterion {	
     private String column;
-    private String value;
+    private Object value;
     private String relation;
 
     public String getColumn() {
@@ -17,11 +17,11 @@ public class Criterion {
         this.column = column;
     }
 
-    public String getValue() {
+    public Object getValue() {
             return value;
     }
 
-    public void setValue(String value) {
+    public void setValue(Object value) {
             this.value = value;
     }
     
@@ -33,13 +33,13 @@ public class Criterion {
         this.relation = relation;
     }
 
-    public Criterion(String column,String value){
+    public Criterion(String column,Object value){
             this.column = column;
             this.value=value;
             this.relation = "";
     }
     
-    public Criterion(String column,String value, String relation){
+    public Criterion(String column,Object value, String relation){
             this.column = column;
             this.value=value;
             this.relation = relation;
