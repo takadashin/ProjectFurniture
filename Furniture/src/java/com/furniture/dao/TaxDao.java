@@ -69,7 +69,7 @@ public class TaxDao extends BaseDao<Tax>{
         Object id =tax.getId();
         data.add(new Criterion(Constants.TAXES_CODE, tax.getTaxCode()));
         data.add(new Criterion(Constants.TAXES_NAME, tax.getTaxName()));
-        data.add(new Criterion(Constants.TAXES_RATE, tax.getTaxRate().toString()));
+        data.add(new Criterion(Constants.TAXES_RATE, tax.getTaxRate()));
         return id;
     }
 }

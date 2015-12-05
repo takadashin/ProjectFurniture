@@ -214,7 +214,7 @@ public class BaseDao<T> {
                 PreparedStatement preStatement = connection.prepareStatement(sql);
                 for (int i = 0; i < critetions.size(); i++) {
                     Criterion criterion = critetions.get(i);
-                    preStatement.setString(i+1, criterion.getValue());
+                    preStatement.setObject(i+1, criterion.getValue());
                 }
                 resultSet = preStatement.executeQuery();
                  
@@ -239,7 +239,7 @@ public class BaseDao<T> {
                 PreparedStatement preStatement = connection.prepareStatement(sql);
                 for (int i = 0; i < critetions.size(); i++) {
                     Criterion criterion = critetions.get(i);
-                    preStatement.setString(i+1, criterion.getValue());
+                    preStatement.setObject(i+1, criterion.getValue());
                 }
                 result = preStatement.executeUpdate();
                 closeConnection();
@@ -248,7 +248,7 @@ public class BaseDao<T> {
             
         } catch (SQLException ex) {
             Logger.getLogger(BaseDao.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "It is not able to delete. It have been used","Info", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "It is not able to update. It have been used","Info", JOptionPane.INFORMATION_MESSAGE);
         }
         return -1;
     }

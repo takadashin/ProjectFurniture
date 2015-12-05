@@ -15,7 +15,7 @@
             <ui:define name="content">
                 <h:form id="frmTaxList">     
                     <h:dataTable
-                        value="#{taxListBean.taxes}"
+                        value="#{taxBean.taxes}"
                         var="tax"
                         styleClass="tableViewSummary"
                         rowClasses="rowOne,rowTwo"
@@ -52,7 +52,7 @@
                                 <h:outputLabel value="Edit"></h:outputLabel>
                             </f:facet>
                             <h:commandLink value="Edit"
-                                           action="#{taxListBean.editTaxBean(tax)}">
+                                           action="#{taxBean.editTax(tax)}">
                             </h:commandLink>
                         </h:column>
                         <h:column headerClass="tabletitle">
@@ -60,10 +60,65 @@
                                 <h:outputLabel value="Delete"></h:outputLabel>
                             </f:facet>
                             <h:commandLink value="Delete"
-                                           action="#{taxListBean.deleteTax(tax)}">
+                                           action="#{taxBean.deleteTax(tax)}">
                             </h:commandLink>
                         </h:column>   
                     </h:dataTable>
+                </h:form>
+
+                <br/>
+                <h:form id="frmEditTax">
+                    <h:panelGroup>
+                        <h:inputHidden value="#{taxBean.tax.id}"></h:inputHidden>
+
+                        <table class="tableEdit" width="auto">
+                            <tr>
+                                <th class="tableEditHeader" colspan="2" align="center">
+                                    Tax
+                                </th>
+                            </tr>
+                            <tr>																	
+                                <td align="right" width="100px"> 
+                                    <h:outputLabel value="Tax Code"></h:outputLabel>
+                                </td>
+                                <td align="left">
+                                    <h:inputText id="txtTaxCode" value="#{taxBean.tax.taxCode}" required="true" 
+                                                 requiredMessage="*">																			
+                                    </h:inputText>
+                                    <h:message for="txtTaxCode" styleClass="errorMsg"/>
+                                </td>
+                            </tr>   
+                            <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel value="Tax Name"></h:outputLabel>
+                                </td>
+
+                                <td align="left">
+                                    <h:inputText id="txtTaxName" value="#{taxBean.tax.taxName}" required="true" requiredMessage="*"></h:inputText>
+                                    <h:message for="txtTaxName" styleClass="errorMsg"/>
+                                </td>
+                            </tr>   
+                            <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel value="Tax Rate"></h:outputLabel>
+                                </td>
+                                <td align="left">
+                                    <h:inputText id="txtTaxRate" value="#{taxBean.tax.taxRate}" required="true" requiredMessage="*">
+                                        <f:validateDoubleRange  maximum="100" />
+                                    </h:inputText>
+                                    <h:message for="txtTaxRate" styleClass="errorMsg"/>
+                                </td>
+                            </tr>   
+                            <tr>
+                                <td></td>
+                                <td align="left" >
+                                    <h:commandButton id="btnAdd" value="Add" action="#{taxBean.addAction}"></h:commandButton>
+                                    <h:commandButton id="btnUpdate" value="Update" action="#{taxBean.updateAction}" rendered="false"></h:commandButton> 
+                                    <h:commandButton id="btnCancel" value="Cancel" action="#{taxBean.cancelAction}" rendered="false"></h:commandButton>
+                                </td>
+                            </tr>
+                        </table>                              
+                    </h:panelGroup>
                 </h:form>
             </ui:define>
         </ui:composition>
