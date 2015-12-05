@@ -22,16 +22,16 @@ insert into users (user_username,user_password,user_fullname, user_address, user
 ----------------------
 
 --Shipping Method Table
-insert into shipping_methods (shipping_method_name, shipping_method_price)
-    values ('Regular','0');
-insert into shipping_methods (shipping_method_name, shipping_method_price)
-    values ('EXP','10');
+insert into shipping_methods (shipping_method_name, shipping_method_price, shipping_method_description)
+    values ('Regular','0', 'This medthod is our regular delivery. There is no fee charge on it.');
+insert into shipping_methods (shipping_method_name, shipping_method_price, shipping_method_description)
+    values ('EXP','10', 'This medthod is our express delivery. You can get your orders sooner than regular.');
 -----------
 
 
 --Order Table
 insert into orders (order_num,order_datetime,shipping_address, shipping_datetime, shipped_datetime, order_status, user_id, shipping_method_id) 
-    values ('Order_001','2015-12-04','102 Dufferin St', '2015-12-11', '', '0', '2', '1');
+    values ('Order_001','2015-12-04','102 Dufferin St', '2015-12-11', '', '0', '2', '2');
 insert into orders (order_num,order_datetime,shipping_address, shipping_datetime, shipped_datetime, order_status, user_id, shipping_method_id) 
     values ('Order_002','2015-12-04','54 St.Clair', '2015-12-11', '', '0', '2', '1');
 insert into orders (order_num,order_datetime,shipping_address, shipping_datetime, shipped_datetime, order_status, user_id, shipping_method_id) 
@@ -66,7 +66,8 @@ CREATE TABLE taxes (
 CREATE TABLE shipping_methods (
   id NUMBER(4) generated as IDENTITY PRIMARY KEY,
   shipping_method_name varchar(40) NOT NULL,
-  shipping_method_price float NOT NULL
+  shipping_method_price float NOT NULL,
+  shipping_method_description varchar(200)
 );
 
 -- ----------------------------

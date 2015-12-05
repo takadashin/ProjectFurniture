@@ -13,10 +13,10 @@ public class Constants {
     public static final String TAXES_NAME = "taxes_name"; 
     public static final String TAXES_RATE = "taxes_rate"; 
     
-    public static final String SHIPPING_TB ="shipping_methods";  
+    public static final String SHIPPING_TB ="SHIPPING_METHODS";  
     public static final String SHIPPING_NAME = "shipping_method_name"; 
     public static final String SHIPPING_PRICE = "shipping_method_price"; 
-    public static final String SHIPPING_DESCRIPTION = "SHIPPING_METHOD_DESCIPTION"; 
+    public static final String SHIPPING_DESCRIPTION = "shipping_method_description"; 
     
     //ORDER
     public static final String ORDERS_TB ="ORDERS"; 
