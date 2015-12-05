@@ -43,7 +43,7 @@ body {;margin:0;padding:0}
     text-transform: uppercase;z-index:2;}
 .header_title {text-align:center;position:relative;}
 .article_item_box {display:table;margin:auto;font-size: 100px;}
-.article_item_box p {color: rgb(77, 77, 79);margin:0;padding:0;line-height: 19.2px;font-size:;}
+.article_item_box p {color: rgb(77, 77, 79);margin:0;padding:0;line-height: 19.2px;}
 .article_item {float:left;width:255px;}
 .article_item img{max-width:100%;max-height:225px;width:auto;}
 .title_text {    font-weight: 700;font-size: 16px;}
