@@ -22,36 +22,46 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped
 public class TaxListBean {
 
-    TaxService taxService = new TaxService();
-    private List<TaxBean> taxBeans;
+    private TaxService taxService = new TaxService();
+    private Tax tax;
+    private Vector<Tax> taxes;
 
     @PostConstruct
     public void init() {
-        Vector<Tax> taxes = taxService.getAll();
-        taxBeans = new ArrayList<TaxBean>();
-        if (taxes != null) {
-            for (int i = 0; i < taxes.size(); i++) {
-                Tax tax = taxes.get(i);
-                TaxBean taxBean = new TaxBean();
-                taxBean.setId(tax.getId());
-                taxBean.setTaxCode(tax.getTaxCode());
-                taxBean.setTaxName(tax.getTaxName());
-                taxBean.setTaxRate(tax.getTaxRate());
-                taxBeans.add(taxBean);
-            }
-        }
+        taxes = taxService.getAll();
     }
 
-    public List<TaxBean> getTaxBeans() {
-        return taxBeans;
+    public TaxService getTaxService() {
+        return taxService;
     }
-    
-    public void editTax() {
-       
+
+    public void setTaxService(TaxService taxService) {
+        this.taxService = taxService;
     }
-    
-     public void deleteTax() {
-       
+
+    public Vector<Tax> getTaxes() {
+        return taxes;
+    }
+
+    public void setTaxes(Vector<Tax> taxes) {
+        this.taxes = taxes;
+    }
+
+    public Tax getTax() {
+        return tax;
+    }
+
+    public void setTax(Tax tax) {
+        this.tax = tax;
+    }
+
+    public void editTax(Tax tax) {
+
+    }
+
+    public void deleteTax(Tax tax) {
+        taxService.deleteById(tax.getId());
+        taxes = taxService.getAll();
     }
 
 }
