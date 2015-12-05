@@ -11,7 +11,7 @@ and open the template in the editor.
 body {margin: 0;padding:0;background:url(images/body-tail.gif) #b2b2b2;height: 100%; overflow:auto;}
 div {margin:0;padding:0;vertical-align: baseline;font-family: Arial, Helvetica, sans-serif;font-size: 12px;font-style: normal;font-variant: normal;font-weight: normal;}
 div#body{height:100%}
-#control_panel {height:100%;float:left;width:15%;background: #4E6076;color:white;position: fixed;}
+#control_panel {height:100%;float:left;width:15%;background: steelblue;color:white;position: fixed;}
 td,tr,span,p,ul,li{margin:0;padding:0}
 #main_panel {margin-left:15%;background:url(images/body-tail.gif) #b2b2b2;height:100%;padding:10px;}
 #user_stat span{font-weight: bold;}
@@ -21,9 +21,9 @@ ul {list-style: none;}
 #control_panel li{padding:10px;-o-transition: all 0.3s ease;
 	-webkit-transition: all 0.3s ease;
 transition:all 0.3s ease;}
-#control_panel li:hover{padding:10px;background:#6A7481;}
+#control_panel li:hover{padding:10px;background:lightblue;}
 #control_panel a{font-size:15px;text-decoration: none;}
-.active {background:#6A7481;}
+.active {background:lightblue;}
 .header_title {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
@@ -155,7 +155,7 @@ div#content{margin-left: 250px; padding-top: 50px}
     background: #fff0c6;
     padding-bottom: 0px;
     padding-top: 4px;
-    border-bottom: #fec219 3px solid;
+    border-bottom: #fec219 1px solid;
     color: #505050;
     font-family: tahoma;
     border-right: #fec219 1px solid;
