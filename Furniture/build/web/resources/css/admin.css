@@ -11,7 +11,7 @@ and open the template in the editor.
 body {margin: 0;padding:0;background:url(../images/body-tail.gif) #b2b2b2;height: 100%; overflow:auto;}
 div {margin:0;padding:0;vertical-align: baseline;font-family: Arial, Helvetica, sans-serif;font-size: 12px;font-style: normal;font-variant: normal;font-weight: normal;}
 div#body{height:100%}
-#control_panel {height:103%;float:left;width:15%;background: #4E6076;color:white}
+#control_panel {height:100%;float:left;width:15%;background: #4E6076;color:white;position: fixed;}
 td,tr,span,p,ul,li{margin:0;padding:0}
 #main_panel {margin-left:15%;background:url(../images/body-tail.gif) #b2b2b2;height:100%;padding:10px;}
 #user_stat span{font-weight: bold;}
