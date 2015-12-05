@@ -124,20 +124,19 @@ CREATE TABLE orders (
 
 CREATE TABLE products (
   id NUMBER(4) generated as IDENTITY PRIMARY KEY,
-  product_num varchar(20) NOT NULL,
-  product_short_desc varchar(128) NOT NULL,
+  product_code varchar(20) NOT NULL UNIQUE,
+  product_name varchar(20) NULL,
+  product_short_desc varchar(255) NOT NULL,
   product_desc varchar(500),
   product_cost float default NULL,
   product_price float NOT NULL,
   product_spec_price float default NULL,
-  product_rating float NOT NULL,
-  product_rating_count NUMBER(4)  NOT NULL,
   product_qty NUMBER(4)  NOT NULL,
-  product_publish_on date NOT NULL,
-  product_expire_on date NOT NULL,
+  product_post_date Date default null,
   cat_id NUMBER(4) ,
   CONSTRAINT FK_products_catid FOREIGN KEY (cat_id) REFERENCES categories (id)
 );
+
 
 
 
