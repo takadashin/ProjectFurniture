@@ -94,7 +94,9 @@ div.login-admin-error-msg{position: absolute; color: red;margin-top: -33px;}
 a.log{font-size: 13px !important; color: lawngreen;text-decoration: underline !important}
 #control_box a{color:white;}
 div#content{margin-left: 250px; padding-top: 50px}
-
+.reqasterisk {
+	FONT-SIZE: 11px; COLOR: red
+}
 /*--------------  table -------------------*/
 
 .rowOne
