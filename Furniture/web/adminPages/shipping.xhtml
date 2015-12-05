@@ -18,7 +18,7 @@
                     <div>
                         <h:form id="frmTaxList">
                 <h:dataTable
-                    value="#{shippingListBean.shipBeans}"
+                    value="#{shippingListBean.Shiparray}"
                     var="currentShipBean" border="1"
                     headerClass="Heading" styleClass="Datagrid">
                     <f:facet name="header">
@@ -47,7 +47,7 @@
                             <h:outputLabel value="Save"></h:outputLabel>
                         </f:facet>
                         <h:commandLink value="Save"
-                                        action="#{currentShipBean.update}">
+                                        action="#{shippingListBean.update}">
                         </h:commandLink>
                     </h:column>
                     <h:column headerClass="titleRow_50px">
@@ -55,7 +55,7 @@
                             <h:outputLabel value="Delete"></h:outputLabel>
                         </f:facet>
                         <h:commandLink value="Delete"
-                                       action="#{currentShipBean.delete}">
+                                       action="#{shippingListBean.delete}">
                         </h:commandLink>
                     </h:column>   
                 </h:dataTable>

@@ -7,6 +7,8 @@ package com.furniture.bean;
 
 import com.furniture.domain.Shipping;
 import com.furniture.service.ShippingService;
+import com.furniture.utils.Constants;
+import com.furniture.utils.Criterion;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -22,31 +24,52 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped
 public class ShippingListBean {
 
-    ShippingService shipService = new ShippingService();
-    private List<ShippingBean> shipBeans;
+    private ShippingService Service = new ShippingService();
+    private Shipping Shipvar;
+    private Vector<Shipping> Shiparray;
 
     @PostConstruct
     public void init() {
-        Vector<Shipping> ships = shipService.getAll();
-        shipBeans = new ArrayList<ShippingBean>();
-        if (ships != null) {
-            for (int i = 0; i < ships.size(); i++) {
-                Shipping shipvar = ships.get(i);
-                ShippingBean shipBeanvar = new ShippingBean();
-                shipBeanvar.setId(shipvar.getId());
-                shipBeanvar.setShippingName(shipvar.getShippingName());
-                shipBeanvar.setShippingPrice(shipvar.getShippingPrice());
-                shipBeans.add(shipBeanvar);
-            }
-        }
+        Shiparray = Service.getAll();
     }
 
-    public List<ShippingBean> getShipBeans() {
-        return shipBeans;
+    public ShippingService getService() {
+        return Service;
     }
 
-    
-    
+    public void setService(ShippingService Service) {
+        this.Service = Service;
+    }
 
+    public Shipping getShipvar() {
+        return Shipvar;
+    }
 
+    public void setShipvar(Shipping Shipvar) {
+        this.Shipvar = Shipvar;
+    }
+
+    public Vector<Shipping> getShiparray() {
+        return Shiparray;
+    }
+
+    public void setShiparray(Vector<Shipping> Shiparray) {
+        this.Shiparray = Shiparray;
+    }
+
+    public String delete() {
+        
+        Service.deleteById(Shipvar.getId());
+        return  "shipping?faces-redirect=true";
+    }
+        public String update() {
+        ShippingService service = new ShippingService();
+        Vector<Criterion> argument = new Vector<>();
+        Criterion object = new Criterion(Constants.SHIPPING_NAME, Shipvar.getShippingName());
+        //Criterion object2 = new Criterion(Constants.SHIPPING_PRICE, this.getShippingPrice().toString());
+        argument.add(object);
+       // argument.add(object2);
+        service.updatedByID(argument,Shipvar.getId());
+        return  "shipping?faces-redirect=true";
+    }
 }
