@@ -94,11 +94,29 @@ div.login-admin-error-msg{position: absolute; color: red;margin-top: -33px;}
 a.log{font-size: 13px !important; color: lawngreen;text-decoration: underline !important}
 #control_box a{color:white;}
 div#content{margin-left: 250px; padding-top: 50px}
-.reqasterisk {
+.errorMsg {
 	FONT-SIZE: 11px; COLOR: red
 }
 /*--------------  table -------------------*/
+.tableEditHeader{
+    background: #fff0c6;
+    height: 30px;
+}
 
+.tableEdit{
+     background-color: White; 
+}
+.tableEdit tr td{
+    height: 34px;
+}
+
+.tableEdit tr td label{
+    margin-right: 10px;
+}
+
+.tableEdit tr td input{
+    margin-right: 10px;
+}
 .rowOne
 {		
 	padding-left: 10px;
@@ -169,7 +187,7 @@ div#content{margin-left: 250px; padding-top: 50px}
 
 .tableViewSummary
 {
-	border: 1px none White;  
+    border: 1px none White;  
     font-weight: normal; 
     font-style: normal; 
     font-size: 12px; 
