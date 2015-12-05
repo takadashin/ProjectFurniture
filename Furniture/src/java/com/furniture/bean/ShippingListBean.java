@@ -41,16 +41,12 @@ public class ShippingListBean {
         }
     }
 
-    public List<ShippingBean> getShippingBeans() {
+    public List<ShippingBean> getShipBeans() {
         return shipBeans;
     }
+
     
-    public void editTax() {
-       
-    }
     
-     public void deleteTax() {
-       
-    }
+
 
 }
