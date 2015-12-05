@@ -19,13 +19,13 @@ public class Constants {
     
     //ORDER
     public static final String ORDERS_TB ="ORDERS"; 
-    public static final String ORDERS_NUM = "orders_num"; 
-    public static final String ORDERS_ORDER_DATETIME = "orders_order_datetime"; 
-    public static final String ORDERS_SHIPPING_ADDRESS = "orders_shipping_address"; 
-    public static final String ORDERS_SHIPPING_DATETIME = "orders_shipping_datetime"; 
-    public static final String ORDERS_SHIPPED_DATETIME = "orders_shipped_datetime";      
-    public static final String ORDERS_ORDER_STATUS = "orders_order_status"; 
-    public static final String ORDERS_USER_ID = "orders_user_id";
-    public static final String ORDERS_SHIPPING_METHOD_ID = "orders_shipping_method_id";
+    public static final String ORDERS_NUM = "order_num"; 
+    public static final String ORDER_DATETIME = "order_datetime"; 
+    public static final String SHIPPING_ADDRESS = "shipping_address"; 
+    public static final String SHIPPING_DATETIME = "shipping_datetime"; 
+    public static final String SHIPPED_DATETIME = "shipped_datetime";      
+    public static final String ORDER_STATUS = "order_status"; 
+    public static final String USER_ID = "user_id";
+    public static final String SHIPPING_METHOD_ID = "shipping_method_id";
     
 }

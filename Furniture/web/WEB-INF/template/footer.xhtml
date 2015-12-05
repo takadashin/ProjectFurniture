@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
     <body>
 	    <ui:composition>
                 <c:set var="ctx" value="#{request.contextPath}" />
@@ -23,10 +24,9 @@
                             <hr/>
                             <div id="cpos_32">
                                 <div class="header_line" style="padding:20px 0;float:left;">
-                                    <a>About us</a>
-                                    <a>Partner to us</a>
-                                    <a>My Account</a>
-                                    <a>Contact Us</a>
+                                    <h:link value="About us" outcome="about.xhtml" />
+                                    <h:link value="Shipping Infomation" outcome="about.xhtml" />
+                                    <h:link value="Contact Us" outcome="about.xhtml" />                                    
                                 </div>
                                 <div class="searchbox_wrapper" style="float: right;margin: 0;background: white;">
                                     <input type="text" class="searchbox_text" placeholder="Find anything you want here" />
