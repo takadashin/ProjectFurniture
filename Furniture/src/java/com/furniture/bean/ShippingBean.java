@@ -6,6 +6,7 @@
 package com.furniture.bean;
 
 import com.furniture.domain.Shipping;
+import com.furniture.domain.Tax;
 import com.furniture.service.ShippingService;
 import com.furniture.utils.Constants;
 import com.furniture.utils.Criterion;
@@ -23,52 +24,52 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean (name="shippingBean", eager = true)
 @RequestScoped
 public class ShippingBean extends Shipping{    
-	private ShippingService Service = new ShippingService();
-    private Shipping Shipvar;
-    private Vector<Shipping> Shiparray;
+	private ShippingService service = new ShippingService();
+    private Shipping shipvar;
+    private Vector<Shipping> shiparray;
 
     @PostConstruct
     public void init() {
-        Shiparray = Service.getAll();
+        shiparray = service.getAll();
+        this.shipvar = new Shipping();
     }
 
     public ShippingService getService() {
-        return Service;
+        return service;
     }
 
     public void setService(ShippingService Service) {
-        this.Service = Service;
+        this.service = Service;
     }
 
     public Shipping getShipvar() {
-        return Shipvar;
+        return shipvar;
     }
 
-    public void setShipvar(Shipping Shipvar) {
-        this.Shipvar = Shipvar;
+    public void setShipvar(Shipping shipvar) {
+        this.shipvar = shipvar;
     }
 
     public Vector<Shipping> getShiparray() {
-        return Shiparray;
+        return shiparray;
     }
 
-    public void setShiparray(Vector<Shipping> Shiparray) {
-        this.Shiparray = Shiparray;
+    public void setShiparray(Vector<Shipping> shiparray) {
+        this.shiparray = shiparray;
     }
 
-    public String delete() {
+    
+    public String delete(Shipping var) {
         
-        Service.deleteById(Shipvar.getId());
+        service.deleteById(var.getId());
         return  "shipping?faces-redirect=true";
     }
-        public String update() {
-        ShippingService service = new ShippingService();
-        Vector<Criterion> argument = new Vector<>();
-        Criterion object = new Criterion(Constants.SHIPPING_NAME, Shipvar.getShippingName());
-        //Criterion object2 = new Criterion(Constants.SHIPPING_PRICE, this.getShippingPrice().toString());
-        argument.add(object);
-       // argument.add(object2);
-        service.updatedByID(argument,Shipvar.getId());
-        return  "shipping?faces-redirect=true";
+    public String update(Shipping var) {
+    service.updatedObject(var);
+    return  "shipping?faces-redirect=true";
+    }
+    public String addAction() {
+    service.insertObject(shipvar);
+    return  "shipping?faces-redirect=true";
     }
 }

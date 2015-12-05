@@ -12,6 +12,7 @@ package com.furniture.domain;
 public class Shipping extends BaseDomain{
     private String shippingName;
     private Float shippingPrice;
+    private String shippingDescription;
 
     public String getShippingName() {
         return shippingName;
@@ -27,6 +28,14 @@ public class Shipping extends BaseDomain{
 
     public void setShippingPrice(Float shippingPrice) {
         this.shippingPrice = shippingPrice;
+    }
+
+    public String getShippingDescription() {
+        return shippingDescription;
+    }
+
+    public void setShippingDescription(String shippingDescription) {
+        this.shippingDescription = shippingDescription;
     }
     
 }

@@ -23,28 +23,29 @@ public class ShippingDao extends BaseDao<Shipping>{
         tableName = Constants.SHIPPING_TB;
     }
     @SuppressWarnings("unchecked")
-    public void convertToDomain(ResultSet data, Vector<Shipping> shippings)
+    public void convertToDomain(ResultSet data, Vector<Shipping> shiparray)
     {
         try {
             if(data != null){
                 while(data.next())
                 {
-                    Shipping shippingvar =new Shipping();
-                    shippingvar.setId(data.getInt(Constants.ID));
-                    shippingvar.setShippingName(data.getString(Constants.SHIPPING_NAME));
-                    shippingvar.setShippingPrice(data.getFloat(Constants.SHIPPING_PRICE));
-                    shippings.add(shippingvar);
+                    Shipping shipvar =new Shipping();
+                    shipvar.setId(data.getInt(Constants.ID));
+                    shipvar.setShippingName(data.getString(Constants.SHIPPING_NAME));
+                    shipvar.setShippingPrice(data.getFloat(Constants.SHIPPING_PRICE));
+                    shipvar.setShippingDescription(data.getString(Constants.SHIPPING_DESCRIPTION));
+                    shiparray.add(shipvar);
                 }
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ShippingDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TaxDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
     @SuppressWarnings("unchecked")
     public Vector convertToTbData(ResultSet data, int colCount)
     {
-        Vector taxes = new Vector<>();
+        Vector shiparray = new Vector<>();
         try {
             if(data != null){
                 while(data.next())
@@ -53,21 +54,23 @@ public class ShippingDao extends BaseDao<Shipping>{
                     for (int i = 0; i < colCount; i++) {
                         record.add(data.getString(i + 1));
                     }
-                    taxes.add(record);
+                    shiparray.add(record);
                 }
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ShippingDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TaxDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return taxes;
+        return shiparray;
     }
     
     @SuppressWarnings("unchecked")
-    public Object convertToData(Shipping shippingvar,Vector<Criterion> data)
+    public Object convertToData(Shipping shipvar,Vector<Criterion> data)
     {
-        Object id =shippingvar.getId();
-        data.add(new Criterion(Constants.SHIPPING_NAME, shippingvar.getShippingName()));
-        data.add(new Criterion(Constants.SHIPPING_PRICE, shippingvar.getShippingPrice().toString()));
+        Object id =shipvar.getId();
+        data.add(new Criterion(Constants.SHIPPING_NAME, shipvar.getShippingName()));
+        data.add(new Criterion(Constants.SHIPPING_PRICE, shipvar.getShippingPrice()));
+        data.add(new Criterion(Constants.SHIPPING_DESCRIPTION, shipvar.getShippingDescription()));
+
         return id;
     }
 }

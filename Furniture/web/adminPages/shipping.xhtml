@@ -18,51 +18,109 @@
                     <div>
                         <h:form id="frmTaxList">
                 <h:dataTable
-                    value="#{shippingBean.Shipvar}"
-                    var="currentShipBean" border="1"
-                    headerClass="Heading" styleClass="Datagrid">
-                    <f:facet name="header">
-                        <f:verbatim>
-                            <caption><h:outputText value="Tax List"></h:outputText></caption>
-                        </f:verbatim>
-                    </f:facet>
-                    <h:column headerClass="titleRow_250px">
+                        value="#{shippingBean.shiparray}"
+                        var="shipvar"
+                        styleClass="tableViewSummary"
+                        rowClasses="rowOne,rowTwo"
+                        columnClasses="nameColumn, nameColumn, nameColumn, actionColumn, actionColumn, ,imageColumn">
                         <f:facet name="header">
-                            <h:outputLabel value="Shipping Name"></h:outputLabel>
+                            <f:verbatim>
+                                <caption>Tax List</caption>
+                            </f:verbatim>
                         </f:facet>
-                        <h:inputText
-                            value="#{currentShipBean.shippingName}"></h:inputText>
-                    </h:column>
-                    <h:column headerClass="titleRow_250px">
-                        <f:facet name="header">
-                            <h:outputLabel value="Shipping Price"></h:outputLabel>
-                        </f:facet>
-                        <h:inputText
-                            value="#{currentShipBean.shippingPrice}"></h:inputText>
-                    </h:column>
-                  
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Title"></h:outputLabel>
+                            </f:facet>
+                            <h:inputText
+                                value="#{shipvar.shippingName}"></h:inputText>
+                        </h:column>
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Price"></h:outputLabel>
+                            </f:facet>
+                            <h:inputText  
+                                value="#{shipvar.shippingPrice}"></h:inputText>
+                        </h:column>
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Shipping Description"></h:outputLabel>
+                            </f:facet>
+                            <h:inputText  
+                                value="#{shipvar.shippingDescription}"></h:inputText>
+                        </h:column>
 
-                   <h:column headerClass="titleRow_30px">
-                        <f:facet name="header">
-                            <h:outputLabel value="Save"></h:outputLabel>
-                        </f:facet>
-                        <h:commandLink value="Save"
-                                        action="#{shippingListBean.update}">
-                        </h:commandLink>
-                    </h:column>
-                    <h:column headerClass="titleRow_50px">
-                        <f:facet name="header">
-                            <h:outputLabel value="Delete"></h:outputLabel>
-                        </f:facet>
-                        <h:commandLink value="Delete"
-                                       action="#{shippingListBean.delete}">
-                        </h:commandLink>
-                    </h:column>   
-                </h:dataTable>
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Save"></h:outputLabel>
+                            </f:facet>
+                            <h:commandLink value="Edit" action="#{shippingBean.update(shipvar)}"
+                                           >
+                            </h:commandLink>
+                        </h:column>
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Delete" ></h:outputLabel>
+                            </f:facet>
+                            <h:commandLink value="Delete" action="#{shippingBean.delete(shipvar)}"
+                                           >
+                            </h:commandLink>
+                        </h:column>   
+                    </h:dataTable>
                 </h:form>
                     </div>
                 </div>
-                
+                <h:form id="frmEditshipping">
+                    <h:panelGroup>
+                        <h:inputHidden value="#{shippingBean.shipvar.id}"></h:inputHidden>
+
+                        <table class="tableEdit" width="auto">
+                            <tr>
+                                <th class="tableEditHeader" colspan="2" align="center">
+                                    Tax
+                                </th>
+                            </tr>
+                            <tr>																	
+                                <td align="right" width="100px"> 
+                                    <h:outputLabel value="Shipping Name"></h:outputLabel>
+                                </td>
+                                <td align="left">
+                                    <h:inputText id="txtTaxCode" value="#{shippingBean.shipvar.shippingName}" required="true" 
+                                                 requiredMessage="*">																			
+                                    </h:inputText>
+                                    <h:message for="txtTaxCode" styleClass="errorMsg"/>
+                                </td>
+                            </tr>   
+                            <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel value="Shipping Price"></h:outputLabel>
+                                </td>
+
+                                <td align="left">
+                                    <h:inputText id="txtTaxName" value="#{shippingBean.shipvar.shippingPrice}" required="true" requiredMessage="*"></h:inputText>
+                                    <h:message for="txtTaxName" styleClass="errorMsg"/>
+                                </td>
+                            </tr>   
+                             <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel value="Shipping Description"></h:outputLabel>
+                                </td>
+
+                                <td align="left">
+                                    <h:inputText id="txtdesc" value="#{shippingBean.shipvar.shippingDescription}" required="true" requiredMessage="*"></h:inputText>
+                                    <h:message for="txtTaxName" styleClass="errorMsg"/>
+                                </td>
+                            </tr>  
+                            <tr>
+                                <td></td>
+                                <td align="left" >
+                                    <h:commandButton id="btnAdd" value="Add" action="#{shippingBean.addAction}"></h:commandButton>
+                                    
+                                </td>
+                            </tr>
+                        </table>                              
+                    </h:panelGroup>
+                </h:form>
             </ui:define>
     	</ui:composition>
     	

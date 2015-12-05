@@ -16,6 +16,7 @@ public class Constants {
     public static final String SHIPPING_TB ="shipping_methods";  
     public static final String SHIPPING_NAME = "shipping_method_name"; 
     public static final String SHIPPING_PRICE = "shipping_method_price"; 
+    public static final String SHIPPING_DESCRIPTION = "SHIPPING_METHOD_DESCIPTION"; 
     
     //ORDER
     public static final String ORDERS_TB ="ORDERS"; 
