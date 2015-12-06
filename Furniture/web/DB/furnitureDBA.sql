@@ -148,14 +148,14 @@ CREATE TABLE products (
 -- Table structure for order_details
 -- ----------------------------
 CREATE TABLE order_details (
-  id NUMBER(4) generated as IDENTITY  PRIMARY KEY, 
-  product_order_qty NUMBER(4)  NOT NULL,
-  product_id NUMBER(4) ,
-  order_id NUMBER(4) ,
-  taxes_id NUMBER(4) ,
+  id NUMBER(4) generated as IDENTITY  PRIMARY KEY,   
+  product_id NUMBER(4),
+  order_id NUMBER(4),
+  product_order_qty NUMBER(4) NOT NULL,
+  sales_product_price float NOT NULL,
+  product_taxes_rate float,
   CONSTRAINT FK_orderdetails_orderid FOREIGN KEY (order_id) REFERENCES orders (id),
-  CONSTRAINT FK_orderdetails_productid FOREIGN KEY (product_id) REFERENCES products (id),
-  CONSTRAINT FK_orderdetails_taxesid FOREIGN KEY (taxes_id) REFERENCES taxes (id)
+  CONSTRAINT FK_orderdetails_productid FOREIGN KEY (product_id) REFERENCES products (id)
 ); 
 
 -- ----------------------------

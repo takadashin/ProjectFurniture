@@ -39,7 +39,7 @@ public class Constants {
    
     //ORDER
     public static final String ORDERS_TB ="ORDERS"; 
-    public static final String ORDERS_NUM = "order_num"; 
+    public static final String ORDER_NUM = "order_num"; 
     public static final String ORDER_DATETIME = "order_datetime"; 
     public static final String SHIPPING_ADDRESS = "shipping_address"; 
     public static final String SHIPPING_DATETIME = "shipping_datetime"; 
@@ -48,6 +48,13 @@ public class Constants {
     public static final String USER_ID = "user_id";
     public static final String SHIPPING_METHOD_ID = "shipping_method_id";
     
+    //ORDER DETAIL
+    public static final String ORDERDETAILS_TB ="ORDER_DETAILS"; 
+    public static final String PRODUCT_ID = "product_id"; 
+    public static final String ORDER_ID = "order_id"; 
+    public static final String PRODUCT_ORDER_QTY = "product_order_qty"; 
+    public static final String SALES_PRODUCT_PRICE = "sales_product_price"; 
+    public static final String PRODUCT_TAXES_RATE = "product_taxes_rate";   
     
     public static final String PRODUCT_TB = "PRODUCTS";
     public static final String PRODUCT_CODE = "product_code";

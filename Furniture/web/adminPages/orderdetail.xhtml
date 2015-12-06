@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <body>
+        <ui:composition template="/WEB-INF/template/adminLayout.xhtml">
+            <ui:define name="title">Order Detail</ui:define>
+
+            <ui:define name="content">                
+                <h:form id="frmorderdetailList">
+                    <h:dataTable
+                        value="#{orderdetailBean.orderdetails}"
+                        var="orderdetail"
+                        headerClass="Heading" styleClass="tableViewSummary"
+                        rowClasses="rowOne,rowTwo"
+                        columnClasses="nameColumn, nameColumn, nameColumn, nameColumn, nameColumn, actionColumn, actionColumn">
+                        <f:facet name="header">
+                            <f:verbatim>
+                                <caption>Order Detail</caption>
+                            </f:verbatim>
+                        </f:facet>
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Product Id"></h:outputLabel>
+                            </f:facet>
+                            <h:outputLabel
+                                value="#{orderdetail.productId}"></h:outputLabel>
+                        </h:column>
+                         <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Order Id"></h:outputLabel>
+                            </f:facet>
+                            <h:outputLabel
+                                value="#{orderdetail.orderId}"></h:outputLabel>
+                        </h:column>
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Product Order Qty"></h:outputLabel>
+                            </f:facet>
+                            <h:outputLabel
+                                value="#{orderdetail.productOrderQty}"></h:outputLabel>
+                        </h:column>
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Sales Product Price"></h:outputLabel>
+                            </f:facet>
+                            <h:outputLabel
+                                value="#{orderdetail.salesProductPrice}"></h:outputLabel>
+                        </h:column>
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Product Taxes Rate"></h:outputLabel>
+                            </f:facet>
+                            <h:outputLabel
+                                value="#{orderdetail.productTaxesRate}"></h:outputLabel>
+                        </h:column>    
+                        
+                       <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Edit"></h:outputLabel>
+                            </f:facet>
+                            <h:commandLink value="Edit"
+                                           action="#{orderdetailBean.editOrderDetail(orderdetail)}">
+                            </h:commandLink>
+                        </h:column>
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Delete"></h:outputLabel>
+                            </f:facet>
+                            <h:commandLink value="Delete"                                           
+                                           action="#{orderdetailBean.deleteOrderDetail(orderdetail)}"
+                                           onclick="if (!confirm('Are you sure you want to delete this order detail?')) return false"
+ >
+                            </h:commandLink>
+                        </h:column>   
+                    </h:dataTable>
+                </h:form>
+                <br/>
+                <h:form id="frmEditOrderDetail">
+                    <h:panelGroup>
+                        <h:inputHidden value="#{orderdetailBean.orderdetail.id}"></h:inputHidden>
+
+                        <table class="tableEdit" width="auto">
+                            <tr>
+                                <th class="tableEditHeader" colspan="2" align="center">
+                                    Order Detail
+                                </th>
+                            </tr>
+                            <tr>																	
+                                <td align="right" width="100px"> 
+                                    <h:outputLabel value="Product Id"></h:outputLabel>
+                                </td>
+                                <td align="left">
+                                    <h:selectOneMenu id="ddlProductId" value="#{orderdetailBean.orderdetail.productId}">                                            
+                                        <f:selectItems
+                                            value="#{productBean.products}" var="p"
+                                            itemValue="#{p.id}" itemLabel="#{p.name}" />
+                                     </h:selectOneMenu><br/> 
+                                </td>
+                            </tr>                              
+                            <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel value="Order Id"></h:outputLabel>
+                                </td>
+                                <td align="left">
+                                    <h:selectOneMenu id="ddlOrderId" value="#{orderdetailBean.orderdetail.orderId}">                                            
+                                        <f:selectItems
+                                            value="#{orderBean.orders}" var="o"
+                                            itemValue="#{o.id}" itemLabel="#{o.orderNum}" />
+                                     </h:selectOneMenu><br/>
+                                </td>
+                            </tr>  
+                            <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel value="Product Order Qty"></h:outputLabel>
+                                </td>
+                                <td align="left">
+                                    <h:inputText id="txtProductOrderQty" value="#{orderdetailBean.orderdetail.productOrderQty}" required="true" requiredMessage="*">
+                                        <f:validateLongRange maximum="1000" minimum="1" />
+                                    </h:inputText>
+                                    <h:message for="txtProductOrderQty" styleClass="errorMsg"/>
+                                </td>
+                            </tr>
+                            <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel value="Product Taxes Rate"></h:outputLabel>
+                                </td>
+                                <td align="left">
+                                    <h:inputText id="txtProductTaxesRate" value="#{orderdetailBean.orderdetail.productTaxesRate}">
+                                        <f:convertNumber type="percent"></f:convertNumber>
+                                    </h:inputText>
+                                    <h:message for="txtProductTaxesRate" styleClass="errorMsg"/>
+                                </td>
+                            </tr>                            
+                            <tr>
+                                <td></td>
+                                <td align="left" >
+                                    <h:commandButton id="btnAdd" value="Add" action="#{orderdetailBean.addAction()}"></h:commandButton>
+                                    <h:commandButton id="btnUpdate" value="Update" action="#{orderdetailBean.updateAction()}" rendered="false"></h:commandButton> 
+                                    <h:commandButton id="btnCancel" value="Cancel" action="#{orderdetailBean.cancelAction()}" rendered="false"></h:commandButton>
+                                </td>
+                            </tr>
+                        </table>                              
+                    </h:panelGroup>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
+

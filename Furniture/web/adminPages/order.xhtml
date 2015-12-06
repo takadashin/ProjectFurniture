@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <body>
         <ui:composition template="/WEB-INF/template/adminLayout.xhtml">
             <ui:define name="title">Order</ui:define>
@@ -135,10 +136,7 @@
                                     <h:outputLabel value="Shipping Datetime"></h:outputLabel>
                                 </td>
                                 <td align="left">
-                                    <h:inputText id="txtShippingDatetime" value="#{orderBean.order.shippingDatetime}" required="true" requiredMessage="*">
-                                        <f:convertDateTime pattern="yyyy-MM-dd" />
-                                    </h:inputText>
-                                    <h:message for="txtShippingDatetime" styleClass="errorMsg"/>
+                                    <p:calendar id="popup" value="#{orderBean.order.shippingDatetime}" pattern="yyyy/MM/dd"/>
                                 </td>
                             </tr>
                             <tr>																	
@@ -146,10 +144,7 @@
                                     <h:outputLabel value="Shipped Datetime"></h:outputLabel>
                                 </td>
                                 <td align="left">
-                                    <h:inputText id="txtShippedDatetime" value="#{orderBean.order.shippedDatetime}">
-                                       <f:convertDateTime pattern="yyyy-MM-dd" />
-                                    </h:inputText>
-                                    <h:message for="txtShippedDatetime" styleClass="errorMsg"/>
+                                    <p:calendar id="popup1" value="#{orderBean.order.shippedDatetime}" pattern="yyyy/MM/dd"/>
                                 </td>
                             </tr>
                             <tr>																	
@@ -167,19 +162,23 @@
                                     <h:outputLabel value="User ID"></h:outputLabel>
                                 </td>
                                 <td align="left">
-                                    <h:inputText id="txtUserId" value="#{orderBean.order.userId}" required="true" requiredMessage="*">                                        
-                                    </h:inputText>
-                                    <h:message for="txtUserId" styleClass="errorMsg"/>
+                                    <h:selectOneMenu id="ddlUserId" value="#{orderBean.order.userId}">                                            
+                                        <f:selectItems
+                                            value="#{userBean.userarray}" var="u"
+                                            itemValue="#{u.id}" itemLabel="#{u.username}" />
+                                     </h:selectOneMenu><br/>
                                 </td>
                             </tr>
                             <tr>																	
                                 <td align="right"> 
                                     <h:outputLabel value="Shipping Method ID"></h:outputLabel>
                                 </td>
-                                <td align="left">
-                                    <h:inputText id="txtShippingMethodId" value="#{orderBean.order.shippingMethodId}" required="true" requiredMessage="*">                                        
-                                    </h:inputText>
-                                    <h:message for="txtShippingMethodId" styleClass="errorMsg"/>
+                                <td align="left">                                    
+                                    <h:selectOneMenu id="ddlShippingMethod" value="#{orderBean.order.shippingMethodId}">                                            
+                                        <f:selectItems
+                                            value="#{shippingBean.shiparray}" var="s"
+                                            itemValue="#{s.id}" itemLabel="#{s.shippingName}" />
+                                     </h:selectOneMenu><br/>
                                 </td>
                             </tr>
                             <tr>
