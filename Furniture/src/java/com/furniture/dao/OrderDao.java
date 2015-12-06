@@ -33,7 +33,7 @@ public class OrderDao extends BaseDao<Order>{
                     Order order =new Order();
                     
                     order.setId(data.getInt(Constants.ID));
-                    order.setOrderNum(data.getString(Constants.ORDERS_NUM));
+                    order.setOrderNum(data.getString(Constants.ORDER_NUM));
                     order.setOrderDatetime(data.getDate(Constants.ORDER_DATETIME));
                     order.setShippingAddress(data.getString(Constants.SHIPPING_ADDRESS));
                     order.setShippingDatetime(data.getDate(Constants.SHIPPING_DATETIME));
@@ -75,7 +75,7 @@ public class OrderDao extends BaseDao<Order>{
     public Object convertToData(Order order,Vector<Criterion> data)
     {
         Object id = order.getId();
-        data.add(new Criterion(Constants.ORDERS_NUM, order.getOrderNum()));
+        data.add(new Criterion(Constants.ORDER_NUM, order.getOrderNum()));
 //        data.add(new Criterion(Constants.ORDER_DATETIME, new Date(order.getOrderDatetime().getTime())));
         data.add(new Criterion(Constants.SHIPPING_ADDRESS, order.getShippingAddress()));
         data.add(new Criterion(Constants.SHIPPING_DATETIME, new Date(order.getShippingDatetime().getTime())));

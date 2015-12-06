@@ -16,12 +16,20 @@
                        value="#{i.p.name}"/>
                 <input type="hidden" name="quantity_#{count}"
                        value="#{i.quantity}"/>
-                <input type="hidden" name="amount_#{count}"
-                       value="#{i.p.price}"/>
+                <c:if test="#{i.p.specPrice>0}">
+                    <input type="hidden" name="amount_#{count}"
+                           value="#{i.p.specPrice}"/>
+                </c:if>
+                <c:if test="#{i.p.specPrice==0}">
+                    <input type="hidden" name="amount_#{count}"
+                           value="#{i.p.price}"/>
+                </c:if>
+                <input type="hidden" name="shipping_#{count}"
+                       value="#{cartBean.shippingprice}"/>
                 <c:set var="count" value="#{count+1}"/>
             </c:forEach>
             <input type="hidden" name="cmd" value="_cart"/>
-            <input type="hidden" name="business" value="uh6062-facilitator@gmail.com"/>
+            <input type="hidden" name="business" value="uh6062_royalfurniture@gmail.com"/>
             <input type="hidden" name="return" 
                    value="http://localhost:8080/Furniture/faces/mainPages/confirm/success.xhtml"/>
             <input type="hidden" name="cancel"
