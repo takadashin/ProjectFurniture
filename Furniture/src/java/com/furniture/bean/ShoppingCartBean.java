@@ -6,6 +6,7 @@
 package com.furniture.bean;
 
 import com.furniture.domain.Item;
+import com.furniture.domain.Product;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -16,9 +17,10 @@ import java.util.*;
  */
 @ManagedBean (name="cartBean")
 @SessionScoped
-public class ShoppingCart {
+public class ShoppingCartBean {
     private List<Item> cart =new ArrayList<Item>();
     private float total;
+    private float subTotal;   
 
     public List<Item> getCart() {
         return cart;
@@ -29,9 +31,17 @@ public class ShoppingCart {
     }
 
     public float getTotal() {
-        total=0;
+        total = 0;
         for (Item item : cart) {
-            total=total + (item.getQuantity()*item.getP().getPrice().floatValue());
+            if(item.getP().getSpecPrice()!=null)                
+            {
+                total = (item.getQuantity()*item.getP().getSpecPrice());
+            }
+            else
+            {
+                total = (item.getQuantity()*item.getP().getPrice());
+            }
+            
         }
         return total;
     }
@@ -40,11 +50,26 @@ public class ShoppingCart {
         this.total = total;
     }
     
+    public float getSubTotal() {
+        subTotal = 0;
+        for (Item item : cart) {
+            subTotal += total;
+            
+        }
+        return subTotal;
+    }
+
+    public void setSubTotal(float subTotal) {
+        this.subTotal = subTotal;
+    }
+    
+    
+    
     public String addToCart(Product p)
     {
         //Increament quantity if duplicate product
         for (Item item : cart) {
-            if(item.getP().getId().equals(p.getId()))
+            if(item.getP().getId() == p.getId())
             {
                 item.setQuantity(item.getQuantity()+1);
                 return "shoppingcart";

@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
     
     <h:body>
     	<ui:composition template="/WEB-INF/template/mainLayout.xhtml">
@@ -62,72 +63,83 @@
                                 </div>
                             </div>
                             <br/>
-                            
-                                <h:form id="frmShoppingCart">     
-                                    <h:dataTable
-                                        value="#{cartBean.cart}"
-                                        border="1" cellpadding="7px"
-                                        style="border-collapse: collapse"
-                                        var="i">
-                                        <f:facet name="header">
-                                            <f:verbatim>
-                                                <caption>Shopping Cart</caption>
-                                            </f:verbatim>
-                                        </f:facet>
-                                        <h:column headerClass="tabletitle">
-                                            <f:facet name="header">
-                                                <h:outputLabel value="Item"></h:outputLabel>
-                                            </f:facet>  
+                            <style>
+                                table {
+                                    padding: 10px;
+                                    border-collapse: collapse;
+                                }
+                            </style>
+                            <h:form id="frmShoppingCart">
+                            <table>
+                                <tr>
+                                    <th colspan="5">Shopping Cart</th>
+                                    <th colspan="2">
+                                        <h:commandButton value="Checkout"></h:commandButton>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td>Item</td>
+                                    <td>Description</td>
+                                    <td>Qty</td>
+                                    <td>Price</td>
+                                    <td>Special Price</td>
+                                    <td>Total</td>
+                                    <td>Delete</td>
+                                </tr>
+                                <ui:repeat value="#{cartBean.cart}" var="i">
+                                    <tr>
+                                        <td>
                                             <h:graphicImage library="images" name="furniture1.jpg"
                                                             width="50px" height="50px"/>
-                                        </h:column>
-                                        <h:column headerClass="tabletitle">
-                                            <f:facet name="header">
-                                                <h:outputLabel value="Description"></h:outputLabel>
-                                            </f:facet>
-                                            <h:outputLabel
-                                                value="#{i.p.product_short_desc}"></h:outputLabel>
-                                                
-                                        </h:column>
-                                        <h:column headerClass="tabletitle">
-                                            <f:facet name="header">
-                                                <h:outputLabel value="Quantity"></h:outputLabel>
-                                            </f:facet>
+                                        </td>
+                                        <td>
+                                            <b>#{i.p.name}</b><br/>
+                                            #{i.p.shortDesc}
+                                        </td>
+                                        <td>
                                             <h:inputText value="#{i.quantity}" style="width:20px"></h:inputText>
-                                        </h:column>
-
-                                        <h:column headerClass="tabletitle">
-                                            <f:facet name="header">
-                                                <h:outputLabel value="Price"></h:outputLabel>
-                                            </f:facet> 
-                                            <h:outputLabel
-                                                value="#{i.p.price}"></h:outputLabel>
-                                        </h:column>
-                                        <h:column headerClass="tabletitle">
-                                            <f:facet name="header">
-                                                <h:outputLabel value="Total"></h:outputLabel>
-                                            </f:facet>                                            
-                                        </h:column>
-                                        
-                                        <h:column headerClass="tabletitle">
-                                            <f:facet name="header">
-                                                                                                
-                                            </f:facet> 
-                                            <h:commandButton value="Delete"
-                                                             action="#{cartBean.remove(i)}"></h:commandButton>
-                                        </h:column>   
-                                        
-                                        <h:column headerClass="tabletitle">
-                                            <f:facet name="footer">Total:
-                                                <h:outputLabel value="#{cartBean.total}"></h:outputLabel>
-                                            </f:facet>                                            
-                                        </h:column>
-                                    </h:dataTable>
-                                    <h:commandButton value="Update"
-                                                     action="#{cartBean.update()}" />
-                                </h:form>  
-                            <h:link outcome="home" value="Continue Shopping"/>
-                            
+                                        </td>
+                                        <td>
+                                            $#{i.p.price}
+                                        </td>
+                                        <td>
+                                            $#{i.p.specPrice}
+                                        </td>
+                                        <td>
+                                            $#{cartBean.total}
+                                        </td>
+                                        <td>
+                                            <h:commandButton value="Delete" action="#{cartBean.remove(i)}"/>
+                                        </td>
+                                    </tr>
+                                </ui:repeat>
+                                <tr>
+                                    <td colspan="2"></td>
+                                    <td>
+                                        <h:commandButton value="Update" action="#{cartBean.update()}"/>
+                                    </td>
+                                    <td colspan="4"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"></td>
+                                    <td>
+                                        <h:selectOneRadio value="#{shippingBean.shiparray}">
+                                            
+                                            <f:selectItem itemValue="#{shippingBean.shippingPrice}" itemLabel="#{shippingBean.shippingName}" />
+                                              			
+                                         </h:selectOneRadio>
+                                    </td>                                    
+                                </tr>
+                                <tr>
+                                    <td colspan="2"></td>
+                                    <td>
+                                        <b>Estimated Subtotal:</b>
+                                    </td> 
+                                    <td colspan="4">#{cartBean.subTotal}</td>
+                                </tr>
+                            </table>
+                            </h:form>
+                            <h:link outcome="home" value="Continue Shopping"/>                            
                         </div>
                     </div>
                 </div>
