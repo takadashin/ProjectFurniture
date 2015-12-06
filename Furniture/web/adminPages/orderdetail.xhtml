@@ -93,10 +93,11 @@
                                     <h:outputLabel value="Product Id"></h:outputLabel>
                                 </td>
                                 <td align="left">
-                                    <h:inputText id="txtProductId" value="#{orderdetailBean.orderdetail.productId}" required="true" 
-                                                 requiredMessage="*" >																			
-                                    </h:inputText>
-                                    <h:message for="txtProductId" style="color:red"/>
+                                    <h:selectOneMenu id="ddlProductId" value="#{orderdetailBean.orderdetail.productId}">                                            
+                                        <f:selectItems
+                                            value="#{productBean.products}" var="p"
+                                            itemValue="#{p.id}" itemLabel="#{p.name}" />
+                                     </h:selectOneMenu><br/> 
                                 </td>
                             </tr>                              
                             <tr>																	
@@ -104,9 +105,11 @@
                                     <h:outputLabel value="Order Id"></h:outputLabel>
                                 </td>
                                 <td align="left">
-                                    <h:inputText id="txtOrderId" value="#{orderdetailBean.orderdetail.orderId}" required="true" requiredMessage="*">                                        
-                                    </h:inputText>
-                                    <h:message for="txtOrderId" styleClass="errorMsg"/>
+                                    <h:selectOneMenu id="ddlOrderId" value="#{orderdetailBean.orderdetail.orderId}">                                            
+                                        <f:selectItems
+                                            value="#{orderBean.orders}" var="o"
+                                            itemValue="#{o.id}" itemLabel="#{o.orderNum}" />
+                                     </h:selectOneMenu><br/>
                                 </td>
                             </tr>  
                             <tr>																	
@@ -115,7 +118,7 @@
                                 </td>
                                 <td align="left">
                                     <h:inputText id="txtProductOrderQty" value="#{orderdetailBean.orderdetail.productOrderQty}" required="true" requiredMessage="*">
-                                        <f:convertNumber></f:convertNumber>
+                                        <f:validateLongRange maximum="1000" minimum="1" />
                                     </h:inputText>
                                     <h:message for="txtProductOrderQty" styleClass="errorMsg"/>
                                 </td>
@@ -126,7 +129,7 @@
                                 </td>
                                 <td align="left">
                                     <h:inputText id="txtProductTaxesRate" value="#{orderdetailBean.orderdetail.productTaxesRate}">
-                                        <f:convertNumber></f:convertNumber>
+                                        <f:convertNumber type="percent"></f:convertNumber>
                                     </h:inputText>
                                     <h:message for="txtProductTaxesRate" styleClass="errorMsg"/>
                                 </td>
