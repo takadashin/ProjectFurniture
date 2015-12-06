@@ -124,6 +124,7 @@ CREATE TABLE orders (
 
 CREATE TABLE products (
   id NUMBER(4) generated as IDENTITY PRIMARY KEY,
+  cat_id NUMBER(4),
   product_code varchar(20) NOT NULL UNIQUE,
   product_name varchar(20) NULL,
   product_short_desc varchar(255) NOT NULL,
@@ -133,7 +134,7 @@ CREATE TABLE products (
   product_spec_price float default NULL,
   product_qty NUMBER(4)  NOT NULL,
   product_post_date Date default null,
-  cat_id NUMBER(4) ,
+  cat_id NUMBER(4),
   CONSTRAINT FK_products_catid FOREIGN KEY (cat_id) REFERENCES categories (id)
 );
 
@@ -160,21 +161,11 @@ CREATE TABLE order_details (
 CREATE TABLE images (
   id NUMBER(4) generated as IDENTITY PRIMARY KEY,
   image_name varchar(50) NOT NULL,
-  content_type varchar(20) NOT NULL
+  content_type varchar(20) NOT NULL,
+  product_id NUMBER(4) NOT NULL,
+  CONSTRAINT FK_productimages_productid FOREIGN KEY (product_id) REFERENCES products (id)
 ); 
 
-
-
--- ----------------------------
--- Table structure for product_images
--- ----------------------------
-CREATE TABLE product_images (
-  id NUMBER(4) generated as IDENTITY  PRIMARY KEY,
-  product_id NUMBER(4) ,
-  image_id NUMBER(4) ,
-  CONSTRAINT FK_productimages_productid FOREIGN KEY (product_id) REFERENCES products (id),
-  CONSTRAINT FK_productimages_imageid FOREIGN KEY (image_id) REFERENCES images (id)
-); 
 
 
 
