@@ -74,7 +74,7 @@
                                 <tr>
                                     <th colspan="5">Shopping Cart</th>
                                     <th colspan="2">
-                                        <h:commandButton value="Checkout"></h:commandButton>
+                                        <h:commandButton value="Checkout" action="#{cartBean.payment()}"></h:commandButton>
                                     </th>
                                 </tr>
                                 <tr>
@@ -97,7 +97,9 @@
                                             #{i.p.shortDesc}
                                         </td>
                                         <td>
-                                            <h:inputText value="#{i.quantity}" style="width:20px"></h:inputText>
+                                            <h:inputText value="#{i.quantity}" style="width:50px">
+                                                <f:validateLongRange maximum="100" minimum="1" />
+                                            </h:inputText>
                                         </td>
                                         <td>
                                             $#{i.p.price}
@@ -106,7 +108,7 @@
                                             $#{i.p.specPrice}
                                         </td>
                                         <td>
-                                            $#{cartBean.total}
+                                            $#{i.total}
                                         </td>
                                         <td>
                                             <h:commandButton value="Delete" action="#{cartBean.remove(i)}"/>
@@ -121,17 +123,23 @@
                                     <td colspan="4"></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"></td>
+                                    <td colspan="4" style="text-align: right;">Shipping Method</td>
                                     <td>
-                                        <h:selectOneRadio value="#{shippingBean.shiparray}">
-                                            
-                                            <f:selectItem itemValue="#{shippingBean.shippingPrice}" itemLabel="#{shippingBean.shippingName}" />
-                                              			
-                                         </h:selectOneRadio>
-                                    </td>                                    
+                                        <h:selectOneRadio id="ShippingMethod" value="#{cartBean.shippingprice}" layout="pageDirection" required="true">                                            
+                                            <f:selectItems
+                                                value="#{shippingBean.shiparray}" var="s"
+                                                itemValue="#{s.shippingPrice}" itemLabel="#{s.shippingName}" />
+                                         </h:selectOneRadio><br/>
+                                    </td>   
+                                    <td>$#{cartBean.shippingprice}</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"></td>
+                                    <td colspan="4" style="text-align: right;">Tax:</td>
+                                    <td></td>   
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4"></td>
                                     <td>
                                         <b>Estimated Subtotal:</b>
                                     </td> 
@@ -139,7 +147,7 @@
                                 </tr>
                             </table>
                             </h:form>
-                            <h:link outcome="home" value="Continue Shopping"/>                            
+                            <h:link outcome="testCart" value="Continue Shopping"/>                            
                         </div>
                     </div>
                 </div>

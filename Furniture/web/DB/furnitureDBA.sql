@@ -22,10 +22,10 @@ insert into users (user_username,user_password,user_fullname, user_address, user
 ----------------------
 
 --Shipping Method Table
-insert into shipping_methods (shipping_method_name, shipping_method_price, shipping_method_description)
-    values ('Regular','0', 'This medthod is our regular delivery. There is no fee charge on it.');
-insert into shipping_methods (shipping_method_name, shipping_method_price, shipping_method_description)
-    values ('EXP','10', 'This medthod is our express delivery. You can get your orders sooner than regular.');
+insert into shipping_methods (shipping_method_name, shipping_method_price, shipping_method_description, shipping_method_duration)
+    values ('Regular','0', 'This medthod is our regular delivery. There is no fee charge on it.', '14');
+insert into shipping_methods (shipping_method_name, shipping_method_price, shipping_method_description, shipping_method_duration)
+    values ('EXP','10', 'This medthod is our express delivery. You can get your orders sooner than regular.','5');
 -----------
 
 
@@ -69,7 +69,8 @@ CREATE TABLE shipping_methods (
   id NUMBER(4) generated as IDENTITY PRIMARY KEY,
   shipping_method_name varchar(40) NOT NULL,
   shipping_method_price float NOT NULL,
-  shipping_method_description varchar(200)
+  shipping_method_description varchar(200),
+  shipping_method_duration NUMBER(4) NOT NULL
 );
 
 -- ----------------------------

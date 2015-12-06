@@ -19,9 +19,30 @@ import java.util.*;
 @SessionScoped
 public class ShoppingCartBean {
     private List<Item> cart =new ArrayList<Item>();
-    private float total;
     private float subTotal;   
+    private float shippingprice;
+    private int amountOfItem;
 
+    public int getAmountOfItem() {
+        amountOfItem=0;
+        for (Item item : cart) {
+            amountOfItem += item.getQuantity();            
+        }
+        return amountOfItem;
+    }
+
+    public void setAmountOfItem(int amountOfItem) {
+        this.amountOfItem = amountOfItem;
+    }
+
+    public float getShippingprice() {
+        return shippingprice;
+    }
+
+    public void setShippingprice(float shippingprice) {
+        this.shippingprice = shippingprice;
+    }
+    
     public List<Item> getCart() {
         return cart;
     }
@@ -29,40 +50,22 @@ public class ShoppingCartBean {
     public void setCart(List<Item> cart) {
         this.cart = cart;
     }
-
-    public float getTotal() {
-        total = 0;
-        for (Item item : cart) {
-            if(item.getP().getSpecPrice()!=null)                
-            {
-                total = (item.getQuantity()*item.getP().getSpecPrice());
-            }
-            else
-            {
-                total = (item.getQuantity()*item.getP().getPrice());
-            }
-            
-        }
-        return total;
-    }
-
-    public void setTotal(float total) {
-        this.total = total;
-    }
     
     public float getSubTotal() {
         subTotal = 0;
         for (Item item : cart) {
-            subTotal += total;
-            
+            subTotal += item.getTotal();            
+        }    
+        if(shippingprice!=0)
+        {
+            subTotal += shippingprice;
         }
         return subTotal;
     }
 
     public void setSubTotal(float subTotal) {
         this.subTotal = subTotal;
-    }
-    
+    }  
     
     
     public String addToCart(Product p)
@@ -101,6 +104,9 @@ public class ShoppingCartBean {
         }
     }
     
-    
+    public String payment()
+    {
+        return "payment";
+    }
    
 }

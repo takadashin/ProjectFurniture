@@ -49,7 +49,15 @@
                             <h:inputText  
                                 value="#{shipvar.shippingDescription}"></h:inputText>
                         </h:column>
-
+                        <!-- Added by Huyen-->
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Shipping Duration"></h:outputLabel>
+                            </f:facet>
+                            <h:inputText  
+                                value="#{shipvar.shippingDuration}"></h:inputText>
+                        </h:column>
+                        <!--End-->
                         <h:column headerClass="tabletitle">
                             <f:facet name="header">
                                 <h:outputLabel value="Save"></h:outputLabel>
@@ -110,7 +118,19 @@
                                     <h:inputText id="txtdesc" value="#{shippingBean.shipvar.shippingDescription}" required="true" requiredMessage="*"></h:inputText>
                                     <h:message for="txtTaxName" styleClass="errorMsg"/>
                                 </td>
-                            </tr>  
+                            </tr> 
+                            <!--Added by Huyen-->
+                            <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel value="Shipping Duration"></h:outputLabel>
+                                </td>
+
+                                <td align="left">
+                                    <h:inputText id="txtDur" value="#{shippingBean.shipvar.shippingDuration}" required="true" requiredMessage="*"></h:inputText>
+                                    <h:message for="txtDur" styleClass="errorMsg"/>
+                                </td>
+                            </tr>
+                            <!--end-->
                             <tr>
                                 <td></td>
                                 <td align="left" >

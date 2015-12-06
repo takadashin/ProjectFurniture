@@ -13,6 +13,29 @@ public class Item {
     
     private Product p;
     private int quantity;
+    private float total;
+
+    public float getTotal() {
+        if(p.getSpecPrice()>0)                
+        {
+            total = (quantity*p.getSpecPrice());
+        }
+        else
+        {
+            total = (quantity*p.getPrice());
+        }
+        return total;
+    }
+    private Shipping s;
+
+    public Shipping getS() {
+        return s;
+    }
+
+    public void setS(Shipping s) {
+        this.s = s;
+    }
+    
     
     public Product getP() {
         return p;
