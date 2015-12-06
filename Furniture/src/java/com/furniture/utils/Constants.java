@@ -17,6 +17,7 @@ public class Constants {
     public static final String SHIPPING_NAME = "shipping_method_name"; 
     public static final String SHIPPING_PRICE = "shipping_method_price"; 
     public static final String SHIPPING_DESCRIPTION = "shipping_method_description"; 
+    public static final String SHIPPING_DURATION = "shipping_method_duration";  //Added by Huyen
     
     public static final String CATEGORY_TB ="CATEGORIES";
     public static final String CATEGORY_NAME ="CAT_NAME";  

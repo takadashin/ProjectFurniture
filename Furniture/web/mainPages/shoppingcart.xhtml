@@ -97,7 +97,9 @@
                                             #{i.p.shortDesc}
                                         </td>
                                         <td>
-                                            <h:inputText value="#{i.quantity}" style="width:20px"></h:inputText>
+                                            <h:inputText value="#{i.quantity}" style="width:50px">
+                                                <f:validateLongRange maximum="100" minimum="1" />
+                                            </h:inputText>
                                         </td>
                                         <td>
                                             $#{i.p.price}

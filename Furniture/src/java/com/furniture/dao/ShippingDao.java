@@ -34,6 +34,7 @@ public class ShippingDao extends BaseDao<Shipping>{
                     shipvar.setShippingName(data.getString(Constants.SHIPPING_NAME));
                     shipvar.setShippingPrice(data.getFloat(Constants.SHIPPING_PRICE));
                     shipvar.setShippingDescription(data.getString(Constants.SHIPPING_DESCRIPTION));
+                    shipvar.setShippingDuration(data.getInt(Constants.SHIPPING_DURATION));  //Added by Huyen
                     shiparray.add(shipvar);
                 }
             }
@@ -70,6 +71,7 @@ public class ShippingDao extends BaseDao<Shipping>{
         data.add(new Criterion(Constants.SHIPPING_NAME, shipvar.getShippingName()));
         data.add(new Criterion(Constants.SHIPPING_PRICE, shipvar.getShippingPrice()));
         data.add(new Criterion(Constants.SHIPPING_DESCRIPTION, shipvar.getShippingDescription()));
+        data.add(new Criterion(Constants.SHIPPING_DURATION, shipvar.getShippingDuration()));  //Added by Huyen
 
         return id;
     }

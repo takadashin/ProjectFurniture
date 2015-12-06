@@ -33,7 +33,7 @@ public class ShoppingCartBean {
     public float getTotal() {
         total = 0;
         for (Item item : cart) {
-            if(item.getP().getSpecPrice()!=null)                
+            if(item.getP().getSpecPrice()>0)                
             {
                 total = (item.getQuantity()*item.getP().getSpecPrice());
             }
@@ -101,6 +101,9 @@ public class ShoppingCartBean {
         }
     }
     
-    
+    public Float calculateSubTotal(Float shipprice)
+    {
+        return subTotal;
+    }
    
 }

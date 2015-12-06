@@ -13,6 +13,17 @@ public class Shipping extends BaseDomain{
     private String shippingName;
     private Float shippingPrice;
     private String shippingDescription;
+    private Integer shippingDuration;
+
+    //Added by Huyen
+    public Integer getShippingDuration() {
+        return shippingDuration;
+    }
+
+    public void setShippingDuration(Integer shippingDuration) {
+        this.shippingDuration = shippingDuration;
+    }
+    //End
 
     public String getShippingName() {
         return shippingName;
