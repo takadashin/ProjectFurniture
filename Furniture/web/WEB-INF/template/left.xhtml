@@ -7,8 +7,12 @@
         <ui:composition> 
             <div id="control_panel">
                 <div id="user_stat">
-                    Welcome 'abc' <br/>
-                    <a class='log' href="">Log out</a>
+                    <h:form>
+                    <div class="upper_text"><h:commandLink rendered="#{userSessionBean.loggedIn}" value="Welcome #{userSessionBean.current.username}" action="user/profile?faces-redirect=true"></h:commandLink>
+                    </div>
+                    <div class="lower_text"><h:commandLink rendered="#{userSessionBean.loggedIn}" value="Log out" action="#{userSessionBean.logout()}"></h:commandLink>
+                    <h:commandLink rendered="#{!userSessionBean.loggedIn}" value="Log in" action="/mainPages/adminlogin?faces-redirect=true"></h:commandLink></div>
+                    </h:form>
                 </div>  
                 <div id="control_box">
                     <ul>                        

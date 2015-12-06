@@ -12,7 +12,7 @@
                     <div id="body_wrap">
                         <div id="cpos_11">
                             <div class="logo_container">
-                                <h:link outcome="home" >
+                                <h:link outcome="/mainPages/home" >
                                     <h:graphicImage library="images" name="logo.png" class="logo"/>
                                 </h:link>
                             </div>
@@ -25,13 +25,17 @@
                         </div>
                         <div id="cpos_13">
                             <div style="float:right;padding:5px;">
-                                <h:link outcome="shoppingcart" >
+                                <h:link outcome="/mainPages/shoppingcart" >
                                     <h:graphicImage id="checkout_img" library="images" name="cart.png" class="logo"/><br/>Checkout
                                 </h:link>                                
                             </div>
                             <div class="login_header_session">
-                                <span class="upper_text"><a href="#">Account</a></span>
-                                <span class="lower_text"><a href="#">(Sign In)</a></span>
+                                <h:form>
+                                    <span class="upper_text"><h:commandLink rendered="#{userSessionBean.loggedIn}" value="Welcome #{userSessionBean.current.username}" action="user/profile?faces-redirect=true"></h:commandLink>
+                                <h:commandLink rendered="#{!userSessionBean.loggedIn}" value="Account" action="login?faces-redirect=true"></h:commandLink></span>
+                                <span class="lower_text"><h:commandLink rendered="#{userSessionBean.loggedIn}" value="Log out" action="#{userSessionBean.logout()}"></h:commandLink>
+                                <h:commandLink rendered="#{!userSessionBean.loggedIn}" value="Log in" action="login?faces-redirect=true"></h:commandLink></span>
+                                </h:form>
                             </div>
                         </div>
                         

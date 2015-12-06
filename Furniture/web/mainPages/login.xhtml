@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    
+    <h:body>
+    	<ui:composition template="/WEB-INF/template/mainLayout.xhtml">
+            <ui:define name="title">Home Page</ui:define>
+            <ui:define name="content">
+                <c:set var="ctx" value="#{request.contextPath}" />
+                <main>
+                <div id="cpos_2">
+                    <div id="body_wrap">
+                        <div id="cpos_21">
+                            <div class="menu_wrapper">
+                                <ul>
+                                    <li>
+                                        <div><a>Living</a></div>
+                                    </li>
+                                    <li>
+                                        <div><a>Dinning + Kitchen</a></div>
+                                    </li>
+                                    <li>
+                                        <div> <a>Bedroom</a></div>
+                                    </li>
+                                    <li>
+                                        <div><a>Bath</a></div>
+                                    </li>
+                                    <li>
+                                        <div><a>Lighting</a></div>
+                                    </li>
+                                    <li>
+                                        <div><a>Decor</a></div>
+                                    </li>
+                                    <li>
+                                        <div><a>Office</a></div>
+                                    </li>
+                                    <li>
+                                        <div><a>Outdoor</a></div>
+                                    </li>
+                                    <li>
+                                        <div><a>Storage</a></div>
+                                    </li>
+                                    <li>
+                                        <div><a>Kids</a></div>
+                                    </li>
+                                    <li>
+                                        <div><a>Holidays</a></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="cpos_22">
+                            <div class="header_title">
+                                <div style="height: 1px; background-color: #A1a1a1; text-align: center;margin-top:10px;">
+                                  <span style="background-color: white; position: relative; top: -0.5em;">
+                                    <a>Login Page</a>
+                                  </span>
+                                </div>
+                            </div>
+                            <div>
+                                <h:form>
+                                    <div>
+                                        UserName<h:inputText value="#{userSessionBean.username}"></h:inputText></div>
+                                <div>
+                                    PassWord<h:inputSecret value="#{userSessionBean.password}"></h:inputSecret></div>
+                                    <h:commandButton value="Login" action="#{userSessionBean.login}"></h:commandButton>
+                                </h:form>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            </ui:define>
+    	</ui:composition>
+    	
+    </h:body>
+
+</html>
+
