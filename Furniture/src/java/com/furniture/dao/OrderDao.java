@@ -75,13 +75,13 @@ public class OrderDao extends BaseDao<Order>{
     {
         Object id = order.getId();
         data.add(new Criterion(Constants.ORDERS_NUM, order.getOrderNum()));
-        data.add(new Criterion(Constants.ORDER_DATETIME, order.getOrderDatetime().toString()));
+        data.add(new Criterion(Constants.ORDER_DATETIME, order.getOrderDatetime()));
         data.add(new Criterion(Constants.SHIPPING_ADDRESS, order.getShippingAddress()));
-        data.add(new Criterion(Constants.SHIPPING_DATETIME, order.getShippingDatetime().toString()));
-        data.add(new Criterion(Constants.SHIPPED_DATETIME, order.getShippedDatetime().toString()));        
+        data.add(new Criterion(Constants.SHIPPING_DATETIME, order.getShippingDatetime()));
+        data.add(new Criterion(Constants.SHIPPED_DATETIME, order.getShippedDatetime()));        
         data.add(new Criterion(Constants.ORDER_STATUS, order.getOrderStatus()));
-        data.add(new Criterion(Constants.USER_ID, Integer.toString(order.getUserId())));
-        data.add(new Criterion(Constants.SHIPPING_METHOD_ID, Integer.toString(order.getShippingMethodId())));
+        data.add(new Criterion(Constants.USER_ID, order.getUserId().toString()));
+        data.add(new Criterion(Constants.SHIPPING_METHOD_ID, order.getShippingMethodId().toString()));
         return id;
     }
 }

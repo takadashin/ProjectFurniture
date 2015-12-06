@@ -15,7 +15,7 @@
                         var="order"
                         headerClass="Heading" styleClass="tableViewSummary"
                         rowClasses="rowOne,rowTwo"
-                        columnClasses="nameColumn, nameColumn, nameColumn, nameColumn, nameColumn, nameColumn, nameColumn, nameColumn, actionColumn, actionColumn">
+                        columnClasses="nameColumn, nameColumn, nameColumn, nameColumn, nameColumn, nameColumn, nameColumn, nameColumn, actionColumn, actionColumn,,imageColumn">
                         <f:facet name="header">
                             <f:verbatim>
                                 <caption>Order</caption>
@@ -115,22 +115,11 @@
                                 </td>
                                 <td align="left">
                                     <h:inputText id="txtOrderNum" value="#{orderBean.order.orderNum}" required="true" 
-                                                 requiredMessage="*">																			
+                                                 requiredMessage="*" >																			
                                     </h:inputText>
                                     <h:message for="txtOrderNum" style="color:red"/>
                                 </td>
-                            </tr>   
-                            <tr>																	
-                                <td align="right"> 
-                                    <h:outputLabel value="Order Datetime"></h:outputLabel>
-                                </td>
-                                <td align="left">
-                                    <h:inputText id="txtOrderDatetime" value="#{orderBean.order.orderDatetime}" required="true" requiredMessage="*">
-                                        <f:convertDateTime pattern="yyyy-mm-dd" />
-                                    </h:inputText>
-                                    <h:message for="txtOrderDatetime" styleClass="errorMsg"/>
-                                </td>
-                            </tr>   
+                            </tr>                              
                             <tr>																	
                                 <td align="right"> 
                                     <h:outputLabel value="Shipping Address"></h:outputLabel>
@@ -146,8 +135,8 @@
                                     <h:outputLabel value="Shipping Datetime"></h:outputLabel>
                                 </td>
                                 <td align="left">
-                                    <h:inputText id="txtShippingDatetime" value="#{orderBean.order.shippedDatetime}" required="true" requiredMessage="*">
-                                        <f:convertDateTime pattern="yyyy-mm-dd" />
+                                    <h:inputText id="txtShippingDatetime" value="#{orderBean.order.shippingDatetime}" required="true" requiredMessage="*">
+                                        <f:convertDateTime pattern="yyyy-MM-dd" />
                                     </h:inputText>
                                     <h:message for="txtShippingDatetime" styleClass="errorMsg"/>
                                 </td>
@@ -158,7 +147,7 @@
                                 </td>
                                 <td align="left">
                                     <h:inputText id="txtShippedDatetime" value="#{orderBean.order.shippedDatetime}">
-                                        <f:convertDateTime pattern="yyyy-mm-dd"/>
+                                       <f:convertDateTime pattern="yyyy-MM-dd" />
                                     </h:inputText>
                                     <h:message for="txtShippedDatetime" styleClass="errorMsg"/>
                                 </td>

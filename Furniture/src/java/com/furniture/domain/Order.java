@@ -18,8 +18,8 @@ public class Order extends BaseDomain{
     private Date shippingDatetime;
     private Date shippedDatetime;    
     private String orderStatus;
-    private int userId;
-    private int shippingMethodId;
+    private Integer userId;
+    private Integer shippingMethodId;
 
     public String getOrderNum() {
         return orderNum;
@@ -69,19 +69,19 @@ public class Order extends BaseDomain{
         this.orderStatus = orderStatus;
     }
     
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
     
-    public int getShippingMethodId() {
+    public Integer getShippingMethodId() {
         return shippingMethodId;
     }
 
-    public void setShippingMethodId(int shippingMethodId) {
+    public void setShippingMethodId(Integer shippingMethodId) {
         this.shippingMethodId = shippingMethodId;
     }
 }
