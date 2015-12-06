@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+       xmlns:f="http://java.sun.com/jsf/core">
     
     <h:body>
     	<ui:composition template="/WEB-INF/template/mainLayout.xhtml">
@@ -87,7 +88,9 @@
 
                                 <td align="left">
                                     <h:inputSecret  class="textbox_login" id="txtPassword" value="#{userBean.uservar.userpassword}" required="true" 
-                                                 requiredMessage="* Password is required"></h:inputSecret>
+                                            requiredMessage="* Password is required" validatorMessage="Password invalid. Please make sure your password is over 6 character include uppercase and number along with normal character">
+                                    <f:validateRegex 
+                   pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})" /></h:inputSecret>
                                   
                                 </td>
                             </tr> 
