@@ -8,6 +8,7 @@ package com.furniture.dao;
 import com.furniture.domain.Product;
 import com.furniture.utils.Constants;
 import com.furniture.utils.Criterion;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
@@ -84,7 +85,7 @@ public class ProductDao  extends BaseDao<Product>{
         data.add(new Criterion(Constants.PRODUCT_QTY, product.getQuantity()));
         data.add(new Criterion(Constants.PRODUCT_SHORT_DESC, product.getShortDesc()));
         data.add(new Criterion(Constants.PRODUCT_SPEC_PRICE, product.getSpecPrice()));
-        data.add(new Criterion(Constants.PRODUCT_POST_DATE, product.getPostDate()));
+        data.add(new Criterion(Constants.PRODUCT_POST_DATE, new Date(product.getPostDate().getTime())));
 
         return id;
     }
