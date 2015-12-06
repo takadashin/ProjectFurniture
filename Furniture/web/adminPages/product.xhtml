@@ -1,0 +1,219 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+        <ui:composition template="/WEB-INF/template/adminLayout.xhtml">
+            <ui:define name="title">
+                Product List
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form id="frmProductList">     
+                    <h:dataTable
+                        value="#{productBean.products}"
+                        var="product"
+                        styleClass="tableViewSummary"
+                        rowClasses="rowOne,rowTwo"
+                        columnClasses="nameColumn, nameColumn, nameColumn, actionColumn, actionColumn, ,imageColumn">
+                        <f:facet name="header">
+                            <f:verbatim>
+                                <caption>Product List</caption>
+                            </f:verbatim>
+                        </f:facet>
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Code"></h:outputLabel>
+                            </f:facet>
+                            <h:outputLabel
+                                value="#{product.code}"></h:outputLabel>
+                        </h:column>
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Name"></h:outputLabel>
+                            </f:facet>
+                            <h:outputLabel
+                                value="#{product.name}"></h:outputLabel>
+                        </h:column>
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Short Description"></h:outputLabel>
+                            </f:facet>
+                            <h:outputLabel
+                                value="#{product.shortDesc}"></h:outputLabel>
+                        </h:column>
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Cost"></h:outputLabel>
+                            </f:facet>
+                            <h:outputLabel
+                                value="#{product.cost}"></h:outputLabel>
+                        </h:column>
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Price"></h:outputLabel>
+                            </f:facet>
+                            <h:outputLabel
+                                value="#{product.price}"></h:outputLabel>
+                        </h:column>
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Special Price"></h:outputLabel>
+                            </f:facet>
+                            <h:outputLabel
+                                value="#{product.specPrice}"></h:outputLabel>
+                        </h:column>
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Quantity"></h:outputLabel>
+                            </f:facet>
+                            <h:outputLabel
+                                value="#{product.quantity}"></h:outputLabel>
+                        </h:column>
+
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Edit"></h:outputLabel>
+                            </f:facet>
+                            <h:commandLink value="Edit"
+                                           action="#{productBean.editProduct(product)}">
+                            </h:commandLink>
+                        </h:column>
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Delete"></h:outputLabel>
+                            </f:facet>
+                            <h:commandLink value="Delete"
+                                           action="#{productBean.deleteProduct(product)}">
+                            </h:commandLink>
+                        </h:column>   
+                    </h:dataTable>
+                </h:form>
+
+                <br/>
+                <h:form id="frmEditProduct">
+                    <h:panelGroup>
+                        <h:inputHidden value="#{productBean.product.id}"></h:inputHidden>
+
+                        <table class="tableEdit" width="auto">
+                            <tr>
+                                <th class="tableEditHeader" colspan="2" align="center">
+                                    Product
+                                </th>
+                            </tr>
+                             <tr>																	
+                                <td align="right" width="200px"> 
+                                    <h:outputLabel value="Category"></h:outputLabel>
+                                </td>
+                                <td align="left">
+                                    <h:inputText id="txtCatId" value="#{productBean.product.catId}" required="true" requiredMessage="*"> </h:inputText>
+                                    <h:message for="txtCatId" styleClass="errorMsg"/>
+                                </td>
+                            </tr>   
+                            <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel value="Product Code"></h:outputLabel>
+                                </td>
+                                <td align="left">
+                                    <h:inputText id="txtProductCode" value="#{productBean.product.code}" required="true" requiredMessage="*"> </h:inputText>
+                                    <h:message for="txtProductCode" styleClass="errorMsg"/>
+                                </td>
+                            </tr>   
+                            <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel value="Product Name"></h:outputLabel>
+                                </td>
+
+                                <td align="left">
+                                    <h:inputText id="txtProductName" value="#{productBean.product.name}" maxlength="20"></h:inputText>
+                                    <h:message for="txtProductName" styleClass="errorMsg"/>
+                                </td>
+                            </tr>   
+                            <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel value="Short Description"></h:outputLabel>
+                                </td>
+                                <td align="left">
+                                    <h:inputTextarea id="txtProductShortDesc" value="#{productBean.product.shortDesc}" required="true" requiredMessage="*" rows="3" cols="100" ></h:inputTextarea>
+                                    <h:message for="txtProductShortDesc" styleClass="errorMsg"/>
+                                </td>
+                            </tr>   
+                            <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel value="Description"></h:outputLabel>
+                                </td>
+                                <td align="left">
+                                    <h:inputTextarea id="txtProductDesc" value="#{productBean.product.desc}" rows="4" cols="100"></h:inputTextarea>
+                                </td>
+                            </tr>   
+                            <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel value="Cost"></h:outputLabel>
+                                </td>
+                                <td align="left">
+                                    <h:inputText id="txtProductCost" value="#{productBean.product.cost}">
+                                        <f:validateLongRange minimum="0" />
+                                    </h:inputText>
+                                    <h:message for="txtProductCost" styleClass="errorMsg"/>
+                                </td>
+                            </tr>   
+                            <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel value="Price"></h:outputLabel>
+                                </td>
+                                <td align="left">
+                                    <h:inputText id="txtProductPrice" value="#{productBean.product.price}">
+                                        <f:validateLongRange minimum="0" />
+                                    </h:inputText>
+                                    <h:message for="txtProductPrice" styleClass="errorMsg"/>
+                                </td>
+                            </tr>   
+                            <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel value="Special Price"></h:outputLabel>
+                                </td>
+                                <td align="left">
+                                    <h:inputText id="txtProductSpecPrice" value="#{productBean.product.specPrice}">
+                                        <f:validateLongRange minimum="0" />
+                                    </h:inputText>
+                                    <h:message for="txtProductSpecPrice" styleClass="errorMsg"/>
+                                </td>
+                            </tr> 
+                            <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel value="Quantity"></h:outputLabel>
+                                </td>
+                                <td align="left">
+                                    <h:inputText id="txtProductQuantity" value="#{productBean.product.quantity}">
+                                        <f:validateLongRange minimum="0" />
+                                    </h:inputText>
+                                    <h:message for="txtProductCost" styleClass="errorMsg"/>
+                                </td>
+                            </tr>   
+                            <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel value="Post Date"></h:outputLabel>
+                                </td>
+                                <td align="left">
+                                    <p:calendar id="inline" value="#{productBean.product.postDate}" mode="inline" />
+                                </td>
+                            </tr>   
+                            <tr>
+                                <td></td>
+                                <td align="left" >
+                                    <h:commandButton id="btnAdd" value="Add" action="#{productBean.addAction}"></h:commandButton>
+                                    <h:commandButton id="btnUpdate" value="Update" action="#{productBean.updateAction}" rendered="false"></h:commandButton> 
+                                    <h:commandButton id="btnCancel" value="Cancel" action="#{productBean.cancelAction}" rendered="false"></h:commandButton>
+                                </td>
+                            </tr>
+                        </table>                              
+                    </h:panelGroup>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

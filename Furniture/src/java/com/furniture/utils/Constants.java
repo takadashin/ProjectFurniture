@@ -18,6 +18,12 @@ public class Constants {
     public static final String SHIPPING_PRICE = "shipping_method_price"; 
     public static final String SHIPPING_DESCRIPTION = "shipping_method_description"; 
     
+    public static final String CATEGORY_TB ="CATEGORIES";
+    public static final String CATEGORY_NAME ="CAT_NAME";  
+    public static final String CATEGORY_DESCRIPTION = "CAT_DESCRIPTION"; 
+    public static final String CATEGORY_PARENTID = "CAT_PARENT_ID"; 
+
+    
     //ORDER
     public static final String ORDERS_TB ="ORDERS"; 
     public static final String ORDERS_NUM = "order_num"; 
@@ -28,5 +34,19 @@ public class Constants {
     public static final String ORDER_STATUS = "order_status"; 
     public static final String USER_ID = "user_id";
     public static final String SHIPPING_METHOD_ID = "shipping_method_id";
+    
+    
+    public static final String PRODUCT_TB = "PRODUCTS";
+    public static final String PRODUCT_CODE = "product_code";
+    public static final String PRODUCT_NAME = "product_name";
+    public static final String PRODUCT_SHORT_DESC = "product_short_desc";
+    public static final String  PRODUCT_DESC = "product_desc";
+    public static final String PRODUCT_COST =  "product_cost";
+    public static final String PRODUCT_PRICE= "product_price";
+    public static final String PRODUCT_SPEC_PRICE  =  "product_spec_price";
+    public static final String PRODUCT_QTY= "product_qty";
+    public static final String PRODUCT_CAT_ID ="cat_id";
+    public static final String PRODUCT_POST_DATE ="product_post_date";
+
     
 }

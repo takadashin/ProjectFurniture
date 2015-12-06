@@ -6,7 +6,7 @@ Target Host: localhost
 Target Database: furnitureshopping
 Date: 14/11/2015 09:22:06 PM
 */
-
+Insert Into PRODUCTS(cat_id,product_code,product_cost,product_desc,product_name,product_price,product_qty,product_short_desc,product_spec_price,product_post_date) Values('2','QQ','1','SSS','NAME','2','3','SSS','3','2015-12-04')
 --Tax table
 insert into taxes (taxes_code,taxes_name,taxes_rate) values('aaa','aaa',10);
 insert into taxes (taxes_code,taxes_name,taxes_rate) values('bbb','bbb',20);
@@ -126,20 +126,19 @@ CREATE TABLE orders (
 
 CREATE TABLE products (
   id NUMBER(4) generated as IDENTITY PRIMARY KEY,
-  product_num varchar(20) NOT NULL,
-  product_short_desc varchar(128) NOT NULL,
+  product_code varchar(20) NOT NULL UNIQUE,
+  product_name varchar(20) NULL,
+  product_short_desc varchar(255) NOT NULL,
   product_desc varchar(500),
   product_cost float default NULL,
   product_price float NOT NULL,
   product_spec_price float default NULL,
-  product_rating float NOT NULL,
-  product_rating_count NUMBER(4)  NOT NULL,
   product_qty NUMBER(4)  NOT NULL,
-  product_publish_on date NOT NULL,
-  product_expire_on date NOT NULL,
+  product_post_date Date default null,
   cat_id NUMBER(4) ,
   CONSTRAINT FK_products_catid FOREIGN KEY (cat_id) REFERENCES categories (id)
 );
+
 
 
 
