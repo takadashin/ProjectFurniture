@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.sql.Date;
 
 /**
  *
@@ -75,10 +76,11 @@ public class OrderDao extends BaseDao<Order>{
     {
         Object id = order.getId();
         data.add(new Criterion(Constants.ORDERS_NUM, order.getOrderNum()));
-        data.add(new Criterion(Constants.ORDER_DATETIME, order.getOrderDatetime()));
+//        data.add(new Criterion(Constants.ORDER_DATETIME, new Date(order.getOrderDatetime().getTime())));
         data.add(new Criterion(Constants.SHIPPING_ADDRESS, order.getShippingAddress()));
-        data.add(new Criterion(Constants.SHIPPING_DATETIME, order.getShippingDatetime()));
-        data.add(new Criterion(Constants.SHIPPED_DATETIME, order.getShippedDatetime()));        
+        data.add(new Criterion(Constants.SHIPPING_DATETIME, new Date(order.getShippingDatetime().getTime())));
+        if(order.getShippedDatetime()!=null)
+            data.add(new Criterion(Constants.SHIPPED_DATETIME, new Date(order.getShippedDatetime().getTime())));        
         data.add(new Criterion(Constants.ORDER_STATUS, order.getOrderStatus()));
         data.add(new Criterion(Constants.USER_ID, order.getUserId().toString()));
         data.add(new Criterion(Constants.SHIPPING_METHOD_ID, order.getShippingMethodId().toString()));
