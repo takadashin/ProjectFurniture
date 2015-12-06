@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core">
     
     <h:body>
     	<ui:composition template="/WEB-INF/template/mainLayout.xhtml">
@@ -60,7 +61,142 @@
                                   </span>
                                 </div>
                             </div>
-                           
+                           <div id="loginbox">
+                                <h:form id="registerForm">
+                                    <div>
+                                        <table class="tableEdit" width="auto">
+                            <tr>
+                                <th class="tableEditHeader" colspan="2" align="center">
+                                   
+                                </th>
+                            </tr>
+                            <tr>																	
+                                <td align="right" width="100px"> 
+                                    <h:outputLabel class="labeltext" value="Name"></h:outputLabel>
+                                </td>
+                                <td align="left">
+                                    <h:outputLabel   value="#{userSessionBean.current.username}"
+                                                >																			
+                                    </h:outputLabel>
+                                   
+                                </td>
+                            </tr>   
+                            <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel class="labeltext" value="Password"></h:outputLabel>
+                                </td>
+
+                                <td align="left">
+                                    <h:inputSecret  class="textbox_login" id="txtPassword" value="#{userSessionBean.current.userpassword}" required="true" 
+                                                 requiredMessage="* Password is required" validatorMessage="Password invalid. Please make sure your password is over 6 character include uppercase and number along with normal character">
+                                    <f:validateRegex 
+                   pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})" /></h:inputSecret>
+                                  
+                                </td>
+                            </tr> 
+                             <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel class="labeltext" value="Retype Password"></h:outputLabel>
+                                </td>
+
+                                <td align="left">
+                                    <h:inputSecret  class="textbox_login" id="txtRePassword" value="#{userBean.repassword}" required="true" 
+                                                 requiredMessage="* Password retype is required"></h:inputSecret>
+                                  
+                                </td>
+                            </tr> 
+                             <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel class="labeltext" value="Full Name"></h:outputLabel>
+                                </td>
+
+                                <td align="left">
+                                    <h:inputText  class="textbox_login" id="txtfullname" value="#{userSessionBean.current.userfullname}" required="true" requiredMessage="* Full name is required"></h:inputText>
+     
+                                </td>
+                            </tr> 
+                             <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel class="labeltext" value="State Name"></h:outputLabel>
+                                </td>
+
+                                <td align="left">
+                                    <h:inputText  class="textbox_login" id="txtstatename" value="#{userSessionBean.current.statename}" required="true" requiredMessage="* State Name is required"></h:inputText>
+                                  
+                                </td>
+                            </tr> 
+                             <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel class="labeltext" value="State Code"></h:outputLabel>
+                                </td>
+
+                                <td align="left">
+                                    <h:inputText  class="textbox_login" id="txtstatecode" value="#{userSessionBean.current.statecode}" required="true" requiredMessage="* State code is required"></h:inputText>
+                                  
+                                </td>
+                            </tr> 
+                       
+            
+                            <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel class="labeltext" value="Address"></h:outputLabel>
+                                </td>
+
+                                <td align="left">
+                                    <h:inputText  class="textbox_login" id="txtaddress" value="#{userSessionBean.current.address}" required="true" requiredMessage="* Address is required"></h:inputText>
+
+                                </td>
+                            </tr> 
+                            <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel class="labeltext" value="City Name"></h:outputLabel>
+                                </td>
+
+                                <td align="left">
+                                    <h:inputText  class="textbox_login" id="txtcityname" value="#{userSessionBean.current.cityname}" required="true" requiredMessage="* City is required"></h:inputText>
+
+                                </td>
+                            </tr> 
+                            <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel class="labeltext" value="Email"></h:outputLabel>
+                                </td>
+
+                                <td align="left">
+                                    <h:outputLabel  value="#{userSessionBean.current.email}"></h:outputLabel>
+                                   
+                                </td>
+                            </tr> 
+                            <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel class="labeltext" value="Phone"></h:outputLabel>
+                                </td>
+
+                                <td align="left">
+                                    <h:inputText  class="textbox_login" id="txtphone" value="#{userSessionBean.current.phone}" required="true" requiredMessage="* Phone is required"></h:inputText>
+
+                                </td>
+                            </tr> 
+                            
+                            <tr>
+                                <td></td>
+                                <td align="right" >
+                                    <h:commandButton class="button_submit" id="btnAdd" value="Edit account" action="#{userBean.editUserAction(userSessionBean.current)}"></h:commandButton>
+                                  
+                                </td>
+                            </tr>
+                            <tr>
+                                
+                                
+                                    <h:messages styleClass="errorMessage" />
+                               
+                                
+                            </tr>
+                        </table>  
+                                    </div>
+                                </h:form>
+                                
+                            </div>
                         </div>
                     </div>
                 </div>

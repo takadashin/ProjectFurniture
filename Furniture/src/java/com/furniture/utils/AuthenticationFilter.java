@@ -39,7 +39,7 @@ public class AuthenticationFilter implements Filter {
       chain.doFilter(req, resp);
     } else {
 
-      response.sendRedirect(((HttpServletRequest) req).getContextPath() + "/faces/mainPages/user/login.xhtml"); 
+      response.sendRedirect(((HttpServletRequest) req).getContextPath() + "/faces/mainPages/login.xhtml"); 
     }
   }
 

@@ -104,6 +104,31 @@ public class UserBean extends Users{
         else
             return null;
     }
+    
+    public String editUserAction(Users userthis) {
+        uservar = userthis;
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        boolean isvalid = true;
+        
+        
+        if (!uservar.getUserpassword().equals(repassword))
+        {
+            
+            facesContext.addMessage("registerForm", new FacesMessage("Password retype is not the same with password."));
+            isvalid = false;
+        }
+        
+        
+       
+        if(isvalid)
+        {
+            service.updatedObject(uservar);
+            facesContext.addMessage("registerForm", new FacesMessage("Your information is saved."));
+            return null;
+        }
+        else
+            return null;
+    }
     public UserService getService() {
         return service;
     }
