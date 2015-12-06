@@ -1,0 +1,272 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <h:body>
+    	
+    	<ui:composition template="/WEB-INF/template/adminLayout.xhtml">
+            
+            <ui:define name="title">User Management Page</ui:define>            
+            <ui:define name="content">
+                <c:set var="ctx" value="#{request.contextPath}" />
+                <div id="main_panel" >
+                    <div class="header_title">User</div>
+                    <div>
+                        <h:form id="frmTaxList">
+                <h:dataTable
+                        value="#{userBean.userarray}"
+                        var="uservar"
+                        styleClass="tableViewSummary"
+                        rowClasses="rowOne,rowTwo"
+                        columnClasses="nameColumn, nameColumn, nameColumn, actionColumn, actionColumn, ,imageColumn">
+                        <f:facet name="header">
+                            <f:verbatim>
+                                <caption>User List</caption>
+                            </f:verbatim>
+                        </f:facet>
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="ID"></h:outputLabel>
+                            </f:facet>
+                            <h:outputLabel
+                                value="#{uservar.id}"></h:outputLabel>
+                        </h:column>
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Name"></h:outputLabel>
+                            </f:facet>
+                            <h:inputText
+                                value="#{uservar.username}"></h:inputText>
+                        </h:column>
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Password"></h:outputLabel>
+                            </f:facet>
+                            <h:inputText  
+                                value="#{uservar.userpassword}"></h:inputText>
+                        </h:column>
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Full Name"></h:outputLabel>
+                            </f:facet>
+                            <h:inputText  
+                                value="#{uservar.userfullname}"></h:inputText>
+                        </h:column>
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Address"></h:outputLabel>
+                            </f:facet>
+                            <h:inputText  
+                                value="#{uservar.address}"></h:inputText>
+                        </h:column>
+                    <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="City Name"></h:outputLabel>
+                            </f:facet>
+                            <h:inputText  
+                                value="#{uservar.cityname}"></h:inputText>
+                        </h:column>
+                    <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="State Name"></h:outputLabel>
+                            </f:facet>
+                            <h:inputText  
+                                value="#{uservar.statename}"></h:inputText>
+                        </h:column>
+                    <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="State code"></h:outputLabel>
+                            </f:facet>
+                            <h:inputText  
+                                value="#{uservar.statecode}"></h:inputText>
+                        </h:column>
+                    <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Email"></h:outputLabel>
+                            </f:facet>
+                            <h:inputText  
+                                value="#{uservar.email}"></h:inputText>
+                        </h:column>
+                    <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Phone"></h:outputLabel>
+                            </f:facet>
+                            <h:inputText  
+                                value="#{uservar.phone}"></h:inputText>
+                        </h:column>
+                    <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Type"></h:outputLabel>
+                            </f:facet>
+                            <h:inputText  
+                                value="#{uservar.type}"></h:inputText>
+                        </h:column>
+                    <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Active"></h:outputLabel>
+                            </f:facet>
+                            <h:inputText  
+                                value="#{uservar.active}"></h:inputText>
+                        </h:column>
+
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Save"></h:outputLabel>
+                            </f:facet>
+                            <h:commandLink value="Edit" action="#{userBean.update(uservar)}"
+                                           >
+                            </h:commandLink>
+                        </h:column>
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Delete" ></h:outputLabel>
+                            </f:facet>
+                            <h:commandLink value="Delete" action="#{userBean.delete(uservar)}"
+                                           >
+                            </h:commandLink>
+                        </h:column>   
+                    </h:dataTable>
+                </h:form>
+                    </div>
+                </div>
+<h:form id="frmEditcat">
+                    <h:panelGroup>
+                        <h:inputHidden value="#{userBean.uservar.id}"></h:inputHidden>
+
+                        <table class="tableEdit" width="auto">
+                            <tr>
+                                <th class="tableEditHeader" colspan="2" align="center">
+                                    Add Category
+                                </th>
+                            </tr>
+                            <tr>																	
+                                <td align="right" width="100px"> 
+                                    <h:outputLabel value="Name"></h:outputLabel>
+                                </td>
+                                <td align="left">
+                                    <h:inputText id="txtUserName" value="#{userBean.uservar.username}" required="true" 
+                                                 requiredMessage="*">																			
+                                    </h:inputText>
+                                    <h:message for="txtTaxCode" styleClass="errorMsg"/>
+                                </td>
+                            </tr>   
+                            <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel value="Password"></h:outputLabel>
+                                </td>
+
+                                <td align="left">
+                                    <h:inputText id="txtPassword" value="#{userBean.uservar.userpassword}" required="true" requiredMessage="*"></h:inputText>
+                                    <h:message for="txtTaxName" styleClass="errorMsg"/>
+                                </td>
+                            </tr>   
+                             <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel value="Full Name"></h:outputLabel>
+                                </td>
+
+                                <td align="left">
+                                    <h:inputText id="txtfullname" value="#{userBean.uservar.userfullname}" required="true" requiredMessage="*"></h:inputText>
+                                    <h:message for="txtTaxName" styleClass="errorMsg"/>
+                                </td>
+                            </tr> 
+                             <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel value="State Name"></h:outputLabel>
+                                </td>
+
+                                <td align="left">
+                                    <h:inputText id="txtstatename" value="#{userBean.uservar.statename}" required="true" requiredMessage="*"></h:inputText>
+                                    <h:message for="txtTaxName" styleClass="errorMsg"/>
+                                </td>
+                            </tr> 
+                             <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel value="State Code"></h:outputLabel>
+                                </td>
+
+                                <td align="left">
+                                    <h:inputText id="txtstatecode" value="#{userBean.uservar.statecode}" required="true" requiredMessage="*"></h:inputText>
+                                    <h:message for="txtTaxName" styleClass="errorMsg"/>
+                                </td>
+                            </tr> 
+                             <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel value="Type"></h:outputLabel>
+                                </td>
+
+                                <td align="left">
+                                    <h:inputText id="txttype" value="#{userBean.uservar.type}" required="true" requiredMessage="*"></h:inputText>
+                                    <h:message for="txtTaxName" styleClass="errorMsg"/>
+                                </td>
+                            </tr> 
+                             <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel value="Active"></h:outputLabel>
+                                </td>
+
+                                <td align="left">
+                                    <h:inputText id="txtactive" value="#{userBean.uservar.active}" required="true" requiredMessage="*"></h:inputText>
+                                    <h:message for="txtTaxName" styleClass="errorMsg"/>
+                                </td>
+                            </tr>
+                            <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel value="Address"></h:outputLabel>
+                                </td>
+
+                                <td align="left">
+                                    <h:inputText id="txtaddress" value="#{userBean.uservar.address}" required="true" requiredMessage="*"></h:inputText>
+                                    <h:message for="txtTaxName" styleClass="errorMsg"/>
+                                </td>
+                            </tr> 
+                            <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel value="City Name"></h:outputLabel>
+                                </td>
+
+                                <td align="left">
+                                    <h:inputText id="txtcityname" value="#{userBean.uservar.cityname}" required="true" requiredMessage="*"></h:inputText>
+                                    <h:message for="txtTaxName" styleClass="errorMsg"/>
+                                </td>
+                            </tr> 
+                            <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel value="Email"></h:outputLabel>
+                                </td>
+
+                                <td align="left">
+                                    <h:inputText id="txtemail" value="#{userBean.uservar.email}" required="true" requiredMessage="*"></h:inputText>
+                                    <h:message for="txtTaxName" styleClass="errorMsg"/>
+                                </td>
+                            </tr> 
+                            <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel value="Phone"></h:outputLabel>
+                                </td>
+
+                                <td align="left">
+                                    <h:inputText id="txtphone" value="#{userBean.uservar.phone}" required="true" requiredMessage="*"></h:inputText>
+                                    <h:message for="txtTaxName" styleClass="errorMsg"/>
+                                </td>
+                            </tr> 
+                            
+                            <tr>
+                                <td></td>
+                                <td align="left" >
+                                    <h:commandButton id="btnAdd" value="Add" action="#{userBean.addAction}"></h:commandButton>
+                                    
+                                </td>
+                            </tr>
+                        </table>                              
+                    </h:panelGroup>
+                </h:form>
+            </ui:define>
+    	</ui:composition>
+    	
+    </h:body>
+</html>
