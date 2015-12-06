@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <form action="https://www.sandbox.paypal.com/cgi-bin/webscr/" method="POST">
+            <c:set var="count" value="1"/>
+            <c:forEach items="#{cartBean.cart}" var="i">
+                <input type="hidden" name="item_number_#{count}"
+                       value="#{i.p.id}"/>
+                <input type="hidden" name="item_name_#{count}"
+                       value="#{i.p.name}"/>
+                <input type="hidden" name="quantity_#{count}"
+                       value="#{i.quantity}"/>
+                <input type="hidden" name="amount_#{count}"
+                       value="#{i.p.price}"/>
+                <c:set var="count" value="#{count+1}"/>
+            </c:forEach>
+            <input type="hidden" name="cmd" value="_cart"/>
+            <input type="hidden" name="business" value="uh6062-facilitator@gmail.com"/>
+            <input type="hidden" name="return" 
+                   value="http://localhost:8080/Furniture/faces/mainPages/confirm/success.xhtml"/>
+            <input type="hidden" name="cancel"
+                   value="http://localhost:8080/Furniture/faces/mainPages/confirm/fail.xhtml"/>
+            <input type="hidden" name="upload" value="1"/>
+            <input type="image" src="http://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"/>
+        </form>
+        
+    </h:body>
+</html>
+
