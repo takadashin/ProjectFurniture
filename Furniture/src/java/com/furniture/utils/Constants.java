@@ -22,8 +22,20 @@ public class Constants {
     public static final String CATEGORY_NAME ="CAT_NAME";  
     public static final String CATEGORY_DESCRIPTION = "CAT_DESCRIPTION"; 
     public static final String CATEGORY_PARENTID = "CAT_PARENT_ID"; 
-
     
+    public static final String USER_TB ="USERS";
+    public static final String USER_USERNAME ="USER_USERNAME";  
+    public static final String USER_PASSWORD ="USER_PASSWORD";  
+    public static final String USER_FULLNAME ="USER_FULLNAME";  
+    public static final String USER_ADDRESS ="USER_ADDRESS";  
+    public static final String USER_STATE_NAME ="USER_STATE_NAME";  
+    public static final String USER_CITY_NAME ="USER_CITY_NAME";  
+    public static final String USER_STATE_CODE ="USER_STATE_CODE";  
+    public static final String USER_EMAIL ="USER_EMAIL";  
+    public static final String USER_PHONE ="USER_PHONE";  
+    public static final String USER_TYPE ="USER_TYPE";  
+    public static final String USER_ACTIVE ="ACTIVE";  
+   
     //ORDER
     public static final String ORDERS_TB ="ORDERS"; 
     public static final String ORDERS_NUM = "order_num"; 
