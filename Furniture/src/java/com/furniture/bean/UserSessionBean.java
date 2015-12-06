@@ -45,8 +45,7 @@ public class UserSessionBean {
             current = list.get(0);
         }
         if (current == null ) {
-            FacesContext.getCurrentInstance().addMessage(null, 
-                new FacesMessage("Unknown login, try again"));
+            FacesContext.getCurrentInstance().addMessage("loginform", new FacesMessage("User Name or Password is not correct"));
             return null;
         } else {
             return "/mainPages/home?faces-redirect=true";
@@ -63,8 +62,7 @@ public class UserSessionBean {
             current = list.get(0);
         }
         if (current == null || !current.getType().equals("admin")) {
-            FacesContext.getCurrentInstance().addMessage(null, 
-                new FacesMessage("Unknown login, try again"));
+            FacesContext.getCurrentInstance().addMessage("loginform", new FacesMessage("User Name or Password is not correct"));
             return null;
         } else {
             return "/adminPages/home?faces-redirect=true";
