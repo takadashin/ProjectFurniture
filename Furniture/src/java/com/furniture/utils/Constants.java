@@ -47,4 +47,18 @@ public class Constants {
     public static final String USER_ID = "user_id";
     public static final String SHIPPING_METHOD_ID = "shipping_method_id";
     
+    
+    public static final String PRODUCT_TB = "PRODUCTS";
+    public static final String PRODUCT_CODE = "product_code";
+    public static final String PRODUCT_NAME = "product_name";
+    public static final String PRODUCT_SHORT_DESC = "product_short_desc";
+    public static final String  PRODUCT_DESC = "product_desc";
+    public static final String PRODUCT_COST =  "product_cost";
+    public static final String PRODUCT_PRICE= "product_price";
+    public static final String PRODUCT_SPEC_PRICE  =  "product_spec_price";
+    public static final String PRODUCT_QTY= "product_qty";
+    public static final String PRODUCT_CAT_ID ="cat_id";
+    public static final String PRODUCT_POST_DATE ="product_post_date";
+
+    
 }

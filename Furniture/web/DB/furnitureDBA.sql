@@ -6,7 +6,7 @@ Target Host: localhost
 Target Database: furnitureshopping
 Date: 14/11/2015 09:22:06 PM
 */
-
+Insert Into PRODUCTS(cat_id,product_code,product_cost,product_desc,product_name,product_price,product_qty,product_short_desc,product_spec_price,product_post_date) Values('2','QQ','1','SSS','NAME','2','3','SSS','3','2015-12-04')
 --Tax table
 insert into taxes (taxes_code,taxes_name,taxes_rate) values('aaa','aaa',10);
 insert into taxes (taxes_code,taxes_name,taxes_rate) values('bbb','bbb',20);
@@ -31,13 +31,15 @@ insert into shipping_methods (shipping_method_name, shipping_method_price, shipp
 
 --Order Table
 insert into orders (order_num,order_datetime,shipping_address, shipping_datetime, shipped_datetime, order_status, user_id, shipping_method_id) 
-    values ('Order_001','2015-12-04','102 Dufferin St', '2015-12-11', '', '0', '2', '2');
+    values ('Order_001','2015-12-04','102 Dufferin St', '2015-12-11', '', 'Pending', '2', '2');
 insert into orders (order_num,order_datetime,shipping_address, shipping_datetime, shipped_datetime, order_status, user_id, shipping_method_id) 
-    values ('Order_002','2015-12-04','54 St.Clair', '2015-12-11', '', '0', '2', '1');
+    values ('Order_002','2015-12-04','54 St.Clair', '2015-12-11', '', 'Pending', '2', '1');
 insert into orders (order_num,order_datetime,shipping_address, shipping_datetime, shipped_datetime, order_status, user_id, shipping_method_id) 
-    values ('Order_003','2015-12-04','84 Ascot Avenue', '2015-12-11', '', '0', '2', '1');
+    values ('Order_003','2015-12-04','84 Ascot Avenue', '2015-12-11', '', 'Pending', '2', '1');
 insert into orders (order_num,order_datetime,shipping_address, shipping_datetime, shipped_datetime, order_status, user_id, shipping_method_id) 
-    values ('Order_004','2015-12-04','32 Roger Road', '2015-12-19', '', '0', '2', '2');
+    values ('Order_004','2015-12-04','32 Roger Road', '2015-12-19', '', 'Pending', '2', '2');
+insert into orders (order_num,order_datetime,shipping_address, shipping_datetime, shipped_datetime, order_status, user_id, shipping_method_id) 
+    values ('Order_005',SYSDATE,'90 Roger Road', '2015-12-19', '', 'Pending', '2', '2');
 --------------------------
 
 drop table order_details;
@@ -107,13 +109,13 @@ CREATE TABLE categories (
 CREATE TABLE orders (
   id NUMBER(4) generated as IDENTITY PRIMARY KEY,
   order_num varchar(20) NOT NULL,
-  order_datetime date NOT NULL,
+  order_datetime date default SYSDATE,
   shipping_address varchar(100) NOT NULL, 
   shipping_datetime date NOT NULL,
   shipped_datetime date default NULL,  
   order_status varchar(10) NOT NULL,
   user_id NUMBER(4),
-  shipping_method_id NUMBER(4)  default NULL,
+  shipping_method_id NUMBER(4),
   CONSTRAINT FK_orders_userid FOREIGN KEY (user_id) REFERENCES users (id),
   CONSTRAINT FK_orders_shippingmethodid FOREIGN KEY (shipping_method_id) REFERENCES shipping_methods (id)
 );
@@ -124,6 +126,7 @@ CREATE TABLE orders (
 
 CREATE TABLE products (
   id NUMBER(4) generated as IDENTITY PRIMARY KEY,
+  cat_id NUMBER(4),
   product_code varchar(20) NOT NULL UNIQUE,
   product_name varchar(20) NULL,
   product_short_desc varchar(255) NOT NULL,
@@ -133,7 +136,7 @@ CREATE TABLE products (
   product_spec_price float default NULL,
   product_qty NUMBER(4)  NOT NULL,
   product_post_date Date default null,
-  cat_id NUMBER(4) ,
+  cat_id NUMBER(4),
   CONSTRAINT FK_products_catid FOREIGN KEY (cat_id) REFERENCES categories (id)
 );
 
@@ -160,21 +163,11 @@ CREATE TABLE order_details (
 CREATE TABLE images (
   id NUMBER(4) generated as IDENTITY PRIMARY KEY,
   image_name varchar(50) NOT NULL,
-  content_type varchar(20) NOT NULL
+  content_type varchar(20) NOT NULL,
+  product_id NUMBER(4) NOT NULL,
+  CONSTRAINT FK_productimages_productid FOREIGN KEY (product_id) REFERENCES products (id)
 ); 
 
-
-
--- ----------------------------
--- Table structure for product_images
--- ----------------------------
-CREATE TABLE product_images (
-  id NUMBER(4) generated as IDENTITY  PRIMARY KEY,
-  product_id NUMBER(4) ,
-  image_id NUMBER(4) ,
-  CONSTRAINT FK_productimages_productid FOREIGN KEY (product_id) REFERENCES products (id),
-  CONSTRAINT FK_productimages_imageid FOREIGN KEY (image_id) REFERENCES images (id)
-); 
 
 
 

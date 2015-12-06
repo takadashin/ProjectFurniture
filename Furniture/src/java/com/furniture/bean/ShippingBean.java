@@ -23,8 +23,8 @@ import javax.faces.bean.RequestScoped;
  */
 @ManagedBean (name="shippingBean", eager = true)
 @RequestScoped
-public class ShippingBean extends Shipping{    
-	private ShippingService service = new ShippingService();
+public class ShippingBean extends Shipping{   
+    private ShippingService service = new ShippingService();
     private Shipping shipvar;
     private Vector<Shipping> shiparray;
 

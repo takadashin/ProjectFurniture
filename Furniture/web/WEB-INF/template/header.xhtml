@@ -25,7 +25,9 @@
                         </div>
                         <div id="cpos_13">
                             <div style="float:right;padding:5px;">
-                                <a href="#"><img id="checkout_img" src="#{ctx}/resources/images/cart.png" /><br/>Checkout</a>
+                                <h:link outcome="shoppingcart" >
+                                    <h:graphicImage id="checkout_img" library="images" name="cart.png" class="logo"/><br/>Checkout
+                                </h:link>                                
                             </div>
                             <div class="login_header_session">
                                 <span class="upper_text"><a href="#">Account</a></span>
