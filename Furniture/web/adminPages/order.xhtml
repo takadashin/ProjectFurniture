@@ -167,19 +167,23 @@
                                     <h:outputLabel value="User ID"></h:outputLabel>
                                 </td>
                                 <td align="left">
-                                    <h:inputText id="txtUserId" value="#{orderBean.order.userId}" required="true" requiredMessage="*">                                        
-                                    </h:inputText>
-                                    <h:message for="txtUserId" styleClass="errorMsg"/>
+                                    <h:selectOneMenu id="ddlUserId" value="#{orderBean.order.userId}">                                            
+                                        <f:selectItems
+                                            value="#{userBean.userarray}" var="u"
+                                            itemValue="#{u.id}" itemLabel="#{u.username}" />
+                                     </h:selectOneMenu><br/>
                                 </td>
                             </tr>
                             <tr>																	
                                 <td align="right"> 
                                     <h:outputLabel value="Shipping Method ID"></h:outputLabel>
                                 </td>
-                                <td align="left">
-                                    <h:inputText id="txtShippingMethodId" value="#{orderBean.order.shippingMethodId}" required="true" requiredMessage="*">                                        
-                                    </h:inputText>
-                                    <h:message for="txtShippingMethodId" styleClass="errorMsg"/>
+                                <td align="left">                                    
+                                    <h:selectOneMenu id="ddlShippingMethod" value="#{orderBean.order.shippingMethodId}">                                            
+                                        <f:selectItems
+                                            value="#{shippingBean.shiparray}" var="s"
+                                            itemValue="#{s.id}" itemLabel="#{s.shippingName}" />
+                                     </h:selectOneMenu><br/>
                                 </td>
                             </tr>
                             <tr>
