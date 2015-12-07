@@ -39,7 +39,7 @@ public class CatBean extends Category{
     public Vector<Category> CatByID(int id)
     {
          Vector<Criterion> data = new Vector<Criterion>();
-        data.add(new Criterion(Constants.CATEGORY_PARENTID, id == 0?null:id," and "," is "));
+        data.add(new Criterion(Constants.CATEGORY_PARENTID, id == 0?null:id));
 
         
         Vector<Category> list = service.getBy(data);
