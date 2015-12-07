@@ -36,7 +36,15 @@ public class CatBean extends Category{
         this.catvar = new Category();
     }
     
-    
+    public Vector<Category> CatByID(int id)
+    {
+         Vector<Criterion> data = new Vector<Criterion>();
+        data.add(new Criterion(Constants.CATEGORY_PARENTID, id == 0?null:id," and "," is "));
+
+        
+        Vector<Category> list = service.getBy(data);
+        return list;
+    }
     
     public String delete(Category var) {
         

@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <body>
+        <ui:composition> 
+            <ul>
+                <ui:repeat value="#{catBean.CatByID('0')}" var="item">
+                    <li><a>#{item.name}</a></li>
+            </ui:repeat>
+            </ul>
+            
+            <ul>
+                                    <li>
+                                        <div><a>Living</a></div>
+                                    </li>
+                                    <li>
+                                        <div><a>Dinning + Kitchen</a></div>
+                                    </li>
+                                    <li>
+                                        <div> <a>Bedroom</a></div>
+                                    </li>
+                                    <li>
+                                        <div><a>Bath</a></div>
+                                    </li>
+                                    <li>
+                                        <div><a>Lighting</a></div>
+                                    </li>
+                                    <li>
+                                        <div><a>Decor</a></div>
+                                    </li>
+                                    <li>
+                                        <div><a>Office</a></div>
+                                    </li>
+                                    <li>
+                                        <div><a>Outdoor</a></div>
+                                    </li>
+                                    <li>
+                                        <div><a>Storage</a></div>
+                                    </li>
+                                    <li>
+                                        <div><a>Kids</a></div>
+                                    </li>
+                                    <li>
+                                        <div><a>Holidays</a></div>
+                                    </li>
+                                </ul>
+        </ui:composition>
+    </body>
+</html>
+

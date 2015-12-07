@@ -101,11 +101,25 @@ public class BaseDao<T> {
     public List<SelectItem> getBy(Vector colNames, Vector<Criterion> criterions,Vector<T> domain){
         List<SelectItem> data = new ArrayList<SelectItem>();
         String sql = "select * from " + tableName;
+        List<Integer> removeitem = new ArrayList<Integer>();
         if(criterions != null){
             sql += " where ";
+            int index = 0;
             for (Criterion criterion : criterions) {
-                sql += criterion.getColumn() + " " + (criterion.getRelation() == "" ? "= ? " : criterion.getRelation() + " ?") ;
+                
+                if (criterion.getValue() == null)
+                {
+                    sql += criterion.getColumn()+ " is null " + criterion.getRelation() + " ";
+                    removeitem.add(index);
+                }
+                else
+                sql += criterion.getColumn()+ " "+ criterion.getComparison() + " ? " + criterion.getRelation() + " ";
+                index++;
             }
+        }
+        for (int i : removeitem)
+        {
+            criterions.remove(i);
         }
         
         sql += " order by " + Constants.ID; 
