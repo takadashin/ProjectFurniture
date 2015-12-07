@@ -26,16 +26,6 @@ public class Item {
         }
         return total;
     }
-    private Shipping s;
-
-    public Shipping getS() {
-        return s;
-    }
-
-    public void setS(Shipping s) {
-        this.s = s;
-    }
-    
     
     public Product getP() {
         return p;

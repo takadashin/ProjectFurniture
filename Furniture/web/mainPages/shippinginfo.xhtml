@@ -66,7 +66,8 @@
                                         <ui:repeat value="#{shippingBean.shiparray}" var="shipinfo">
                                             <li>
                                                 <b><h:outputLabel value="#{shipinfo.shippingName}">: </h:outputLabel></b>
-                                                <h:outputLabel value="#{shipinfo.shippingDescription}"></h:outputLabel>
+                                                <h:outputLabel value="#{shipinfo.shippingDescription}"></h:outputLabel><br/>
+                                                Duration of Shipping will be <b>#{shipinfo.shippingDuration}</b> day(s) from the order date.
                                             </li>
                                         </ui:repeat>
                                     </ul>                                    
@@ -89,6 +90,12 @@
                                                     <h:outputLabel value="Price"></h:outputLabel>
                                                 </f:facet>
                                                 <h:outputText value="#{shipinfo.shippingPrice}"></h:outputText>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">
+                                                    <h:outputLabel value="Duration"></h:outputLabel>
+                                                </f:facet>
+                                                <h:outputText value="#{shipinfo.shippingDuration}"></h:outputText>
                                             </h:column>
                                         </h:dataTable>
                                     </center>

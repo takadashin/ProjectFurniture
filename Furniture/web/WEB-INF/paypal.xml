@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <paypal>
     <authToken>
-        AZ0ozAEZztZ21EO2DJ52myKJOyACA2WNAqnNO1PxDoZ-.eCdpH6nFC3H
+AFcWxV21C7fd0v3bYYYRCpSSRl31AezPfki8uzblN6-L0I0vc1hUpMMh
     </authToken>
     <posturl>https://www.sandbox.paypal.com.cgi-bin/webscr</posturl>
 </paypal>

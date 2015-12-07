@@ -7,10 +7,14 @@ package com.furniture.bean;
 
 import com.furniture.domain.Item;
 import com.furniture.domain.Product;
+import com.furniture.domain.Shipping;
+import com.furniture.service.ShippingService;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import java.util.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 /**
  *
  * @author uh606_000
@@ -20,8 +24,35 @@ import java.util.*;
 public class ShoppingCartBean {
     private List<Item> cart =new ArrayList<Item>();
     private float subTotal;   
-    private float shippingprice;
-    private int amountOfItem;
+    private int amountOfItem;    
+    private int shipid;
+    private Shipping shipM;
+    private ShippingService shippingService = new ShippingService();
+
+    public int getShipid() {
+        return shipid;
+    }
+
+    public void setShipid(int shipid) {
+        this.shipid = shipid;
+    }
+
+    public Shipping getShipM() {
+        shipM = shippingService.getById(shipid);
+        return shipM;
+    }
+
+    public void setShipM(Shipping shipM) {
+        this.shipM = shipM;
+    }
+
+    public ShippingService getShippingService() {
+        return shippingService;
+    }
+
+    public void setShippingService(ShippingService shippingService) {
+        this.shippingService = shippingService;
+    }
 
     public int getAmountOfItem() {
         amountOfItem=0;
@@ -31,16 +62,22 @@ public class ShoppingCartBean {
         return amountOfItem;
     }
 
+    public Date calculateShippingDate()
+    {
+        Date d;
+ 
+        Calendar cal = Calendar.getInstance();
+
+        if(shipid!=0)
+        {
+            cal.add(Calendar.DATE, shipM.getShippingDuration());
+        }
+        d = cal.getTime();
+        return d;
+    }
+    
     public void setAmountOfItem(int amountOfItem) {
         this.amountOfItem = amountOfItem;
-    }
-
-    public float getShippingprice() {
-        return shippingprice;
-    }
-
-    public void setShippingprice(float shippingprice) {
-        this.shippingprice = shippingprice;
     }
     
     public List<Item> getCart() {
@@ -56,10 +93,11 @@ public class ShoppingCartBean {
         for (Item item : cart) {
             subTotal += item.getTotal();            
         }    
-        if(shippingprice!=0)
+        if(shipid!=0)
         {
-            subTotal += shippingprice;
+            subTotal += shipM.getShippingPrice();        
         }
+        
         return subTotal;
     }
 
@@ -68,14 +106,14 @@ public class ShoppingCartBean {
     }  
     
     
-    public String addToCart(Product p)
+    public void addToCart(Product p)
     {
         //Increament quantity if duplicate product
         for (Item item : cart) {
             if(item.getP().getId() == p.getId())
             {
                 item.setQuantity(item.getQuantity()+1);
-                return "shoppingcart";
+                //return "shoppingcart";
             }
         }
         
@@ -84,7 +122,7 @@ public class ShoppingCartBean {
         i.setQuantity(1);
         i.setP(p);
         cart.add(i);
-        return "shoppingcart";        
+        //return "shoppingcart";        
     }   
     
     public void update()
@@ -104,9 +142,5 @@ public class ShoppingCartBean {
         }
     }
     
-    public String payment()
-    {
-        return "payment";
-    }
    
 }

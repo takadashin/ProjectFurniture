@@ -63,18 +63,17 @@
                                 </div>
                             </div>
                             <br/>
-                            <style>
-                                table {
-                                    padding: 10px;
-                                    border-collapse: collapse;
-                                }
-                            </style>
                             <h:form id="frmShoppingCart">
-                            <table>
+                                <table border="1">
                                 <tr>
                                     <th colspan="5">Shopping Cart</th>
                                     <th colspan="2">
-                                        <h:commandButton value="Checkout" action="#{cartBean.payment()}"></h:commandButton>
+                                        <c:if test="#{userSessionBean.current!=null}">
+                                            <h:commandButton value="Checkout" action="payment"></h:commandButton>
+                                        </c:if>
+                                        <c:if test="#{userSessionBean.current==null}">
+                                            <h:commandButton value="Checkout" action="login"></h:commandButton>
+                                        </c:if>
                                     </th>
                                 </tr>
                                 <tr>
@@ -83,6 +82,7 @@
                                     <td>Qty</td>
                                     <td>Price</td>
                                     <td>Special Price</td>
+                                    <td>Tax</td>
                                     <td>Total</td>
                                     <td>Delete</td>
                                 </tr>
@@ -98,7 +98,7 @@
                                         </td>
                                         <td>
                                             <h:inputText value="#{i.quantity}" style="width:50px">
-                                                <f:validateLongRange maximum="100" minimum="1" />
+                                                <f:validateLongRange maximum="100" minimum="1" />                                                
                                             </h:inputText>
                                         </td>
                                         <td>
@@ -106,6 +106,9 @@
                                         </td>
                                         <td>
                                             $#{i.p.specPrice}
+                                        </td>
+                                        <td>
+                                            tax
                                         </td>
                                         <td>
                                             $#{i.total}
@@ -123,23 +126,28 @@
                                     <td colspan="4"></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="4" style="text-align: right;">Shipping Method</td>
+                                    <td colspan="5" style="text-align: right;">Shipping Method</td>
                                     <td>
-                                        <h:selectOneRadio id="ShippingMethod" value="#{cartBean.shippingprice}" layout="pageDirection" required="true">                                            
-                                            <f:selectItems
-                                                value="#{shippingBean.shiparray}" var="s"
-                                                itemValue="#{s.shippingPrice}" itemLabel="#{s.shippingName}" />
-                                         </h:selectOneRadio><br/>
+                                        <h:selectOneRadio onchange="submit()" id="sm" value="#{cartBean.shipid}" layout="pageDirection" required="true">                                            
+                                           <f:selectItems
+                                               value="#{shippingBean.shiparray}" var="s"
+                                               itemValue="#{s.id}" itemLabel="#{s.shippingName}" />
+
+                                        </h:selectOneRadio><br/>                                                                                  
                                     </td>   
-                                    <td>$#{cartBean.shippingprice}</td>
+                                    <td>$#{cartBean.shipM.shippingPrice}</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="4" style="text-align: right;">Tax:</td>
-                                    <td></td>   
+                                    <td colspan="5" style="text-align: right;">Shipping Date:</td>
+                                    <td>
+                                        <h:outputText value="#{cartBean.calculateShippingDate()}" >
+                                                    <f:convertDateTime pattern="yyyy-MM-dd" />
+                                       </h:outputText>
+                                    </td>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="4"></td>
+                                    <td colspan="5"></td>
                                     <td>
                                         <b>Estimated Subtotal:</b>
                                     </td> 
