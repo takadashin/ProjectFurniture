@@ -8,13 +8,13 @@ package com.furniture.bean;
 import com.furniture.domain.Item;
 import com.furniture.domain.Product;
 import com.furniture.domain.Shipping;
+import com.furniture.domain.Tax;
 import com.furniture.service.ShippingService;
+import com.furniture.service.TaxService;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import java.util.*;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 /**
  *
  * @author uh606_000
@@ -27,7 +27,28 @@ public class ShoppingCartBean {
     private int amountOfItem;    
     private int shipid;
     private Shipping shipM;
-    private ShippingService shippingService = new ShippingService();
+    private ShippingService shippingService = new ShippingService();    
+    
+    private Tax tax;
+    private TaxService taxService = new TaxService();
+
+    public Tax getTax() {
+        return tax;
+    }
+
+    public void setTax(Tax tax) {
+        this.tax = tax;
+    }
+
+
+
+    public TaxService getTaxService() {
+        return taxService;
+    }
+
+    public void setTaxService(TaxService taxService) {
+        this.taxService = taxService;
+    }
 
     public int getShipid() {
         return shipid;

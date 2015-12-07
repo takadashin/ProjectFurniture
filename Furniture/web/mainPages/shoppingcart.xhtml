@@ -108,10 +108,11 @@
                                             $#{i.p.specPrice}
                                         </td>
                                         <td>
-                                            tax
+                                            <span style="display: none">#{cartBean.tax=cartBean.taxService.getById(i.p.id)}</span>
+                                            #{cartBean.tax.taxRate}
                                         </td>
                                         <td>
-                                            $#{i.total}
+                                            $#{i.total*(1+cartBean.tax.taxRate/100)}
                                         </td>
                                         <td>
                                             <h:commandButton value="Delete" action="#{cartBean.remove(i)}"/>
