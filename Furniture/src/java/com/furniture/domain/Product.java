@@ -24,7 +24,8 @@ public class Product extends BaseDomain{
     private Integer quantity;
     private Integer catId;
     private Date postDate; 
-
+    private Integer tax_id;
+    
     public String getCode() {
         return code;
     }
@@ -104,5 +105,14 @@ public class Product extends BaseDomain{
     public void setPostDate(Date postDate) {
         this.postDate = postDate;
     }
+
+    public Integer getTax_id() {
+        return tax_id;
+    }
+
+    public void setTax_id(Integer tax_id) {
+        this.tax_id = tax_id;
+    }
+    
     
 }
