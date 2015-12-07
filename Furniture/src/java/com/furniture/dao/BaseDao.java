@@ -8,15 +8,16 @@ package com.furniture.dao;
 import com.furniture.utils.Constants;
 import com.furniture.utils.Criterion;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.model.SelectItem;
 import javax.sql.DataSource;
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -54,7 +55,7 @@ public class BaseDao<T> {
         }
     }
     
-    public Vector getAll(Vector colNames){
+    public List<SelectItem> getAll(Vector colNames){
         return getBy(colNames, null, null);
     }
     
@@ -62,12 +63,6 @@ public class BaseDao<T> {
         Vector<T> domain = new Vector<>();
         getBy(null, null, domain);
         return domain;
-    }
-    
-    public Vector getById(Vector colNames, Object id){
-        Vector<Criterion> criterions = new Vector();
-        criterions.add(new Criterion(Constants.ID, ""+id));
-        return getBy(colNames,criterions,null);
     }
     
      public T getById(Object id)
@@ -84,13 +79,32 @@ public class BaseDao<T> {
         return null;
     }
     
-    public Vector getBy(Vector colNames, Vector<Criterion> criterions,Vector<T> domain){
-        Vector data = null;
+     public List<SelectItem> getByNull(Vector colNames, String conditionColumn,boolean isNull){
+        List<SelectItem> data = new ArrayList<SelectItem>();
+        String sql = "select * from " + tableName + " where " + conditionColumn + (isNull ? " is null order by " : " is not null order by ") + Constants.ID;
+        ResultSet resultSet = execSQL(sql, null);
+        
+        if(colNames != null && resultSet != null){
+            try {
+                while(resultSet.next()){
+                    Object value = resultSet.getObject(colNames.get(0).toString()); 
+                    String lable = resultSet.getObject(colNames.get(1).toString()).toString(); 
+                    data.add(new SelectItem(value, lable));
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(BaseDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }        
+        return data;
+     }
+     
+    public List<SelectItem> getBy(Vector colNames, Vector<Criterion> criterions,Vector<T> domain){
+        List<SelectItem> data = new ArrayList<SelectItem>();
         String sql = "select * from " + tableName;
         if(criterions != null){
             sql += " where ";
             for (Criterion criterion : criterions) {
-                sql += criterion.getColumn() + "= ? " + criterion.getRelation();
+                sql += criterion.getColumn() + " " + (criterion.getRelation() == "" ? "= ? " : criterion.getRelation() + " ?") ;
             }
         }
         
@@ -100,15 +114,14 @@ public class BaseDao<T> {
         //Get Domain
         if(domain != null)
             convertToDomain(resultSet,domain);
-        //Get data for JTable
-        if(colNames != null){
+        //Get data for checkbox
+        if(colNames != null && resultSet != null){
             try {
-                ResultSetMetaData rsMetaData = resultSet.getMetaData();
-                int colCount = rsMetaData.getColumnCount();
-                for(int i=0;i<colCount;i++ ){
-                    colNames.add(rsMetaData.getColumnName(i+1));
+                while(resultSet.next()){
+                    Object value = resultSet.getObject(colNames.get(0).toString()); 
+                    String lable = resultSet.getObject(colNames.get(1).toString()).toString(); 
+                    data.add(new SelectItem(value, lable));
                 }
-                data = convertToTbData(resultSet,colCount);
             } catch (SQLException ex) {
                 Logger.getLogger(BaseDao.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -257,10 +270,6 @@ public class BaseDao<T> {
     public void convertToDomain(ResultSet data,Vector<T> domain)
     {
      
-    }
-    public Vector convertToTbData(ResultSet data,int colCout)
-    {
-        return null;
     }
     
     public Object convertToData(T obj,Vector<Criterion> data){
