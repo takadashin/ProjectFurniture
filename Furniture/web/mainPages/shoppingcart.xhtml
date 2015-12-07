@@ -64,27 +64,27 @@
                             </div>
                             <br/>
                             <h:form id="frmShoppingCart">
-                                <table border="1">
+                                <table class="checkouttable" border="1">
                                 <tr>
                                     <th colspan="5">Shopping Cart</th>
-                                    <th colspan="2">
+                                    <th colspan="3">
                                         <c:if test="#{userSessionBean.current!=null}">
-                                            <h:commandButton value="Checkout" action="payment"></h:commandButton>
+                                            <h:commandButton class="button_submit" value="Checkout" action="payment"></h:commandButton>
                                         </c:if>
                                         <c:if test="#{userSessionBean.current==null}">
-                                            <h:commandButton value="Checkout" action="login"></h:commandButton>
+                                            <h:commandButton class="button_submit" value="Checkout" action="login"></h:commandButton>
                                         </c:if>
                                     </th>
                                 </tr>
                                 <tr>
-                                    <td>Item</td>
-                                    <td>Description</td>
-                                    <td>Qty</td>
-                                    <td>Price</td>
-                                    <td>Special Price</td>
-                                    <td>Tax</td>
-                                    <td>Total</td>
-                                    <td>Delete</td>
+                                    <td class="header_checkout">Item</td>
+                                    <td class="header_checkout">Description</td>
+                                    <td class="header_checkout">Qty</td>
+                                    <td class="header_checkout">Price</td>
+                                    <td class="header_checkout">Special Price</td>
+                                    <td class="header_checkout">Tax</td>
+                                    <td class="header_checkout">Total</td>
+                                    <td class="header_checkout">Delete</td>
                                 </tr>
                                 <ui:repeat value="#{cartBean.cart}" var="i">
                                     <tr>
@@ -114,20 +114,20 @@
                                         <td>
                                             $#{i.total*(1+cartBean.tax.taxRate/100)}
                                         </td>
-                                        <td>
-                                            <h:commandButton value="Delete" action="#{cartBean.remove(i)}"/>
+                                        <td style="text-align: center;">
+                                            <h:commandButton class="button_submit" value="Delete" action="#{cartBean.remove(i)}"/>
                                         </td>
                                     </tr>
                                 </ui:repeat>
                                 <tr>
                                     <td colspan="2"></td>
-                                    <td>
-                                        <h:commandButton value="Update" action="#{cartBean.update()}"/>
+                                    <td style="text-align: center;">
+                                        <h:commandButton  class="button_submit" value="Update" action="#{cartBean.update()}"/>
                                     </td>
                                     <td colspan="4"></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="5" style="text-align: right;">Shipping Method</td>
+                                    <td colspan="5" style="text-align: right;font-weight: 800;">Shipping Method</td>
                                     <td>
                                         <h:selectOneRadio onchange="submit()" id="sm" value="#{cartBean.shipid}" layout="pageDirection" required="true">                                            
                                            <f:selectItems
@@ -139,7 +139,7 @@
                                     <td>$#{cartBean.shipM.shippingPrice}</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="5" style="text-align: right;">Shipping Date:</td>
+                                    <td colspan="5" style="text-align: right;font-weight: 800;">Shipping Date:</td>
                                     <td>
                                         <h:outputText value="#{cartBean.calculateShippingDate()}" >
                                                     <f:convertDateTime pattern="yyyy-MM-dd" />
@@ -156,7 +156,9 @@
                                 </tr>
                             </table>
                             </h:form>
-                            <h:link outcome="testCart" value="Continue Shopping"/>                            
+                            <div class="clear"></div>
+                            <div style="text-align: right;padding-top:10px;">
+                                <h:link class="button_submit" outcome="testCart" value="Continue Shopping"/>   </div>                         
                         </div>
                     </div>
                 </div>
