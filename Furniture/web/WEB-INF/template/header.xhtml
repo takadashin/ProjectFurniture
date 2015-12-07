@@ -24,10 +24,10 @@
                             </div>
                         </div>
                         <div id="cpos_13">
-                            <div style="float:right;padding:5px;">
+                            <div style="float:right;padding:5px;position: relative;">
                                 <h:link outcome="/mainPages/shoppingcart" >
                                     <h:graphicImage id="checkout_img" library="images" name="cart.png" class="logo"/><br/>Checkout
-                                    <br/>#{cartBean.amountOfItem}
+                                    <br/><div style="    position: absolute; top: 3px; left: 18px;background: orange;width: 18px;height: 16px;text-align: center;border-radius: 30px;font-size: 14px;font-weight: bold;color: white;">#{cartBean.amountOfItem}</div>
                                 </h:link>                                
                             </div>
                             <div class="login_header_session">

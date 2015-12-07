@@ -89,3 +89,6 @@ div.smallline {position: absolute;background: white;height: 3px;width: 100%;bord
 .main_menu li:hover div.smallline{z-index: 11;}
 
 .sub_menu div {border:0 !important;}
+.checkouttable {    width: 100%;
+    border: 1px solid #34C7C7;}
+.header_checkout {background: #025754;font-weight: bold;text-align: center;text-transform: uppercase;color:white;padding:10px;}
