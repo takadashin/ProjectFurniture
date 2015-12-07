@@ -32,7 +32,7 @@ public class LoginFilter implements Filter {
     HttpServletResponse response = (HttpServletResponse) resp;
     HttpSession session = ((HttpServletRequest) req).getSession(false);
     UserSessionBean user = (session != null) ? (UserSessionBean) session.getAttribute("userSessionBean") : null;
-    if (path.contains("/faces/mainPages/login.xhtml")) {
+    if (path.contains("/faces/mainPages/login.xhtml") || path.contains("/faces/mainPages/register.xhtml")) {
         if (user != null && user.isLoggedIn())
         {
             response.sendRedirect(((HttpServletRequest) req).getContextPath() + "/faces/mainPages/user/profile.xhtml"); 

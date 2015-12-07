@@ -56,3 +56,25 @@ transition:all 0.3s ease;}
 .article_item:hover {border:1px solid #dedede;}
 #cpos_3 {background:#455560;}
 #cpos_3 * {color:white;}
+#loginbox {    width: 350px;
+    margin: 30px auto;    padding: 20px;
+    border-radius: 5px;border:1px solid #dedede;}
+.labeltext {    font-weight: 800;
+    width: 100px;
+    display: inline-block;}
+.textbox_login {    width: 200px;
+    font-size: 15px;
+    border: 1px solid #dedede;
+    padding: 4px;
+    border-radius: 5px;
+    margin: 5px;}
+.button_submit {background: #455560;border:1px solid #A1A1A1;color:white;font-weight: 800;padding:5px 30px;font-size:15px;border-radius: 5px ;}
+.button_submit:hover {background: #ddd;-o-transition: all 0.3s ease;
+	-webkit-transition: all 0.3s ease;
+transition:all 0.3s ease;color:black;}
+#content {min-height: 500px;}
+.errorMessage {padding:0;margin:0;list-style: none;}
+ul.errorMessage li {
+    background: pink;
+    padding: 10px;
+}

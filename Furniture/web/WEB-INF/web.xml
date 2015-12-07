@@ -20,6 +20,10 @@
         <filter-name>LoginFilter</filter-name>
         <url-pattern>/faces/mainPages/adminlogin.xhtml</url-pattern>
     </filter-mapping>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/faces/mainPages/register.xhtml</url-pattern>
+    </filter-mapping>
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>

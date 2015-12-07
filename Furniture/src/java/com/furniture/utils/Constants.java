@@ -66,6 +66,7 @@ public class Constants {
     public static final String PRODUCT_SPEC_PRICE  =  "product_spec_price";
     public static final String PRODUCT_QTY= "product_qty";
     public static final String PRODUCT_CAT_ID ="cat_id";
+    public static final String PRODUCT_TAX_ID ="tax_id";
     public static final String PRODUCT_POST_DATE ="product_post_date";
 
     

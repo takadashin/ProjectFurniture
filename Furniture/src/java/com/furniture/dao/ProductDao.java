@@ -33,6 +33,7 @@ public class ProductDao  extends BaseDao<Product>{
                     Product product =new Product();
                     product.setId(data.getInt(Constants.ID));
                     product.setCatId(data.getInt(Constants.PRODUCT_CAT_ID));
+                    product.setCatId(data.getInt(Constants.PRODUCT_TAX_ID));
                     product.setCode(data.getString(Constants.PRODUCT_CODE));
                     product.setCost(data.getFloat(Constants.PRODUCT_COST));
                     product.setDesc(data.getString(Constants.PRODUCT_DESC));
@@ -52,31 +53,11 @@ public class ProductDao  extends BaseDao<Product>{
     }
     
     @SuppressWarnings("unchecked")
-    public Vector convertToTbData(ResultSet data, int colCount)
-    {
-        Vector products = new Vector<>();
-        try {
-            if(data != null){
-                while(data.next())
-                {
-                    Vector record = new Vector();
-                    for (int i = 0; i < colCount; i++) {
-                        record.add(data.getString(i + 1));
-                    }
-                    products.add(record);
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return products;
-    }
-    
-    @SuppressWarnings("unchecked")
     public Object convertToData(Product product,Vector<Criterion> data)
     {
         Object id =product.getId();
         data.add(new Criterion(Constants.PRODUCT_CAT_ID, product.getCatId()));
+        data.add(new Criterion(Constants.PRODUCT_TAX_ID, product.getTax_id()));
         data.add(new Criterion(Constants.PRODUCT_CODE, product.getCode()));
         data.add(new Criterion(Constants.PRODUCT_COST, product.getCost()));
         data.add(new Criterion(Constants.PRODUCT_DESC, product.getDesc()));
@@ -85,7 +66,9 @@ public class ProductDao  extends BaseDao<Product>{
         data.add(new Criterion(Constants.PRODUCT_QTY, product.getQuantity()));
         data.add(new Criterion(Constants.PRODUCT_SHORT_DESC, product.getShortDesc()));
         data.add(new Criterion(Constants.PRODUCT_SPEC_PRICE, product.getSpecPrice()));
-        data.add(new Criterion(Constants.PRODUCT_POST_DATE, new Date(product.getPostDate().getTime())));
+        if(product.getPostDate() != null){
+            data.add(new Criterion(Constants.PRODUCT_POST_DATE, new Date(product.getPostDate().getTime())));
+        }
 
         return id;
     }

@@ -60,13 +60,14 @@
                                   </span>
                                 </div>
                             </div>
-                            <div>
-                                <h:form>
-                                    <div>
-                                        UserName<h:inputText value="#{userSessionBean.username}"></h:inputText></div>
-                                <div>
-                                    PassWord<h:inputSecret value="#{userSessionBean.password}"></h:inputSecret></div>
-                                    <h:commandButton value="Login" action="#{userSessionBean.loginadmin}"></h:commandButton>
+                            <div id="loginbox">
+                                <h:form id="loginform">
+                                    <div><h:messages styleClass="errorMessage" /></div>
+                                    <center>
+                                        <h:outputLabel class="labeltext" value="User Name"></h:outputLabel><h:inputText class="textbox_login" required="true" requiredMessage="* User Name shouldn't be empty" value="#{userSessionBean.username}"></h:inputText></center>
+                               <center>
+                                   <h:outputLabel class="labeltext" value="Password"></h:outputLabel><h:inputSecret class="textbox_login" required="true" requiredMessage="* Password shouldn't be empty" value="#{userSessionBean.password}"></h:inputSecret></center>
+                                    <div style="text-align: right;"><h:commandButton class="button_submit" value="Login" action="#{userSessionBean.loginadmin()}"></h:commandButton></div>
                                 </h:form>
                                 
                             </div>

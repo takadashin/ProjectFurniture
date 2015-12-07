@@ -7,7 +7,7 @@
     
     <h:body>
     	<ui:composition template="/WEB-INF/template/mainLayout.xhtml">
-            <ui:define name="title">Home Page</ui:define>
+            <ui:define name="title">Login Page</ui:define>
             <ui:define name="content">
                 <c:set var="ctx" value="#{request.contextPath}" />
                 <main>
@@ -60,13 +60,15 @@
                                   </span>
                                 </div>
                             </div>
-                            <div>
-                                <h:form>
-                                    <div>
-                                        UserName<h:inputText value="#{userSessionBean.username}"></h:inputText></div>
-                                <div>
-                                    PassWord<h:inputSecret value="#{userSessionBean.password}"></h:inputSecret></div>
-                                    <h:commandButton value="Login" action="#{userSessionBean.login}"></h:commandButton>
+                            <div id="loginbox">
+                                <h:form id="loginform">
+                                    <div><h:messages styleClass="errorMessage" /></div>
+                                    <center>
+                                        <h:outputLabel class="labeltext" value="User Name"></h:outputLabel><h:inputText class="textbox_login" required="true" requiredMessage="* User Name shouldn't be empty" value="#{userSessionBean.username}"></h:inputText></center>
+                               <center>
+                                   <h:outputLabel class="labeltext" value="Password"></h:outputLabel><h:inputSecret class="textbox_login" required="true" requiredMessage="* Password shouldn't be empty" value="#{userSessionBean.password}"></h:inputSecret></center>
+                                    <div style="text-align: right;"><h:commandButton class="button_submit" value="Login" action="#{userSessionBean.login}"></h:commandButton> </div>
+                                    <div style="text-align: left;"><h:commandLink action="register" value="Register"></h:commandLink></div>
                                 </h:form>
                                 
                             </div>

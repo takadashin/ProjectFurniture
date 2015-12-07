@@ -128,6 +128,7 @@ CREATE TABLE orders (
 CREATE TABLE products (
   id NUMBER(4) generated as IDENTITY PRIMARY KEY,
   cat_id NUMBER(4),
+  tax_id Number(4),
   product_code varchar(20) NOT NULL UNIQUE,
   product_name varchar(20) NULL,
   product_short_desc varchar(255) NOT NULL,
@@ -137,8 +138,9 @@ CREATE TABLE products (
   product_spec_price float default NULL,
   product_qty NUMBER(4)  NOT NULL,
   product_post_date Date default null,
-  cat_id NUMBER(4),
   CONSTRAINT FK_products_catid FOREIGN KEY (cat_id) REFERENCES categories (id)
+ CONSTRAINT FK_products_taxid FOREIGN KEY (tax_id) REFERENCES taxes (id)
+    
 );
 
 

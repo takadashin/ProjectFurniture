@@ -9,7 +9,9 @@ import com.furniture.dao.BaseDao;
 import com.furniture.utils.Criterion;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.util.List;
 import java.util.Vector;
+import javax.faces.model.SelectItem;
 
 /**
  *
@@ -18,7 +20,7 @@ import java.util.Vector;
 public abstract class BaseService<T> {
     public abstract BaseDao<T> getDao();
     
-    public Vector getAll(Vector colNames){
+    public List<SelectItem> getAll(Vector colNames){
         return getDao().getAll(colNames);
     }
     
@@ -26,16 +28,14 @@ public abstract class BaseService<T> {
         return getDao().getAll();
     }
     
-    public Vector getById(Vector colNames, Object id){
-        return getDao().getById(colNames, id);
-    }
-    
      public T getById(Object id)
     {
         return getDao().getById(id);
     }
-    
-    public Vector getBy(Vector colNames, Vector<Criterion> criterions,Vector<T> domain){
+    public List<SelectItem> getByNull(Vector colNames, String conditionColumn, boolean isNull){
+        return getDao().getByNull(colNames, conditionColumn,isNull);
+    }
+    public List<SelectItem>  getBy(Vector colNames, Vector<Criterion> criterions,Vector<T> domain){
        return getDao().getBy(colNames, criterions, domain);
     }
     
@@ -81,11 +81,6 @@ public abstract class BaseService<T> {
     public  void convertToDomain(ResultSet data, Vector<T> domain)
     {
         getDao().convertToDomain(data,domain);
-    }
-    
-    public Vector convertToTbData(ResultSet data,int colCout)
-    {
-        return getDao().convertToTbData(data, colCout);
     }
     
     public Object convertToData(T obj,Vector<Criterion> data){
