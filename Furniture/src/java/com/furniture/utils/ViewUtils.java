@@ -5,10 +5,13 @@
  */
 package com.furniture.utils;
 
+import java.util.List;
+import java.util.Vector;
 import javax.faces.component.UICommand;
 import javax.faces.component.UIOutput;
 import javax.faces.component.UISelectBoolean;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 
 /**
  *
@@ -26,10 +29,16 @@ public class ViewUtils {
                 formName + ":btnUpdate");
         UICommand btnCancel = (UICommand) context.getViewRoot().findComponent(
                 formName + ":btnCancel");
+        UICommand btnImage= (UICommand) context.getViewRoot().findComponent(
+                formName + ":btnImage");
 
         btnAdd.setRendered(!isEdit);
         btnUpdate.setRendered(isEdit);
         btnCancel.setRendered(isEdit);
+        
+        if(btnImage != null){
+            btnImage.setRendered(isEdit);
+        }
         context.renderResponse();
     }
     public static void switchAddEditCancelBaseForm(String formName, boolean isEdit) {
@@ -47,6 +56,13 @@ public class ViewUtils {
         btnUpdate.setRendered(isEdit);
         btnCancel.setRendered(isEdit);        
         context.renderResponse();
+    }
+    
+    public static Vector comboboxDisplay(String valuecolumn, String lableColumn){
+        Vector show = new Vector();
+        show.add(valuecolumn);
+        show.add(lableColumn);
+        return show;
     }
     
 }
