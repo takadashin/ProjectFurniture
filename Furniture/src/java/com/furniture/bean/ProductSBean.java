@@ -5,13 +5,23 @@
  */
 package com.furniture.bean;
 
+import com.furniture.domain.Image;
 import com.furniture.domain.Product;
+import com.furniture.service.CatService;
+import com.furniture.service.ImageService;
 import com.furniture.service.ProductService;
+import com.furniture.service.TaxService;
+import com.furniture.utils.Constants;
+import com.furniture.utils.Criterion;
 import com.furniture.utils.ViewUtils;
+import java.util.List;
 import java.util.Vector;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.event.ValueChangeEvent;
+import javax.faces.model.SelectItem;
 
 /**
  *
@@ -21,69 +31,152 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped
 public class ProductSBean{
     
-    private ProductService productSService = new ProductService();
-    private Product productS;
-    private Vector<Product> productSes;
-
+    private ProductService productService = new ProductService();
+    private CatService catService = new CatService();
+    private TaxService taxService = new TaxService();
+    private Product product;
+    private Vector<Product> products;
+    private List<SelectItem> catSelectItem;
+    private List<SelectItem> catListSelectItem;
+    private List<SelectItem> taxSelectItem;
+    private Integer catListId;
+    private static Integer currentCatListId;    
+    
+    @ManagedProperty(value="#{param.id}")
+    private Integer id;
+    
     @PostConstruct
     public void init() {
-        productSes = productSService.getAll();
-        this.productS = new Product();
+        this.product = new Product();
+        currentCatListId = id;
+        catListId = currentCatListId;
+        productListbyCatId();
     }
 
-    public ProductService getProductSService() {
-        return productSService;
+    public Integer getId() {
+        return id;
     }
 
-    public void setProductSService(ProductService productSService) {
-        this.productSService = productSService;
-    }
-
-    public Product getProductS() {
-        return productS;
-    }
-
-    public void setProductS(Product productS) {
-        this.productS = productS;
-    }
-
-    public Vector<Product> getProductSes() {
-        return productSes;
-    }
-
-    public void setProductSes(Vector<Product> productSes) {
-        this.productSes = productSes;
-    }
-
-   
-
-    public void editproductS(Product productS) {
-        this.productS = productS;
-	ViewUtils.switchAddEditBaseForm("frmEditProduct", true);
-    }
-
-    public void deleteproductS(Product productS) {
-        productSService.deleteById(productS.getId());
-        productSes = productSService.getAll();
+    public void setId(Integer id) {
+        this.id = id;
     }
     
-    public void addAction(){
-        productSService.insertObject(productS);
-        productSes = productSService.getAll();
-        this.productS= new Product();
-    }
-    
-    public void updateAction(){
-        productSService.updatedObject(productS);
-        productSes = productSService.getAll();
-        this.productS= new Product();
-        ViewUtils.switchAddEditBaseForm("frmEditProduct", false);       
-    }
-    
-    public void cancelAction(){
-        this.productS= new Product();
-	ViewUtils.switchAddEditBaseForm("frmEditproduct", false);
+    public Product getProduct() {
+        return product;
     }
 
-	
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Vector<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Vector<Product> products) {
+        this.products = products;
+    }
+
+    public List<SelectItem> getCatSelectItem() {
+        catSelectItem = catService.getByNull(ViewUtils.comboboxDisplay(Constants.ID, Constants.CATEGORY_NAME), Constants.CATEGORY_PARENTID, false);
+        return catSelectItem;
+    }
+
+    public void setCatSelectItem(List<SelectItem> catSelectItem) {
+        this.catSelectItem = catSelectItem;
+    }
+
+    public List<SelectItem> getCatListSelectItem() {
+        catListSelectItem = catService.getByNull(ViewUtils.comboboxDisplay(Constants.ID, Constants.CATEGORY_NAME), Constants.CATEGORY_PARENTID, false);
+        return catListSelectItem;
+    }
+
+    public void setCatListSelectItem(List<SelectItem> catListSelectItem) {
+        this.catListSelectItem = catListSelectItem;
+    }
+    public String getAvatar(int id)
+    {   Vector<Criterion> data = new Vector<>();
+        data.add(new Criterion(Constants.IMAGE_PRODUCT_ID, id));
+        ImageService service = new ImageService();
+        Vector<Image> list = service.getBy(data);
+        if(list.size() > 0)
+//            return service.getBy(data).get(0).getName()+"."+service.getBy(data).get(0).getType();
+              return service.getBy(data).get(0).getName();
+        else
+            return "";
+    }
+    public Integer getCatListId() {
+        return catListId;
+    }
+
+    public void setCatListId(Integer catListId) {
+        currentCatListId = catListId;
+        this.catListId = catListId;
+    }
+
+    public List<SelectItem> getTaxSelectItem() {
+        taxSelectItem = taxService.getAll(ViewUtils.comboboxDisplay(Constants.ID, Constants.TAXES_CODE));
+        return taxSelectItem;
+    }
+
+    public void setTaxSelectItem(List<SelectItem> taxSelectItem) {
+        this.taxSelectItem = taxSelectItem;
+    }
+
+    public void productListbyCatId(){
+        Vector<Criterion> criterions = new Vector<>();
+        criterions.add(new Criterion(Constants.PRODUCT_CAT_ID, currentCatListId));
+        products = productService.getBy(criterions);
+    }
+    public void productListbyAll(){
+        products = productService.getAll();
+    }
+    public void editProduct(Product product) {
+        this.product = product;
+        ViewUtils.switchAddEditBaseForm("frmEditProduct", true);
+    }
+
+    public void deleteProduct(Product product) {
+        productService.deleteById(product.getId());
+        productListbyCatId();
+    }
+
+    public void addAction() {
+        productService.insertObject(product);
+        productListbyCatId();
+        this.product = new Product();
+    }
+
+    public void updateAction() {
+        productService.updatedObject(product);
+        productListbyCatId();
+        this.product = new Product();
+        ViewUtils.switchAddEditBaseForm("frmEditProduct", false);
+    }
+
+    public void cancelAction() {
+        this.product = new Product();
+        ViewUtils.switchAddEditBaseForm("frmEditProduct", false);
+    }
+    
+    public void changeCat(ValueChangeEvent event){
+       currentCatListId = Integer.valueOf(event.getNewValue().toString());
+       Vector<Criterion> criterions = new Vector<>();
+        criterions.add(new Criterion(Constants.PRODUCT_CAT_ID, currentCatListId));
+        products = productService.getBy(criterions);
+    }
+    
+    public String imageProduct(Product product){
+        return "images?faces-redirect=true&prodId=" + product.getId();
+    }
+    public String getCatName(int catid)
+    {
+        return catService.getById(catid).getName();
+    }
+    public String redirectByID(int id)
+    {
+        currentCatListId = id;
+        
+        return "productlist?faces-redirect=true&includeViewParams=true\";";
+    }
 }

@@ -19,7 +19,7 @@
                             <div class="header_title">
                                 <div style="height: 1px; background-color: #A1a1a1; text-align: center;margin-top:10px;">
                                   <span style="background-color: white; position: relative; top: -0.5em;">
-                                      <a>#{productBean.getCatName(productBean.catListId)}</a>
+                                      <a>#{productSBean.getCatName(productSBean.catListId)}</a>
                                   </span>
                                 </div>
                             </div>
@@ -30,10 +30,10 @@
                                 <div style="margin-top:100px">
                              
                                 </div>
-                                <c:forEach var="item" items="#{productBean.products}">
+                                <c:forEach var="item" items="#{productSBean.products}">
                                 <div class="article_item">
                                     
-                                    <center><img onError="this.onerror=null;this.src='#{ctx}/resources/images/No_Image_Available.png';" src="#{ctx}/resources/prdImages/#{productBean.getAvatar(item.id)}"/></center>
+                                    <center><img onError="this.onerror=null;this.src='#{ctx}/resources/images/No_Image_Available.png';" src="#{ctx}/resources/prdImages/#{productSBean.getAvatar(item.id)}"/></center>
                                     <div class="article_item_content">
                                         <p class="title_text">#{item.name}</p>
                                         <p class="location_text">#{item.shortDesc}</p>
