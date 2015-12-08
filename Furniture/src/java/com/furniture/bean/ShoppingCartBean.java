@@ -112,7 +112,7 @@ public class ShoppingCartBean {
     public float getSubTotal() {
         subTotal = 0;
         for (Item item : cart) {
-            subTotal += item.getTotal();            
+            subTotal += item.getTotal() *(1+tax.getTaxRate()/100);            
         }    
         if(shipid!=0)
         {

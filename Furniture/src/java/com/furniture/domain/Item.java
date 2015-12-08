@@ -15,6 +15,10 @@ public class Item {
     private int quantity;
     private float total;
 
+    public void setTotal(float total) {
+        this.total = total;
+    }
+    
     public float getTotal() {
         if(p.getSpecPrice()>0)                
         {
