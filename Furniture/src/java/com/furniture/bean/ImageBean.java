@@ -58,6 +58,10 @@ public class ImageBean{
         image = new Image();
         if(curProductid == null)
             curProductid = prodId;
+       imageList();
+    }
+    
+    public void imageList(){
         Vector<Criterion> criterions = new Vector<>();
         criterions.add(new Criterion(Constants.IMAGE_PRODUCT_ID, curProductid));
         images = imageService.getBy(criterions);
@@ -102,19 +106,19 @@ public class ImageBean{
 
     public void deleteImage(Image image) {
         imageService.deleteById(image.getId());
-        images = imageService.getAll();
+        imageList();
     }
 
     public void addAction() {
         image.setProductId(curProductid);
         imageService.insertObject(image);
-        images = imageService.getAll();
+        imageList();
         this.image = new Image();
     }
 
     public void updateAction() {
         imageService.updatedObject(image);
-        images = imageService.getAll();
+        imageList();
         this.image = new Image();
         ViewUtils.switchAddEditBaseForm("frmEditImage", false);
     }
@@ -142,6 +146,7 @@ public class ImageBean{
             image.setType(event.getFile().getContentType());
             image.setProductId(curProductid);
             imageService.insertObject(image);
+            image = new Image();
         } catch (IOException e) {
             e.printStackTrace();
         }
