@@ -30,16 +30,12 @@ public class ViewUtils {
                 formName + ":btnUpdate");
         UICommand btnCancel = (UICommand) context.getViewRoot().findComponent(
                 formName + ":btnCancel");
-        UICommand btnImage= (UICommand) context.getViewRoot().findComponent(
-                formName + ":btnImage");
-
-        btnAdd.setRendered(!isEdit);
+       
+        if(btnAdd != null)        
+            btnAdd.setRendered(!isEdit);
         btnUpdate.setRendered(isEdit);
         btnCancel.setRendered(isEdit);
-        
-        if(btnImage != null){
-            btnImage.setRendered(isEdit);
-        }
+
         context.renderResponse();
     }
    
