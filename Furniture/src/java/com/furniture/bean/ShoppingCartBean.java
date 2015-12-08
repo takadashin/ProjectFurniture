@@ -255,7 +255,7 @@ public class ShoppingCartBean {
             orderdetail.setOrderId(order.getId());
             orderdetail.setProductId(item.getP().getId());
             orderdetail.setProductOrderQty(item.getQuantity());
-            tax = taxService.getById(item.getP().getId());
+            tax = taxService.getById(item.getP().getTaxId());
             if(tax!=null)
             {
                 orderdetail.setProductTaxesRate(tax.getTaxRate());
@@ -276,7 +276,6 @@ public class ShoppingCartBean {
         
         
         cart.clear();
-                
         
     }
     
