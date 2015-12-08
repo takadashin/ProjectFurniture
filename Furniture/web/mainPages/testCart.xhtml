@@ -28,13 +28,13 @@
                                         width: 150px;
                                         height: 200px;
                                         float:left;
-                                        margin-right: 20px;
-                                          
+                                        margin: 20px;
+                                        padding: 10px;
                                     }
                                 </style>
                                 <br/>
                                 <h:form>
-                                    <c:forEach items="#{productBean.products}" var="p">
+                                    <c:forEach items="#{productSBean.productSes}" var="p">
                                         <div class="product">
                                             <h:graphicImage library="images" name="furniture1.jpg"
                                                             width="300px"

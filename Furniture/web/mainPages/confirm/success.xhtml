@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:body>        
     	<ui:composition template="/WEB-INF/template/mainLayout.xhtml">
             <ui:define name="title">Payment Confirm</ui:define>
@@ -23,34 +24,54 @@
                             <div class="article_item_box">                                
                                 <center>                  
                                     <h5>Congratulation!!! You have been purchased your order successfully.</h5>
+                                </center>
+                            </div> 
+                            <hr/>
+                            <div class="article_item_box">                                
+                                <center>                  
+                                    <h3>Order Detail</h3>
                                     <div>
-                                        
+                                        <h:form id="frmOrderConfirm">
+                                            <c:set var="count" value="1"/>
+                                            #Order: #{cartBean.cartNum}
+                                            #User Name: #{userSessionBean.current.username}
+                                            #Full Name: #{userSessionBean.current.userfullname}
+                                            
+                                            Items:
+                                            <table>
+                                                <tr>
+                                                    <th>Item name:</th>
+                                                    <th>Quantity:</th>
+                                                    <th>Sales Price:</th>
+                                                </tr>                                                
+                                                <c:forEach items="#{cartBean.cart}" var="i">
+                                                    <tr>
+                                                        <td>#{i.p.name}</td>
+                                                        <td>#{i.quantity}</td>
+                                                        <td>#{i.total}</td>
+                                                    </tr>                                                    
+                                                </c:forEach>
+                                                <tr>
+                                                    <td colspan="2" style="float:right">Total:</td>
+                                                    <td>#{cartBean.subTotal}</td>
+                                                </tr>
+                                            </table>
+                                            
+                                            Shipping Date: #{cartBean.shipDate}
+                                            
+                                            
+                                            
+                                            
+                                            #{orderBean.order.setOrderNum(cartBean.cartNum)}
+                                            #{orderBean.order.setShippingDatetime(cartBean.shipDate)}
+                                            #{orderBean.order.setOrderStatus('Pending')}
+                                            #{orderBean.order.setUserId(userSessionBean.current.id)}
+                                            #{orderBean.order.setShippingMethodId(cartBean.shipid)}
+                                            <h:commandButton value="Confirm" action="#{orderBean.addAction()}"></h:commandButton>
+                                        </h:form>
                                     </div>
                                 </center>
-                            </div>                            
-                            
-                            <div class="article_item_box">
-                                <div class="article_item">
-                                    <center>
-                                        <h:dataTable value="#{shippingBean.shiparray}"
-                                                     var="shipinfo" border="1">
-                                            <h:column>
-                                                <f:facet name="header">
-                                                    <h:outputLabel value="Shipping Method"></h:outputLabel>
-                                                </f:facet>
-                                                <h:outputText value="#{shipinfo.shippingName}"></h:outputText>
-                                            </h:column>
-                                            <h:column>
-                                                <f:facet name="header">
-                                                    <h:outputLabel value="Price"></h:outputLabel>
-                                                </f:facet>
-                                                <h:outputText value="#{shipinfo.shippingPrice}"></h:outputText>
-                                            </h:column>
-                                        </h:dataTable>
-                                    </center>
-                                </div>                                
-                            </div>
-                            <hr/>
+                            </div> 
                         </div>
                         </div>
                     </div>

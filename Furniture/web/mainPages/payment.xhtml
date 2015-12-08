@@ -2,42 +2,72 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <form action="https://www.sandbox.paypal.com/cgi-bin/webscr/" method="POST">
-            <c:set var="count" value="1"/>
-            <input type="hidden" name="shipping_#{count}"
-                   value="#{cartBean.shipM.shippingPrice}"/>
-            <c:forEach items="#{cartBean.cart}" var="i">
-                <input type="hidden" name="item_number_#{count}"
-                       value="#{i.p.id}"/>
-                <input type="hidden" name="item_name_#{count}"
-                       value="#{i.p.name}"/>
-                <input type="hidden" name="quantity_#{count}"
-                       value="#{i.quantity}"/>
-                <c:if test="#{i.p.specPrice>0}">
-                    <input type="hidden" name="amount_#{count}"
-                           value="#{i.p.specPrice}"/>
-                </c:if>
-                <c:if test="#{i.p.specPrice==0}">
-                    <input type="hidden" name="amount_#{count}"
-                           value="#{i.p.price}"/>
-                </c:if>
-                
-                <c:set var="count" value="#{count+1}"/>
-            </c:forEach>
-            <input type="hidden" name="cmd" value="_cart"/>
-            <input type="hidden" name="business" value="uh6062-facilitator@gmail.com"/>
-            <input type="hidden" name="return" 
-                   value="http://localhost:8080/Furniture/faces/mainPages/confirm/success.xhtml"/>
-            <input type="hidden" name="cancel"
-                   value="http://localhost:8080/Furniture/faces/mainPages/confirm/fail.xhtml"/>
-            <input type="hidden" name="upload" value="1"/>
-            <input type="image" src="http://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"/>
-        </form>
+        <ui:composition template="/WEB-INF/template/mainLayout.xhtml">
+            <ui:define name="title">Payment Confirm</ui:define>
+            <ui:define name="content">                
+                <main>
+                    <div id="cpos_2">
+                        <div id="body_wrap">
+                           
+                            <div id="cpos_22">
+                            <div class="header_title">
+                                <div style="height: 1px; background-color: #A1a1a1; text-align: center;margin-top:10px;">
+                                  <span style="background-color: white; position: relative; top: -0.5em;">
+                                    <a>Order Confirmation</a>
+                                  </span>
+                                </div>
+                            </div>
+                            <div class="article_item_box">                                
+                                <center>                  
+                                    <h3>Payment with Paypal</h3>
+                                    <div>
+                                        <form action="https://www.sandbox.paypal.com/cgi-bin/webscr/" method="POST">
+                                            <c:set var="count" value="1"/>
+                                            <input type="hidden" name="shipping_#{count}"
+                                                   value="#{cartBean.shipM.shippingPrice}"/>  
+                                            <c:forEach items="#{cartBean.cart}" var="i">
+                                                <input type="hidden" name="item_number_#{count}"
+                                                       value="#{i.p.id}"/>
+                                                <input type="hidden" name="item_name_#{count}"
+                                                       value="#{i.p.name}"/>
+                                                <input type="hidden" name="quantity_#{count}"
+                                                       value="#{i.quantity}"/>
+                                                <c:if test="#{i.p.specPrice>0}">
+                                                    <input type="hidden" name="amount_#{count}"
+                                                           value="#{i.p.specPrice*(1+cartBean.tax.taxRate/100)}"/>
+                                                </c:if>
+                                                <c:if test="#{i.p.specPrice==0}">
+                                                    <input type="hidden" name="amount_#{count}"
+                                                           value="#{i.p.price*(1+cartBean.tax.taxRate/100)}"/>
+                                                </c:if>
+
+                                                <c:set var="count" value="#{count+1}"/>
+                                            </c:forEach>
+                                            <input type="hidden" name="cmd" value="_cart"/>
+                                            <input type="hidden" name="business" value="uh6062-facilitator@gmail.com"/>
+                                            <input type="hidden" name="return" 
+                                                   value="http://localhost:8080/Furniture/faces/mainPages/confirm/success.xhtml"/>
+                                            <input type="hidden" name="cancel"
+                                                   value="http://localhost:8080/Furniture/faces/mainPages/confirm/fail.xhtml"/>
+                                            <input type="hidden" name="upload" value="1"/>
+                                            <input type="image" src="http://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"/>
+                                        </form>
+                                    </div>
+                                </center>
+                            </div> 
+                        </div>
+                        </div>
+                    </div>
+                </main>
+            </ui:define>
+    	</ui:composition>
+        
         
     </h:body>
 </html>

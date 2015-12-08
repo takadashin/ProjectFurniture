@@ -12,13 +12,15 @@ import java.util.Vector;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 /**
  *
  * @author uh606_000
  */
 @ManagedBean (name="orderBean", eager = true)
-@RequestScoped
+//@RequestScoped
+@SessionScoped
 public class OrderBean{    
     private OrderService orderService = new OrderService();
     private Order order;

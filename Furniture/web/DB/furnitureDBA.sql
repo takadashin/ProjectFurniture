@@ -6,7 +6,7 @@ Target Host: localhost
 Target Database: furnitureshopping
 Date: 14/11/2015 09:22:06 PM
 */
-Insert Into PRODUCTS(cat_id,product_code,product_cost,product_desc,product_name,product_price,product_qty,product_short_desc,product_spec_price,product_post_date) Values('2','QQ','1','SSS','NAME','2','3','SSS','3','2015-12-04')
+Insert Into PRODUCTS(cat_id,product_code,product_cost,product_desc,product_name,product_price,product_qty,product_short_desc,product_spec_price,product_post_date) Values('2','QQ','1','SSS','NAME','2','3','SSS','3','2015-12-04');
 --Tax table
 insert into taxes (taxes_code,taxes_name,taxes_rate) values('aaa','aaa',10);
 insert into taxes (taxes_code,taxes_name,taxes_rate) values('bbb','bbb',20);

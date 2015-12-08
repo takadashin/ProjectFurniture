@@ -95,7 +95,7 @@
                                 <td align="left">
                                     <h:selectOneMenu id="ddlProductId" value="#{orderdetailBean.orderdetail.productId}">                                            
                                         <f:selectItems
-                                            value="#{productBean.products}" var="p"
+                                            value="#{productSBean.productSes}" var="p"
                                             itemValue="#{p.id}" itemLabel="#{p.name}" />
                                      </h:selectOneMenu><br/> 
                                 </td>
