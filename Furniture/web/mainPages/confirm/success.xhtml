@@ -33,28 +33,41 @@
                                     <div>
                                         <h:form id="frmOrderConfirm">
                                             <c:set var="count" value="1"/>
-                                            <input type="text" name="Order_#{count}"
-                                                   value="#{orderBean.order.orderNum='order_'+count}"/>
+                                            #Order: #{cartBean.cartNum}
+                                            #User Name: #{userSessionBean.current.username}
+                                            #Full Name: #{userSessionBean.current.userfullname}
                                             
-                                            <h:inputText
-                                                    value="#{orderBean.order.shippingAddress='abc'}">
-                                                </h:inputText>
-                                                <br/>
-                                                <h:inputText
-                                                    value="#{orderBean.order.orderStatus='Pending'}">
-                                                </h:inputText>
-                                                <br/>
-                                                <h:inputText
-                                                    value="#{orderBean.order.userId=userSessionBean.current.id}">
-                                                </h:inputText>
-                                                <br/>
-                                                <h:inputText
-                                                    value="#{orderBean.order.shippingMethodId=cartBean.shipM.id}">
-                                                </h:inputText>
-                                                <br/>
-                                                <h:commandButton value="Confirm" action="#{orderBean.addAction()}"></h:commandButton>
-                                               
-                                           
+                                            Items:
+                                            <table>
+                                                <tr>
+                                                    <th>Item name:</th>
+                                                    <th>Quantity:</th>
+                                                    <th>Sales Price:</th>
+                                                </tr>                                                
+                                                <c:forEach items="#{cartBean.cart}" var="i">
+                                                    <tr>
+                                                        <td>#{i.p.name}</td>
+                                                        <td>#{i.quantity}</td>
+                                                        <td>#{i.total}</td>
+                                                    </tr>                                                    
+                                                </c:forEach>
+                                                <tr>
+                                                    <td colspan="2" style="float:right">Total:</td>
+                                                    <td>#{cartBean.subTotal}</td>
+                                                </tr>
+                                            </table>
+                                            
+                                            Shipping Date: #{cartBean.shipDate}
+                                            
+                                            
+                                            
+                                            
+                                            #{orderBean.order.setOrderNum(cartBean.cartNum)}
+                                            #{orderBean.order.setShippingDatetime(cartBean.shipDate)}
+                                            #{orderBean.order.setOrderStatus('Pending')}
+                                            #{orderBean.order.setUserId(userSessionBean.current.id)}
+                                            #{orderBean.order.setShippingMethodId(cartBean.shipid)}
+                                            <h:commandButton value="Confirm" action="#{orderBean.addAction()}"></h:commandButton>
                                         </h:form>
                                     </div>
                                 </center>

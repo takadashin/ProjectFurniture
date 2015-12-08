@@ -11,6 +11,7 @@ import com.furniture.domain.Shipping;
 import com.furniture.domain.Tax;
 import com.furniture.service.ShippingService;
 import com.furniture.service.TaxService;
+import java.text.SimpleDateFormat;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -26,12 +27,45 @@ public class ShoppingCartBean {
     private float subTotal;   
     private int amountOfItem;    
     private int shipid;
+    private Date shipDate;
     private Shipping shipM;
     private ShippingService shippingService = new ShippingService();    
     
     private Tax tax;
-    private TaxService taxService = new TaxService();
+    private TaxService taxService = new TaxService();    
 
+    
+    private String cartNum;
+
+    public String getCartNum() {        
+        return cartNum;
+    }
+
+    public void setCartNum(String cartNum) {
+        this.cartNum = cartNum;
+    }
+    
+    
+    public Date getShipDate() {
+        Calendar cal = Calendar.getInstance();
+
+        if(shipid!=0)
+        {
+            cal.add(Calendar.DATE, shipM.getShippingDuration());
+        }
+        shipDate = cal.getTime();   
+        cartNum = "O" + new SimpleDateFormat("yyMMddhhmmss").format(shipDate);
+        return shipDate;
+    }
+
+    public void setShipDate(Date shipDate) {
+        this.shipDate = shipDate;
+    }
+    
+    
+    
+    
+    
     public Tax getTax() {
         return tax;
     }
@@ -81,19 +115,6 @@ public class ShoppingCartBean {
         return amountOfItem;
     }
 
-    public Date calculateShippingDate()
-    {
-        Date d;
- 
-        Calendar cal = Calendar.getInstance();
-
-        if(shipid!=0)
-        {
-            cal.add(Calendar.DATE, shipM.getShippingDuration());
-        }
-        d = cal.getTime();
-        return d;
-    }
     
     public void setAmountOfItem(int amountOfItem) {
         this.amountOfItem = amountOfItem;
@@ -109,9 +130,20 @@ public class ShoppingCartBean {
     
     public float getSubTotal() {
         subTotal = 0;
-        for (Item item : cart) {
-            subTotal += item.getTotal() *(1+tax.getTaxRate()/100);            
-        }    
+        
+        if(tax!=null)
+        {
+            for (Item item : cart) {
+                subTotal += item.getTotal() *(1+tax.getTaxRate()/100); 
+            }   
+        }
+        else
+        {
+            for (Item item : cart) {
+                subTotal += item.getTotal(); 
+            }
+        }
+        
         if(shipid!=0)
         {
             subTotal += shipM.getShippingPrice();        
@@ -125,14 +157,14 @@ public class ShoppingCartBean {
     }  
     
     
-    public void addToCart(Product p)
+    public String addToCart(Product p)
     {
         //Increament quantity if duplicate product
         for (Item item : cart) {
             if(item.getP().getId() == p.getId())
             {
                 item.setQuantity(item.getQuantity()+1);
-//                return "shoppingcart";
+                return "shoppingcart";
             }
         }
         
@@ -141,7 +173,7 @@ public class ShoppingCartBean {
         i.setQuantity(1);
         i.setP(p);
         cart.add(i);
-//        return "shoppingcart";        
+        return "shoppingcart";        
     }   
     
     public void update()

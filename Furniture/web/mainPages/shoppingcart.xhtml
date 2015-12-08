@@ -4,8 +4,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     
     <h:body>
     	<ui:composition template="/WEB-INF/template/mainLayout.xhtml">
@@ -71,6 +70,7 @@
                                         </td>
                                         <td>
                                             <span style="display: none">#{cartBean.tax=cartBean.taxService.getById(i.p.id)}</span>
+                                            
                                             #{cartBean.tax.taxRate}
                                         </td>
                                         <td>
@@ -103,7 +103,7 @@
                                 <tr>
                                     <td colspan="5" style="text-align: right;font-weight: 800;">Shipping Date:</td>
                                     <td>
-                                        <h:outputText value="#{cartBean.calculateShippingDate()}" >
+                                        <h:outputText value="#{cartBean.shipDate}" >
                                                     <f:convertDateTime pattern="yyyy-MM-dd" />
                                        </h:outputText>
                                     </td>

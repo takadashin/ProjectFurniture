@@ -19,7 +19,7 @@ import javax.faces.bean.SessionScoped;
  * @author uh606_000
  */
 @ManagedBean (name="orderBean", eager = true)
-@RequestScoped
+//@RequestScoped
 @SessionScoped
 public class OrderBean{    
     private OrderService orderService = new OrderService();
