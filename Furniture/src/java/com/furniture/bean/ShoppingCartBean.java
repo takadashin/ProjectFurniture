@@ -186,7 +186,7 @@ public class ShoppingCartBean {
             if(item.getP().getId() == p.getId())
             {
                 item.setQuantity(item.getQuantity()+1);
-                return "shoppingcart";
+                return "shoppingcart?faces-redirect=true&includeViewParams=true\";";
             }
         }
         
@@ -197,7 +197,7 @@ public class ShoppingCartBean {
         cart.add(i);
         
         tax = taxService.getById(p.getTaxId());
-        return "shoppingcart";        
+        return "shoppingcart?faces-redirect=true&includeViewParams=true\";";        
     }   
     
     public void update()
