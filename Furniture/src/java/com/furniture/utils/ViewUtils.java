@@ -8,6 +8,7 @@ package com.furniture.utils;
 import java.util.List;
 import java.util.Vector;
 import javax.faces.component.UICommand;
+import javax.faces.component.UIInput;
 import javax.faces.component.UIOutput;
 import javax.faces.component.UISelectBoolean;
 import javax.faces.context.FacesContext;
@@ -41,20 +42,15 @@ public class ViewUtils {
         }
         context.renderResponse();
     }
-    public static void switchAddEditCancelBaseForm(String formName, boolean isEdit) {
+   
+    public static void switchAddImageIntoForm(String formName,String fileName) {
 
         FacesContext context = FacesContext.getCurrentInstance();
 
-        UICommand btnAdd = (UICommand) context.getViewRoot().findComponent(
-                formName + ":btnAdd");
-        UICommand btnUpdate = (UICommand) context.getViewRoot().findComponent(
-                formName + ":btnUpdate");
-        UICommand btnCancel = (UICommand) context.getViewRoot().findComponent(
-                formName + ":btnCancel");
-        
-        btnAdd.setRendered(!isEdit);
-        btnUpdate.setRendered(isEdit);
-        btnCancel.setRendered(isEdit);        
+        UIInput txtImageName= (UIInput) context.getViewRoot().findComponent(
+                formName + ":txtImageName");
+        txtImageName.setValue(fileName);
+        txtImageName.setSubmittedValue(fileName);
         context.renderResponse();
     }
     

@@ -43,27 +43,6 @@ public class TaxDao extends BaseDao<Tax>{
     }
     
     @SuppressWarnings("unchecked")
-    public Vector convertToTbData(ResultSet data, int colCount)
-    {
-        Vector taxes = new Vector<>();
-        try {
-            if(data != null){
-                while(data.next())
-                {
-                    Vector record = new Vector();
-                    for (int i = 0; i < colCount; i++) {
-                        record.add(data.getString(i + 1));
-                    }
-                    taxes.add(record);
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(TaxDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return taxes;
-    }
-    
-    @SuppressWarnings("unchecked")
     public Object convertToData(Tax tax,Vector<Criterion> data)
     {
         Object id =tax.getId();

@@ -8,6 +8,7 @@ package com.furniture.bean;
 import com.furniture.domain.Product;
 import com.furniture.service.CatService;
 import com.furniture.service.ProductService;
+import com.furniture.service.TaxService;
 import com.furniture.utils.Constants;
 import com.furniture.utils.Criterion;
 import com.furniture.utils.ViewUtils;
@@ -31,13 +32,16 @@ public class ProductBean {
 
     private ProductService productService = new ProductService();
     private CatService catService = new CatService();
+    private TaxService taxService = new TaxService();
     private Product product;
     private Vector<Product> products;
     private List<SelectItem> catSelectItem;
     private List<SelectItem> catListSelectItem;
+    private List<SelectItem> taxSelectItem;
     private Integer catListId;
-    private static Integer currentCatListId;
-
+    private static Integer currentCatListId;    
+    
+    
     @PostConstruct
     public void init() {
         this.product = new Product();
@@ -87,7 +91,16 @@ public class ProductBean {
         currentCatListId = catListId;
         this.catListId = catListId;
     }
-    
+
+    public List<SelectItem> getTaxSelectItem() {
+        taxSelectItem = taxService.getAll(ViewUtils.comboboxDisplay(Constants.ID, Constants.TAXES_CODE));
+        return taxSelectItem;
+    }
+
+    public void setTaxSelectItem(List<SelectItem> taxSelectItem) {
+        this.taxSelectItem = taxSelectItem;
+    }
+
     public void productListbyCatId(){
         Vector<Criterion> criterions = new Vector<>();
         criterions.add(new Criterion(Constants.PRODUCT_CAT_ID, currentCatListId));
@@ -127,5 +140,9 @@ public class ProductBean {
        Vector<Criterion> criterions = new Vector<>();
         criterions.add(new Criterion(Constants.PRODUCT_CAT_ID, currentCatListId));
         products = productService.getBy(criterions);
+    }
+    
+    public String imageProduct(Product product){
+        return "images?faces-redirect=true&prodId=" + product.getId();
     }
 }

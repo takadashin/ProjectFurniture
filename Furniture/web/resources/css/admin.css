@@ -201,6 +201,10 @@ div#content{margin-left: 250px; padding-top: 50px}
     background-color: White; 
     border-collapse: collapse;
 }
-
-
 /*--------------------------table -------------------*/
+.btnImage{
+    margin-right: 20px;
+}
+.fileUpload{
+    width: 800px;
+}

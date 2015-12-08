@@ -30,12 +30,19 @@
                         var="product"
                         styleClass="tableViewSummary"
                         rowClasses="rowOne,rowTwo"
-                        columnClasses="nameColumn, nameColumn, nameColumn, nameColumn, nameColumn, nameColumn, nameColumn, actionColumn, actionColumn">
+                        columnClasses="nameColumn, nameColumn, nameColumn, nameColumn, nameColumn,nameColumn, nameColumn, nameColumn, actionColumn, actionColumn">
                         <f:facet name="header">
                             <f:verbatim>
                                 <caption>Product List</caption>
                             </f:verbatim>
                         </f:facet>
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Catagory Id"></h:outputLabel>
+                            </f:facet>
+                            <h:outputLabel
+                                value="#{product.catId}"></h:outputLabel>
+                        </h:column>
                         <h:column headerClass="tabletitle">
                             <f:facet name="header">
                                 <h:outputLabel value="Code"></h:outputLabel>
@@ -85,6 +92,13 @@
                             <h:outputLabel
                                 value="#{product.quantity}"></h:outputLabel>
                         </h:column>
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Tax Id"></h:outputLabel>
+                            </f:facet>
+                            <h:outputLabel
+                                value="#{product.taxId}"></h:outputLabel>
+                        </h:column>
 
                         <h:column headerClass="tabletitle">
                             <f:facet name="header">
@@ -101,7 +115,15 @@
                                            action="#{productBean.deleteProduct(product)}" onclick="if (!confirm('Are you sure you want to delete this product?'))
                                                        return false">
                             </h:commandLink>
-                        </h:column>   
+                        </h:column> 
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Image"></h:outputLabel>
+                            </f:facet>
+                            <h:commandLink value="Image" action="#{productBean.imageProduct(product)}">
+                                <f:param name="prodId" value="#{product.id}"/>
+                            </h:commandLink>
+                        </h:column> 
                     </h:dataTable>
                 </h:form>
 
@@ -125,7 +147,7 @@
                                         value="#{productBean.product.catId}"
                                         style="width: 200px;" id="cboCatId"
                                         required="true" requiredMessage="*">
-                                        <f:selectItem itemLabel="Select One" itemValue="#{null}"></f:selectItem> 
+                                        <f:selectItem itemLabel="Select One" itemValue="#{null}" noSelectionOption="true"></f:selectItem> 
                                         <f:selectItems
                                             value="#{productBean.catSelectItem}"/>	
                                     </h:selectOneMenu>
@@ -212,6 +234,22 @@
                                     <h:message for="txtProductQuantity" styleClass="errorMsg"/>
                                 </td>
                             </tr>   
+                             <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel value="Tax"></h:outputLabel>
+                                </td>
+                                <td align="left">
+                                    <h:selectOneMenu
+                                        value="#{productBean.product.taxId}"
+                                        style="width: 200px;" id="cboTaxId"
+                                        required="true" requiredMessage="*">
+                                        <f:selectItem itemLabel="Select One" itemValue="#{null}" noSelectionOption="true"></f:selectItem> 
+                                        <f:selectItems
+                                            value="#{productBean.taxSelectItem}"/>	
+                                    </h:selectOneMenu>
+                                    <h:message for="cboCatId" styleClass="errorMsg"/>
+                                </td>
+                            </tr>   
                             <tr>																	
                                 <td align="right"> 
                                     <h:outputLabel value="Post Date"></h:outputLabel>
@@ -226,7 +264,6 @@
                                     <h:commandButton id="btnAdd" value="Add" action="#{productBean.addAction}"></h:commandButton>
                                     <h:commandButton id="btnUpdate" value="Update" action="#{productBean.updateAction}" rendered="false"></h:commandButton> 
                                     <h:commandButton id="btnCancel" value="Cancel" action="#{productBean.cancelAction}" rendered="false"></h:commandButton>
-                                    <h:commandButton id="btnImage" value="Cancel" action="#{productBean.AddImageAction}" rendered="false"></h:commandButton>
                                 </td>
                             </tr>
                         </table>                              

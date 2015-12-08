@@ -33,7 +33,7 @@ public class ProductDao  extends BaseDao<Product>{
                     Product product =new Product();
                     product.setId(data.getInt(Constants.ID));
                     product.setCatId(data.getInt(Constants.PRODUCT_CAT_ID));
-                    product.setCatId(data.getInt(Constants.PRODUCT_TAX_ID));
+                    product.setTaxId(data.getInt(Constants.PRODUCT_TAX_ID));
                     product.setCode(data.getString(Constants.PRODUCT_CODE));
                     product.setCost(data.getFloat(Constants.PRODUCT_COST));
                     product.setDesc(data.getString(Constants.PRODUCT_DESC));
@@ -57,7 +57,7 @@ public class ProductDao  extends BaseDao<Product>{
     {
         Object id =product.getId();
         data.add(new Criterion(Constants.PRODUCT_CAT_ID, product.getCatId()));
-        data.add(new Criterion(Constants.PRODUCT_TAX_ID, product.getTax_id()));
+        data.add(new Criterion(Constants.PRODUCT_TAX_ID, product.getTaxId()));
         data.add(new Criterion(Constants.PRODUCT_CODE, product.getCode()));
         data.add(new Criterion(Constants.PRODUCT_COST, product.getCost()));
         data.add(new Criterion(Constants.PRODUCT_DESC, product.getDesc()));
