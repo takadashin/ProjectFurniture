@@ -48,6 +48,7 @@ public class ImageBean{
     private Image image;
     
     private static Integer curProductid;
+    private static String currentFileName;
     
     @ManagedProperty(value="#{param.prodId}")
     private static Integer prodId;
@@ -129,16 +130,18 @@ public class ImageBean{
         try {
             
             Product product = productService.getById(curProductid);
-            String fileName=event.getFile().getFileName();
+            currentFileName=event.getFile().getFileName();
             if (product != null) {
-                DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd_HH:mm:ss");
+                DateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
                 Date date = new Date();
-                fileName = product.getCatId() + "_" + curProductid + "_" + dateFormat.format(date);
+                currentFileName = "image"+product.getCatId() + "_" + curProductid + "_" + dateFormat.format(date) + currentFileName.substring(currentFileName.length()-4);
             }
-            copyFile(fileName, event.getFile().getInputstream());
+            copyFile(currentFileName, event.getFile().getInputstream());
           
-            image.setName(fileName);
-            ViewUtils.switchAddImageIntoForm("frmEditImage", fileName);
+            image.setName(currentFileName);
+            image.setType(event.getFile().getContentType());
+            image.setProductId(curProductid);
+            imageService.insertObject(image);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -163,6 +166,7 @@ public class ImageBean{
             out.close();
 
             System.out.println("New file created!");
+            
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
