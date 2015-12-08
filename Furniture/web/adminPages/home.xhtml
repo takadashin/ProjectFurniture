@@ -13,86 +13,10 @@
             <ui:define name="content">
                 <c:set var="ctx" value="#{request.contextPath}" />
                 <div id="main_panel" >
-                    <div class="header_title">User</div>
+                    
                     <div>
-                        <table class="Datagrid" border="0" cellspacing="0" cellpadding="0">
-                            <tr>
-                                <th>Id</th>
-                                <th>User Name</th>
-                                <th>Password</th>
-                                <th>Full Name</th>
-                                <th>Address</th>
-                                <th>Type</th>
-                                <th>Active</th>
-                                <th colspan="2"></th>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>abc</td>
-                                <td>abc</td>
-                                <td>a b c</td>
-                                <td>12 st.geogre</td>
-                                <td>admin</td>
-                                <td>yes</td>
-                                <td><a href="Delete.php"><img src="#{ctx}/resources/images/delete.png" />Delete</a></td>
-                                <td><a href="Edit.php"><img src="#{ctx}/resources/images/edit.png" />Edit</a></td>
-                            </tr>
-                            <tr class="even">
-                                <td>1</td>
-                                <td>abc</td>
-                                <td>abc</td>
-                                <td>a b c</td>
-                                <td>12 st.geogre</td>
-                                <td>admin</td>
-                                <td>yes</td>
-                                <td><a href="Delete.php"><img src="#{ctx}/resources/images/delete.png" />Delete</a></td>
-                                <td><a href="Edit.php"><img src="#{ctx}/resources/images/edit.png" />Edit</a></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>abc</td>
-                                <td>abc</td>
-                                <td>a b c</td>
-                                <td>12 st.geogre</td>
-                                <td>admin</td>
-                                <td>yes</td>
-                                <td><a href="Delete.php"><img src="#{ctx}/resources/images/delete.png" />Delete</a></td>
-                                <td><a href="Edit.php"><img src="#{ctx}/resources/images/edit.png" />Edit</a></td>
-                            </tr>
-                            <tr class="even">
-                                <td>1</td>
-                                <td>abc</td>
-                                <td>abc</td>
-                                <td>a b c</td>
-                                <td>12 st.geogre</td>
-                                <td>admin</td>
-                                <td>yes</td>
-                                <td><a href="Delete.php"><img src="#{ctx}/resources/images/delete.png" />Delete</a></td>
-                                <td><a href="Edit.php"><img src="#{ctx}/resources/images/edit.png" />Edit</a></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>abc</td>
-                                <td>abc</td>
-                                <td>a b c</td>
-                                <td>12 st.geogre</td>
-                                <td>admin</td>
-                                <td>yes</td>
-                                <td><a href="Delete.php"><img src="#{ctx}/resources/images/delete.png" />Delete</a></td>
-                                <td><a href="Edit.php"><img src="#{ctx}/resources/images/edit.png" />Edit</a></td>
-                            </tr>
-                            <tr class="even">
-                                <td>1</td>
-                                <td>abc</td>
-                                <td>abc</td>
-                                <td>a b c</td>
-                                <td>12 st.geogre</td>
-                                <td>admin</td>
-                                <td>yes</td>
-                                <td><a href="Delete.php"><img src="#{ctx}/resources/images/delete.png" />Delete</a></td>
-                                <td><a href="Edit.php"><img src="#{ctx}/resources/images/edit.png" />Edit</a></td>
-                            </tr>
-                        </table>
+                        <h1>Welcome #{userSessionBean.current.userfullname} to the admin website. </h1>
+                        <div><h1><--Please choose the link from the left to manage content in this website</h1></div>
                     </div>
                 </div>
                 
