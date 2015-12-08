@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/WEB-INF/template/mainLayout.xhtml">
+            <ui:define name="title">Product Detail</ui:define>
+            <ui:define name="content">                
+                <main>
+                    <form>
+                        <div id="cpos_2">
+                            <div id="body_wrap">
+                                <div id="body_image_wrap">
+
+                                    <div class="productLeft">
+                                        <div>
+                                            <h:graphicImage id="bigImage" value="#{ctx}/faces/resources/prdImages/#{productDetailBean.image.name}" height="400px" width="400px"></h:graphicImage>
+                                        </div>
+                                        <div>  
+                                            <c:forEach var="item" items="#{productDetailBean.images}">
+                                                <h:graphicImage value="#{ctx}/faces/resources/prdImages/#{item.name}" height="50px" width="50px" onclick="document.getElementById('bigImage').src=this.src"></h:graphicImage>
+                                            </c:forEach>
+                                        </div>
+                                    </div>
+                                    <div class="productRight">
+                                        <div class="product-name">#{productDetailBean.product.name}</div>
+                                        <div class="product-detail">#{productDetailBean.product.code} - #{productDetailBean.product.postDate}</div>
+                                        <div class="productPrice">#{productDetailBean.product.price}</div>
+                                        <div class="product-detail">#{productDetailBean.product.shortDesc}</div>
+                                        <div> <h:commandButton class="addbutton" value="Add to Cart" action="#{cartBean.addToCart(item)}"></h:commandButton></div>
+                                        <div class="productDescription"> #{productDetailBean.product.desc}</div>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </main>
+            </ui:define>
+        </ui:composition>
+
+    </h:body>
+</html>
+

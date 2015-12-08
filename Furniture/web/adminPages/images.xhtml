@@ -73,8 +73,7 @@
                 <br/>
                 <h:form id="frmUpload">
                     <p:fileUpload fileUploadListener="#{imageBean.handleFileUpload}" mode="advanced" dragDropSupport="false"
-                                  multiple="false" update="messages" fileLimit="100" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" class="fileUpload" oncomplete="document.getElementById('frmEditImage').submit();"/>
-                    <p:growl id="messages" showDetail="true" />
+                                  multiple="false"  fileLimit="100" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" class="fileUpload" oncomplete="document.getElementById('frmImageList').submit();"/>
                 </h:form>
                 <br/>
                 <h:form id="frmEditImage">

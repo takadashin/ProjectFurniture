@@ -96,3 +96,31 @@ div.smallline {position: absolute;background: white;height: 3px;width: 100%;bord
     border: 1px solid #34C7C7;}
 .header_checkout {background: #025754;font-weight: bold;text-align: center;text-transform: uppercase;color:white;padding:10px;}
 .addbutton {border:1px solid #dedede; background: orange;color:white;font-weigh:bold;padding:5px;border-radius: 5px;}
+
+.productLeft{
+    float: left;
+    margin-right: 200px;
+}
+
+#body_image_wrap{
+    padding-top:  50px;
+}
+
+.productDescription{
+    clear: left;
+    width: 100%;
+   padding-top: 56px;
+   padding-bottom: 50px;
+   font-size: 20px;
+}
+.productPrice{
+    font-size: 30px;
+    color: red;
+}
+.product-name{
+    font-size:30px;
+    font-weight: bold;
+}
+.product-detail{
+    font-size: 20px;
+}
