@@ -117,7 +117,9 @@ public class ProductBean {
         criterions.add(new Criterion(Constants.PRODUCT_CAT_ID, currentCatListId));
         products = productService.getBy(criterions);
     }
-
+    public void productListbyAll(){
+        products = productService.getAll();
+    }
     public void editProduct(Product product) {
         this.product = product;
         ViewUtils.switchAddEditBaseForm("frmEditProduct", true);

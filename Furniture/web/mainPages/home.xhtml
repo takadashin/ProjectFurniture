@@ -22,89 +22,34 @@
                                   </span>
                                 </div>
                             </div>
+                            <h:form id="frmProductList">  
+                              
                             <div class="article_item_box">
-
+                                
+                                <div style="margin-top:100px">
+                             
+                                </div>
+                                <c:forEach var="item" items="#{mainPageBean.products}">
                                 <div class="article_item">
-                                    <center><img src="#{ctx}/resources/images/chair.jpg"/></center>
+                                    
+                                    <center><img onError="this.onerror=null;this.src='#{ctx}/resources/images/No_Image_Available.png';" src="#{ctx}/resources/images/#{mainPageBean.getAvatar(item.id)}"/></center>
                                     <div class="article_item_content">
-                                    <p class="title_text">Thompson side chair</p>
-                                    <p class="location_text">by Gus Modern</p>
-                                    <div style="margin:20px 0;">
-                                    <p class="price_text">$250.00</p>
-                                    <p class="location_text">Free Shipping</p>
+                                        <p class="title_text">#{item.name}</p>
+                                        <p class="location_text">#{item.shortDesc}</p>
+                                    <div style=" height: 60px;">
+                                        <p class="price_text">Price:#{item.price}</p>
+                                        <p class="price_text">Old Price:#{item.specPrice != 0?item.specPrice:""}</p>
+                                    
                                     </div>
                                     <a href="#" class="readmore_link readmore">Read more</a>
                                     </div>
                                 </div>
+                                </c:forEach>
                                 
-                                <div class="article_item">
-                                    <center><img src="#{ctx}/resources/images/chair.jpg"/></center>
-                                    <div class="article_item_content">
-                                        <p class="title_text">Thompson side chair</p>
-                                        <p class="location_text">by Gus Modern</p>
-                                        <div style="margin:20px 0;">
-                                            <p class="price_text">$250.00</p>
-                                            <p class="location_text">Free Shipping</p>
-                                        </div>
-                                        <a href="#" class="readmore_link readmore">Read more</a>
-                                    </div>
-                                </div>
-                                <div class="article_item">
-                                    <center><img src="#{ctx}/resources/images/chair.jpg"/></center>
-                                    <div class="article_item_content">
-                                        <p class="title_text">Thompson side chair</p>
-                                        <p class="location_text">by Gus Modern</p>
-                                        <div style="margin:20px 0;">
-                                            <p class="price_text">$250.00</p>
-                                            <p class="location_text">Free Shipping</p>
-                                        </div>
-                                        <a href="#" class="readmore_link readmore">Read more</a>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <hr/>
-                            
-                            <div class="article_item_box">
-
-                                <div class="article_item">
-                                    <center><img src="#{ctx}/resources/images/chair.jpg"/></center>
-                                    <div class="article_item_content">
-                                        <p class="title_text">Thompson side chair</p>
-                                        <p class="location_text">by Gus Modern</p>
-                                        <div style="margin:20px 0;">
-                                            <p class="price_text">$250.00</p>
-                                            <p class="location_text">Free Shipping</p>
-                                        </div>
-                                        <a href="#" class="readmore_link readmore">Read more</a>
-                                    </div>
-                                </div>
                                 
-                                <div class="article_item">
-                                    <center><img src="#{ctx}/resources/images/chair.jpg"/></center>
-                                    <div class="article_item_content">
-                                        <p class="title_text">Thompson side chair</p>
-                                        <p class="location_text">by Gus Modern</p>
-                                        <div style="margin:20px 0;">
-                                            <p class="price_text">$250.00</p>
-                                            <p class="location_text">Free Shipping</p>
-                                        </div>
-                                        <a href="#" class="readmore_link readmore">Read more</a>
-                                    </div>
-                                </div>
-                                <div class="article_item">
-                                    <center><img src="#{ctx}/resources/images/chair.jpg"/></center>
-                                    <div class="article_item_content">
-                                        <p class="title_text">Thompson side chair</p>
-                                        <p class="location_text">by Gus Modern</p>
-                                        <div style="margin:20px 0;">
-                                            <p class="price_text">$250.00</p>
-                                            <p class="location_text">Free Shipping</p>
-                                        </div>
-                                        <a href="#" class="readmore_link readmore">Read more</a>
-                                    </div>
-                                </div>
+                            
                             </div>
+                            </h:form>
                         </div>
                     </div>
                 </div>
