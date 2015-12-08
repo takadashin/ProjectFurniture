@@ -15,11 +15,13 @@
                         <ul class="sub_menu">
                             <div>
                                <h:link outcome="/mainPages/home" >
-                                    <h:graphicImage library="images" name="custom_image.jpg" class="logo"/>
+                                   <h:graphicImage library="images" style="display:none;" name="custom_image.jpg" class="logo"/>
                                 </h:link>
                             </div>
                             <c:forEach var="child" items="#{catBean.CatByID(item.id)}">
-                            <li><a>#{child.name}</a></li>
+                                <h:form>
+                                    <li><h:commandLink value="#{child.name}" action="#{productBean.redirectByID(child.id)}" ></h:commandLink></li>
+                                </h:form>
                             </c:forEach>
                         </ul>
                     </li>
