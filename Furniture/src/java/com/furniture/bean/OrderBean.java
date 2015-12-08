@@ -12,6 +12,7 @@ import java.util.Vector;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 /**
  *
@@ -19,6 +20,7 @@ import javax.faces.bean.RequestScoped;
  */
 @ManagedBean (name="orderBean", eager = true)
 @RequestScoped
+@SessionScoped
 public class OrderBean{    
     private OrderService orderService = new OrderService();
     private Order order;

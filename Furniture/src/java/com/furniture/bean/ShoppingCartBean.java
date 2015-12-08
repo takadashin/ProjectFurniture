@@ -39,9 +39,7 @@ public class ShoppingCartBean {
     public void setTax(Tax tax) {
         this.tax = tax;
     }
-
-
-
+    
     public TaxService getTaxService() {
         return taxService;
     }
@@ -134,7 +132,7 @@ public class ShoppingCartBean {
             if(item.getP().getId() == p.getId())
             {
                 item.setQuantity(item.getQuantity()+1);
-                //return "shoppingcart";
+//                return "shoppingcart";
             }
         }
         
@@ -143,7 +141,7 @@ public class ShoppingCartBean {
         i.setQuantity(1);
         i.setP(p);
         cart.add(i);
-        //return "shoppingcart";        
+//        return "shoppingcart";        
     }   
     
     public void update()

@@ -10,7 +10,7 @@
         <form action="https://www.sandbox.paypal.com/cgi-bin/webscr/" method="POST">
             <c:set var="count" value="1"/>
             <input type="hidden" name="shipping_#{count}"
-                   value="#{cartBean.shipM.shippingPrice}"/>
+                   value="#{cartBean.shipM.shippingPrice}"/>  
             <c:forEach items="#{cartBean.cart}" var="i">
                 <input type="hidden" name="item_number_#{count}"
                        value="#{i.p.id}"/>
@@ -20,11 +20,11 @@
                        value="#{i.quantity}"/>
                 <c:if test="#{i.p.specPrice>0}">
                     <input type="hidden" name="amount_#{count}"
-                           value="#{i.p.specPrice}"/>
+                           value="#{i.p.specPrice*(1+cartBean.tax.taxRate/100)}"/>
                 </c:if>
                 <c:if test="#{i.p.specPrice==0}">
                     <input type="hidden" name="amount_#{count}"
-                           value="#{i.p.price}"/>
+                           value="#{i.p.price*(1+cartBean.tax.taxRate/100)}"/>
                 </c:if>
                 
                 <c:set var="count" value="#{count+1}"/>

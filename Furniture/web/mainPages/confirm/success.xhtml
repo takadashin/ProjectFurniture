@@ -34,22 +34,22 @@
                                         <h:form id="frmOrderConfirm">
                                             <c:set var="count" value="1"/>
                                             <input type="text" name="Order_#{count}"
-                                                   value="#{orderBean.order.orderNum}"/>
+                                                   value="#{orderBean.order.orderNum='order_'+count}"/>
                                             
                                             <h:inputText
-                                                    value="#{orderBean.order.shippingAddress}">abc
+                                                    value="#{orderBean.order.shippingAddress='abc'}">
                                                 </h:inputText>
                                                 <br/>
                                                 <h:inputText
-                                                    value="#{orderBean.order.orderStatus}">Pending
+                                                    value="#{orderBean.order.orderStatus='Pending'}">
                                                 </h:inputText>
                                                 <br/>
                                                 <h:inputText
-                                                    value="#{orderBean.order.userId}">1
+                                                    value="#{orderBean.order.userId=userSessionBean.current.id}">
                                                 </h:inputText>
                                                 <br/>
                                                 <h:inputText
-                                                    value="#{orderBean.order.shippingMethodId}">2
+                                                    value="#{orderBean.order.shippingMethodId=cartBean.shipM.id}">
                                                 </h:inputText>
                                                 <br/>
                                                 <h:commandButton value="Confirm" action="#{orderBean.addAction()}"></h:commandButton>
