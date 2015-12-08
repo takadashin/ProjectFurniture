@@ -56,7 +56,7 @@ public class ImageBean{
     @PostConstruct
     public void init() {
         image = new Image();
-        if(curProductid == null)
+        if(curProductid == null || ( prodId != null && curProductid != prodId) )
             curProductid = prodId;
        imageList();
     }
