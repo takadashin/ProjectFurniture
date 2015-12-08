@@ -17,7 +17,7 @@
                         <div id="cpos_2">
                             <div id="body_wrap">
                                 <div id="body_image_wrap">
-
+                                    <h:form>
                                     <div class="productLeft">
                                         <div>
                                             <h:graphicImage id="bigImage" value="#{ctx}/faces/resources/prdImages/#{productDetailBean.image.name}" height="400px" width="400px"></h:graphicImage>
@@ -36,6 +36,7 @@
                                         <div> <h:commandButton class="addbutton" value="Add to Cart" action="#{cartBean.addToCart(item)}"></h:commandButton></div>
                                         <div class="productDescription"> #{productDetailBean.product.desc}</div>
                                     </div> 
+                                    </h:form>
                                 </div>
                             </div>
                         </div>
