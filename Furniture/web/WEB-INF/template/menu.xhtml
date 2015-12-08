@@ -19,9 +19,8 @@
                                 </h:link>
                             </div>
                             <c:forEach var="child" items="#{catBean.CatByID(item.id)}">
-                                <h:form>
-                                    <li><h:commandLink value="#{child.name}" action="#{productBean.redirectByID(child.id)}" ></h:commandLink></li>
-                                </h:form>
+                               
+                                <li><a href="/Furniture/faces/mainPages/productlist.xhtml?id=#{child.id}">#{child.name}</a></li>
                             </c:forEach>
                         </ul>
                     </li>
