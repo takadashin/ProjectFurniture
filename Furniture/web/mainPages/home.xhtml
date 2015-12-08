@@ -32,7 +32,7 @@
                                 <c:forEach var="item" items="#{mainPageBean.products}">
                                 <div class="article_item">
                                     
-                                    <center><img onError="this.onerror=null;this.src='#{ctx}/resources/images/No_Image_Available.png';" src="#{ctx}/resources/images/#{mainPageBean.getAvatar(item.id)}"/></center>
+                                    <center><img onError="this.onerror=null;this.src='#{ctx}/resources/images/No_Image_Available.png';" src="#{ctx}/resources/prdImages/#{mainPageBean.getAvatar(item.id)}"/></center>
                                     <div class="article_item_content">
                                         <p class="title_text">#{item.name}</p>
                                         <p class="location_text">#{item.shortDesc}</p>
