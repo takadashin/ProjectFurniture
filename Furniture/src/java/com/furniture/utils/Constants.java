@@ -6,6 +6,8 @@ package com.furniture.utils;
  * @author linh
  */
 public class Constants {
+    
+    public static final String IMAGE_PRODUCT_PATH = "resources/prdImages/";
     public static final String ID="Id";
     //TAX
     public static final String TAXES_TB ="TAXES"; 
@@ -69,5 +71,14 @@ public class Constants {
     public static final String PRODUCT_TAX_ID ="tax_id";
     public static final String PRODUCT_POST_DATE ="product_post_date";
 
+    public static final String SMALL_IMAGE_TYPE = "small";
+    public static final String BIG_IMAGE_TYPE="big";
+    
+    public static final String IMAGES_TB = "IMAGES";
+    public static final String IMAGE_IMAGE_NAME = "image_name";
+    public static final String IMAGE_CONTENT_TYPE = "content_type";
+    public static final String IMAGE_PRODUCT_ID = "product_id";
+
+    
     
 }

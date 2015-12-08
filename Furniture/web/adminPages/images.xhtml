@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+    <body>
+        <ui:composition template="/WEB-INF/template/adminLayout.xhtml">
+            <ui:define name="title">
+                Product Images
+            </ui:define>
+           
+            <ui:define name="content">
+                <c:set var="ctx" value="#{request.contextPath}" />
+                <br/>
+                <h:form id="frmImageList"> 
+                    <h:dataTable
+                        value="#{imageBean.images}"
+                        var="image"
+                        styleClass="tableViewSummary"
+                        rowClasses="rowOne,rowTwo"
+                        columnClasses="nameColumn, nameColumn, nameColumn, actionColumn, actionColumn">
+                        <f:facet name="header">
+                            <f:verbatim>
+                                <caption>Image List</caption>
+                            </f:verbatim>
+                        </f:facet>
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Image Name"></h:outputLabel>
+                            </f:facet>
+                            <h:outputLabel
+                                value="#{image.name}"></h:outputLabel>
+                        </h:column>
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Image Type"></h:outputLabel>
+                            </f:facet>
+                            <h:outputLabel
+                                value="#{image.type}"></h:outputLabel>
+                        </h:column>
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Product Id"></h:outputLabel>
+                            </f:facet>
+                            <h:outputLabel
+                                value="#{image.productId}"></h:outputLabel>
+                        </h:column>
+
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Edit"></h:outputLabel>
+                            </f:facet>
+                            <h:commandLink value="Edit"
+                                           action="#{imageBean.editImage(image)}">
+                            </h:commandLink>
+                        </h:column>
+                        <h:column headerClass="tabletitle">
+                            <f:facet name="header">
+                                <h:outputLabel value="Delete"></h:outputLabel>
+                            </f:facet>
+                            <h:commandLink value="Delete"
+                                           action="#{imageBean.deleteImage(image)}">
+                            </h:commandLink>
+                        </h:column>   
+                    </h:dataTable>
+                </h:form>
+                <br/>
+                <h:form >
+                    
+                    <p:fileUpload fileUploadListener="#{imageBean.handleFileUpload}" mode="advanced" dragDropSupport="false"
+                                  multiple="false" update="messages" fileLimit="100" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" class="fileUpload" oncomplete="submit()"/>
+                    <p:growl id="messages" showDetail="true" />
+                    <br/>
+                </h:form>
+                <h:form id="frmEditImage">
+                    <h:panelGroup>
+                        <h:inputHidden value="#{imageBean.image.id}"></h:inputHidden>
+
+                        <table class="tableEdit" width="auto">
+                            <tr>
+                                <th class="tableEditHeader" colspan="2" align="center">
+                                    Image
+                                </th>
+                            </tr>
+                            <tr>																	
+                                <td align="right" width="100px"> 
+                                    <h:outputLabel value="Image Name"></h:outputLabel>
+                                </td>
+                                <td align="left">
+                                    <h:inputText id="txtImageName" value="#{imageBean.image.name}" required="true" 
+                                                 requiredMessage="*">																			
+                                    </h:inputText>
+                                    <h:message for="txtImageName" styleClass="errorMsg"/>
+                                </td>
+                            </tr>   
+                            <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel value="Image Type"></h:outputLabel>
+                                </td>
+
+                                <td align="left">
+                                    <h:inputText id="txtImageType" value="#{imageBean.image.type}"></h:inputText>
+                                </td>
+                            </tr>   
+                            <tr>																	
+                                <td align="right"> 
+                                    <h:outputLabel value="Product Id"></h:outputLabel>
+                                </td>
+                                <td align="left">
+                                    <h:inputText id="txtProductId" value="#{imageBean.image.productId}">
+                                    </h:inputText>
+                                </td>
+                            </tr>   
+                            <tr>
+                                <td></td>
+                                <td align="left" >
+                                    <h:commandButton id="btnAdd" value="Add" action="#{imageBean.addAction}"></h:commandButton>
+                                    <h:commandButton id="btnUpdate" value="Update" action="#{imageBean.updateAction}" rendered="false"></h:commandButton> 
+                                    <h:commandButton id="btnCancel" value="Cancel" action="#{imageBean.cancelAction}" rendered="false"></h:commandButton>
+                                </td>
+                            </tr>
+                        </table>                              
+                    </h:panelGroup>
+                    
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
