@@ -20,7 +20,7 @@
 
                                     <div class="productLeft">
                                         <div>
-                                            <h:graphicImage id="bigImage" value="#{ctx}/faces/resources/prdImages/#{productDetailBean.image.name}" height="400px" width="400px"></h:graphicImage>
+                                            <h:graphicImage id="bigImage" value="#{ctx}/faces/resources/prdImages/#{productDetailBean.firstImageName()}" height="400px" width="400px"></h:graphicImage>
                                         </div>
                                         <div>  
                                             <c:forEach var="item" items="#{productDetailBean.images}">
@@ -33,7 +33,7 @@
                                         <div class="product-detail">#{productDetailBean.product.code} - #{productDetailBean.product.postDate}</div>
                                         <div class="productPrice">#{productDetailBean.product.price}</div>
                                         <div class="product-detail">#{productDetailBean.product.shortDesc}</div>
-                                        <div> <h:commandButton class="addbutton" value="Add to Cart" action="#{cartBean.addToCart(item)}"></h:commandButton></div>
+                                        
                                         <div class="productDescription"> #{productDetailBean.product.desc}</div>
                                     </div> 
                                 </div>

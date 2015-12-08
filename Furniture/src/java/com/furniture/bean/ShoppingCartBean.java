@@ -138,21 +138,33 @@ public class ShoppingCartBean {
     
     public float getSubTotal() {
         subTotal = 0;
+//        if(tax!=null)
+//        {
+//            for (Item item : cart) {
+//                
+//                subTotal += item.getTotal() *(1+tax.getTaxRate()/100); 
+//            }   
+//        }
+//        else
+//        {
+//            for (Item item : cart) {
+//                subTotal += item.getTotal(); 
+//            }
+//        }
         
-         
-        
-        if(tax!=null)
-        {
-            for (Item item : cart) {
+        for (Item item : cart) {            
+            if(tax!=null)
+            {
                 subTotal += item.getTotal() *(1+tax.getTaxRate()/100); 
-            }   
-        }
-        else
-        {
-            for (Item item : cart) {
-                subTotal += item.getTotal(); 
             }
-        }
+            else
+            {
+                subTotal += item.getTotal();
+            }
+            
+        } 
+        
+        
         
         if(shipid!=0)
         {
@@ -183,6 +195,8 @@ public class ShoppingCartBean {
         i.setQuantity(1);
         i.setP(p);
         cart.add(i);
+        
+        tax = taxService.getById(p.getTaxId());
         return "shoppingcart";        
     }   
     

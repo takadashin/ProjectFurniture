@@ -30,9 +30,8 @@ public class ProductDetailBean {
     private ImageService imageService =new ImageService();
     private ProductService ProductService = new ProductService();
     
-     private Product product;
+    private Product product;
     private Vector<Image> images;
-    private Image image;
     
     @ManagedProperty(value="#{param.id}")
     private Integer id;
@@ -47,7 +46,6 @@ public class ProductDetailBean {
     
      @PostConstruct
     public void init() {
-        image = new Image();
         product = ProductService.getById(id); 
         imageList();
     }
@@ -60,14 +58,12 @@ public class ProductDetailBean {
         this.product = product;
     }
 
-    public Image getImage() {
-        return image;
+    public String firstImageName() {
+        if (images != null)
+            return images.get(0).getName();
+        else
+            return "";
     }
-
-    public void setImage(Image image) {
-        this.image = image;
-    }
-    
     
 
     public Vector<Image> getImages() {
@@ -87,8 +83,6 @@ public class ProductDetailBean {
         images = imageService.getBy(criterions);
         if(images == null){
             images = new Vector<Image>();
-        }else{
-            image = images.get(0);
         }
     }
 }
