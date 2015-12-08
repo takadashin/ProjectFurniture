@@ -70,7 +70,8 @@ public class MainPageBean {
         ImageService service = new ImageService();
         Vector<Image> list = service.getBy(data);
         if(list.size() > 0)
-            return service.getBy(data).get(0).getName()+"."+service.getBy(data).get(0).getType();
+//            return service.getBy(data).get(0).getName()+"."+service.getBy(data).get(0).getType();
+            return service.getBy(data).get(0).getName();
         else
             return "";
     }

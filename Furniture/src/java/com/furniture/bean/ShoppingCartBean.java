@@ -6,9 +6,13 @@
 package com.furniture.bean;
 
 import com.furniture.domain.Item;
+import com.furniture.domain.Order;
+import com.furniture.domain.OrderDetail;
 import com.furniture.domain.Product;
 import com.furniture.domain.Shipping;
 import com.furniture.domain.Tax;
+import com.furniture.service.OrderDetailService;
+import com.furniture.service.OrderService;
 import com.furniture.service.ShippingService;
 import com.furniture.service.TaxService;
 import java.text.SimpleDateFormat;
@@ -29,13 +33,21 @@ public class ShoppingCartBean {
     private int shipid;
     private Date shipDate;
     private Shipping shipM;
-    private ShippingService shippingService = new ShippingService();    
+    private ShippingService shippingService = new ShippingService();   
     
     private Tax tax;
-    private TaxService taxService = new TaxService();    
-
+    private TaxService taxService = new TaxService(); 
     
     private String cartNum;
+    private String shipAddr;
+
+    public String getShipAddr() {
+        return shipAddr;
+    }
+
+    public void setShipAddr(String shipAddr) {
+        this.shipAddr = shipAddr;
+    }
 
     public String getCartNum() {        
         return cartNum;
@@ -61,10 +73,6 @@ public class ShoppingCartBean {
     public void setShipDate(Date shipDate) {
         this.shipDate = shipDate;
     }
-    
-    
-    
-    
     
     public Tax getTax() {
         return tax;
@@ -194,4 +202,85 @@ public class ShoppingCartBean {
     }
     
    
+    private Order order;
+    private OrderService orderService = new OrderService();
+
+    public Order getOrder() { 
+        
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public OrderService getOrderService() {
+        return orderService;
+    }
+
+    public void setOrderService(OrderService orderService) {
+        this.orderService = orderService;
+    }
+    
+    public void createOrder(int userId){
+        order = new Order();
+        order.setOrderNum(cartNum);
+        order.setShippingAddress(shipAddr);
+        order.setShippingDatetime(shipDate);
+        order.setOrderStatus("Purchased");
+        order.setUserId(userId);
+        order.setShippingMethodId(shipid);
+        orderService.insertObject(order); 
+        
+              
+//        for (Item item : cart) {
+//            orderdetail = new OrderDetail(); 
+//            orderdetail.setOrderId(order.getId());
+//            orderdetail.setProductId(item.getP().getId());
+//            orderdetail.setProductOrderQty(item.getQuantity());
+//            tax = taxService.getById(item.getP().getId());
+//            if(tax!=null)
+//            {
+//                orderdetail.setProductTaxesRate(tax.getTaxRate());
+//            }
+//           
+//            if(item.getP().getSpecPrice()>0)
+//            {
+//                orderdetail.setSalesProductPrice(item.getP().getSpecPrice());
+//            }
+//            else
+//            {
+//                orderdetail.setSalesProductPrice(item.getP().getPrice());
+//            }
+//            
+//            orderdetailService.insertObject(orderdetail);
+//            
+//        }
+//        
+        
+        cart.clear();
+                
+        
+    }
+    
+    private OrderDetail orderdetail;
+    private OrderDetailService orderdetailService = new OrderDetailService();
+
+    public OrderDetail getOrderdetail() {
+        return orderdetail;
+    }
+
+    public void setOrderdetail(OrderDetail orderdetail) {
+        this.orderdetail = orderdetail;
+    }
+
+    public OrderDetailService getOrderdetailService() {
+        return orderdetailService;
+    }
+
+    public void setOrderdetailService(OrderDetailService orderdetailService) {
+        this.orderdetailService = orderdetailService;
+    }
+    
+    
 }

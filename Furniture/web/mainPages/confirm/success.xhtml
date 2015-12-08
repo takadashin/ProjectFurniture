@@ -33,9 +33,9 @@
                                     <div>
                                         <h:form id="frmOrderConfirm">
                                             <c:set var="count" value="1"/>
-                                            #Order: #{cartBean.cartNum}
-                                            #User Name: #{userSessionBean.current.username}
-                                            #Full Name: #{userSessionBean.current.userfullname}
+                                            #Order: #{cartBean.cartNum}<br/>
+                                            #User Name: #{userSessionBean.current.username}<br/>
+                                            #Full Name: #{userSessionBean.current.userfullname}<br/>
                                             
                                             Items:
                                             <table>
@@ -58,13 +58,10 @@
                                             </table>
                                             
                                             Shipping Date: #{cartBean.shipDate} 
+                                            <br/>
                                             
-                                            #{orderBean.order.setOrderNum(cartBean.cartNum)}
-                                            #{orderBean.order.setShippingDatetime(cartBean.shipDate)}
-                                            #{orderBean.order.setOrderStatus('Pending')}
-                                            #{orderBean.order.setUserId(userSessionBean.current.id)}
-                                            #{orderBean.order.setShippingMethodId(cartBean.shipid)}
-                                            <h:commandButton value="Confirm" action="#{orderBean.addAction()}"></h:commandButton>
+                                            <h:commandButton value="Confirm" action="#{cartBean.createOrder(userSessionBean.current.id)}"/>
+                                            
                                         </h:form>
                                     </div>
                                 </center>

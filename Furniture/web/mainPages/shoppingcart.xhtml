@@ -50,7 +50,7 @@
                                 <ui:repeat value="#{cartBean.cart}" var="i">
                                     <tr>
                                         <td>
-                                            <img style="height:50px;width:50px;" onError="this.onerror=null;this.src='#{ctx}/resources/images/No_Image_Available.png';" src="#{ctx}/resources/images/#{mainPageBean.getAvatar(i.p.id)}"/>
+                                            <img style="height:50px;width:50px;" onError="this.onerror=null;this.src='#{ctx}/resources/images/No_Image_Available.png';" src="#{ctx}/resources/prdImages/#{mainPageBean.getAvatar(i.p.id)}"/>
                                         </td>
                                         <td>
                                             <b>#{i.p.name}</b><br/>
@@ -73,10 +73,12 @@
                                             #{cartBean.tax.taxRate}
                                         </td>
                                         <td>
-                                            $#{i.total*(1+cartBean.tax.taxRate/100)}
+                                            <h:outputText value="#{i.total*(1+cartBean.tax.taxRate/100)}" >
+                                                <f:convertNumber currencySymbol="$" type="currency" />
+                                            </h:outputText>
                                         </td>
                                         <td style="text-align: center;">
-                                            <h:commandButton class="button_submit" value="Delete" action="#{cartBean.remove(i)}"/>
+                                            <h:commandButton class="button_submit" value="Delete" action="#{cartBean.remove(i)}" immediate="true"/>
                                         </td>
                                     </tr>
                                 </ui:repeat>
@@ -103,8 +105,17 @@
                                     <td colspan="5" style="text-align: right;font-weight: 800;">Shipping Date:</td>
                                     <td>
                                         <h:outputText value="#{cartBean.shipDate}" >
-                                                    <f:convertDateTime pattern="yyyy-MM-dd" />
+                                            <f:convertDateTime pattern="yyyy-MM-dd" />
                                        </h:outputText>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5" style="text-align: right;font-weight: 800;">Shipping Address:</td>
+                                    <td>
+                                        <h:inputText id="txbShipAddress" value="#{cartBean.shipAddr}" required="true" requiredMessage="Shipping Address is required.">                                            
+                                       </h:inputText><br/>
+                                       <h:message for="txbShipAddress" styleClass="errorMsg"/>
                                     </td>
                                     <td></td>
                                 </tr>
@@ -119,7 +130,7 @@
                             </h:form>
                             <div class="clear"></div>
                             <div style="text-align: right;padding-top:10px;">
-                                <h:link class="button_submit" outcome="testCart" value="Continue Shopping"/>   </div>                         
+                                <h:link class="button_submit" outcome="home" value="Continue Shopping"/>   </div>                         
                         </div>
                     </div>
                 </div>
