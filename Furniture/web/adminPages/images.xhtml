@@ -31,8 +31,11 @@
                             <f:facet name="header">
                                 <h:outputLabel value="Image Name"></h:outputLabel>
                             </f:facet>
+                            <h:graphicImage value="#{ctx}/../resources/prdImages/#{image.name}" height="50px" width="50px"></h:graphicImage>
+                            <br/>
                             <h:outputLabel
                                 value="#{image.name}"></h:outputLabel>
+                               
                         </h:column>
                         <h:column headerClass="tabletitle">
                             <f:facet name="header">
@@ -68,13 +71,12 @@
                     </h:dataTable>
                 </h:form>
                 <br/>
-                <h:form >
-                    
+                <h:form id="frmUpload">
                     <p:fileUpload fileUploadListener="#{imageBean.handleFileUpload}" mode="advanced" dragDropSupport="false"
-                                  multiple="false" update="messages" fileLimit="100" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" class="fileUpload" oncomplete="submit()"/>
+                                  multiple="false" update="messages" fileLimit="100" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" class="fileUpload" oncomplete="document.getElementById('frmEditImage').submit();"/>
                     <p:growl id="messages" showDetail="true" />
-                    <br/>
                 </h:form>
+                <br/>
                 <h:form id="frmEditImage">
                     <h:panelGroup>
                         <h:inputHidden value="#{imageBean.image.id}"></h:inputHidden>
@@ -117,7 +119,6 @@
                             <tr>
                                 <td></td>
                                 <td align="left" >
-                                    <h:commandButton id="btnAdd" value="Add" action="#{imageBean.addAction}"></h:commandButton>
                                     <h:commandButton id="btnUpdate" value="Update" action="#{imageBean.updateAction}" rendered="false"></h:commandButton> 
                                     <h:commandButton id="btnCancel" value="Cancel" action="#{imageBean.cancelAction}" rendered="false"></h:commandButton>
                                 </td>
