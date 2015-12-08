@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <h:body>
+    	<ui:composition template="/WEB-INF/template/mainLayout.xhtml">
+            <ui:define name="title">Home Page</ui:define>
+            <ui:define name="content">
+                <c:set var="ctx" value="#{request.contextPath}" />
+                <main>
+                <div id="cpos_2">
+                    <div id="body_wrap">
+                        
+                        <div id="cpos_22">
+                            <div class="header_title">
+                                <div style="height: 1px; background-color: #A1a1a1; text-align: center;margin-top:10px;">
+                                  <span style="background-color: white; position: relative; top: -0.5em;">
+                                      <a>#{productBean.getCatName(productBean.catListId)}</a>
+                                  </span>
+                                </div>
+                            </div>
+                            <h:form id="frmProductList">  
+                              
+                            <div class="article_item_box">
+                                
+                                <div style="margin-top:100px">
+                             
+                                </div>
+                                <c:forEach var="item" items="#{productBean.products}">
+                                <div class="article_item">
+                                    
+                                    <center><img onError="this.onerror=null;this.src='#{ctx}/resources/images/No_Image_Available.png';" src="#{ctx}/resources/images/#{productBean.getAvatar(item.id)}"/></center>
+                                    <div class="article_item_content">
+                                        <p class="title_text">#{item.name}</p>
+                                        <p class="location_text">#{item.shortDesc}</p>
+                                    <div style=" height: 60px;">
+                                        <p class="price_text">Price:#{item.price}</p>
+                                        <p class="price_text">Old Price:#{item.specPrice != 0?item.specPrice:""}</p>
+                                    
+                                    </div>
+                                    <a href="#" class="readmore_link readmore">Read more</a>
+                                    </div>
+                                </div>
+                                </c:forEach>
+                                
+                                
+                            
+                            </div>
+                            </h:form>
+                            <hr/>
+                            
+                     
+                        </div>
+                    </div>
+                </div>
+            </main>
+            </ui:define>
+    	</ui:composition>
+    	
+    </h:body>
+
+</html>
+
