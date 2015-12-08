@@ -139,6 +139,8 @@ public class ShoppingCartBean {
     public float getSubTotal() {
         subTotal = 0;
         
+         
+        
         if(tax!=null)
         {
             for (Item item : cart) {
@@ -232,31 +234,32 @@ public class ShoppingCartBean {
         order.setShippingMethodId(shipid);
         orderService.insertObject(order); 
         
+        order = orderService.getAll().lastElement();
               
-//        for (Item item : cart) {
-//            orderdetail = new OrderDetail(); 
-//            orderdetail.setOrderId(order.getId());
-//            orderdetail.setProductId(item.getP().getId());
-//            orderdetail.setProductOrderQty(item.getQuantity());
-//            tax = taxService.getById(item.getP().getId());
-//            if(tax!=null)
-//            {
-//                orderdetail.setProductTaxesRate(tax.getTaxRate());
-//            }
-//           
-//            if(item.getP().getSpecPrice()>0)
-//            {
-//                orderdetail.setSalesProductPrice(item.getP().getSpecPrice());
-//            }
-//            else
-//            {
-//                orderdetail.setSalesProductPrice(item.getP().getPrice());
-//            }
-//            
-//            orderdetailService.insertObject(orderdetail);
-//            
-//        }
-//        
+        for (Item item : cart) {
+            orderdetail = new OrderDetail(); 
+            orderdetail.setOrderId(order.getId());
+            orderdetail.setProductId(item.getP().getId());
+            orderdetail.setProductOrderQty(item.getQuantity());
+            tax = taxService.getById(item.getP().getId());
+            if(tax!=null)
+            {
+                orderdetail.setProductTaxesRate(tax.getTaxRate());
+            }
+           
+            if(item.getP().getSpecPrice()>0)
+            {
+                orderdetail.setSalesProductPrice(item.getP().getSpecPrice());
+            }
+            else
+            {
+                orderdetail.setSalesProductPrice(item.getP().getPrice());
+            }
+            
+            orderdetailService.insertObject(orderdetail);
+            
+        }
+        
         
         cart.clear();
                 
