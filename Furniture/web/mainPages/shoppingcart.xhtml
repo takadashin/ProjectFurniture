@@ -29,7 +29,7 @@
                                 <tr>
                                     <th colspan="5">Shopping Cart</th>
                                     <th colspan="3">
-                                        <c:if test="#{userSessionBean.current!=null}">
+                                        <c:if test="#{userSessionBean.current!=null}"> 
                                             <h:commandButton class="button_submit" value="Checkout" action="payment"></h:commandButton>
                                         </c:if>
                                         <c:if test="#{userSessionBean.current==null}">
@@ -50,8 +50,7 @@
                                 <ui:repeat value="#{cartBean.cart}" var="i">
                                     <tr>
                                         <td>
-                                            <h:graphicImage library="images" name="furniture1.jpg"
-                                                            width="50px" height="50px"/>
+                                            <img style="height:50px;width:50px;" onError="this.onerror=null;this.src='#{ctx}/resources/images/No_Image_Available.png';" src="#{ctx}/resources/images/#{mainPageBean.getAvatar(i.p.id)}"/>
                                         </td>
                                         <td>
                                             <b>#{i.p.name}</b><br/>

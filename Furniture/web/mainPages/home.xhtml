@@ -38,11 +38,14 @@
                                         <p class="location_text">#{item.shortDesc}</p>
                                     <div style=" height: 60px;">
                                         <p class="price_text">Price:#{item.price}</p>
-                                        <p class="price_text">Old Price:#{item.specPrice != 0?item.specPrice:""}</p>
+                                        <p class="price_text">Special Price:#{item.specPrice != 0?item.specPrice:""}</p>
                                     
                                     </div>
                                     <a href="#" class="readmore_link readmore">Read more</a>
                                     </div>
+                                    <div style="text-align:right;">
+                                    <h:commandButton class="addbutton" value="Add to Cart"
+                                                             action="#{cartBean.addToCart(item)}"></h:commandButton></div>
                                 </div>
                                 </c:forEach>
                                 
