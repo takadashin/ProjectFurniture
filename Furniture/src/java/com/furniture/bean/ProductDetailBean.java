@@ -59,7 +59,7 @@ public class ProductDetailBean {
     }
 
     public String firstImageName() {
-        if (images != null)
+        if (images != null && images.size()>0)
             return images.get(0).getName();
         else
             return "";

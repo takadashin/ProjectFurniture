@@ -33,7 +33,8 @@
                                         <div class="product-detail">#{productDetailBean.product.code} - #{productDetailBean.product.postDate}</div>
                                         <div class="productPrice">#{productDetailBean.product.price}</div>
                                         <div class="product-detail">#{productDetailBean.product.shortDesc}</div>
-                                        
+                                        <div> <h:commandButton class="addbutton" value="Add to Cart" action="#{cartBean.addToCart(item)}"></h:commandButton></div>
+
                                         <div class="productDescription"> #{productDetailBean.product.desc}</div>
                                     </div> 
                                 </div>
